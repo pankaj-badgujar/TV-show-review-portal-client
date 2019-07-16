@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row py-3">
+    <span class="col-sm-3">
+      <button
+        (click)="searchShow(keyword)"
+        class="mt-2 btn btn-block btn-success"> Search</button>
+    </span>
+    <span class="col-sm-9">
+      <input
+        [(ngModel)]="keyword"
+        placeholder="Enter a keyword. For eg. Game"
+        class="form-control mt-2">
+    </span>
+  </div>
+  <app-result-grid [searchResults]="searchResults"></app-result-grid>
+</div>
