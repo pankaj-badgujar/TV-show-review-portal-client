@@ -6,12 +6,16 @@ import { AppComponent } from './app.component';
 import { SearchShowComponent } from './search-show/search-show.component';
 import { ResultGridComponent } from './result-grid/result-grid.component';
 import {FormsModule} from '@angular/forms';
+import { ShowDetailViewerComponent } from './show-detail-viewer/show-detail-viewer.component';
+import { ShowGenresComponent } from './show-genres/show-genres.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchShowComponent,
-    ResultGridComponent
+    ResultGridComponent,
+    ShowDetailViewerComponent,
+    ShowGenresComponent
   ],
   imports: [
     BrowserModule,

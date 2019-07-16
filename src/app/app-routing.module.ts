@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {ResultGridComponent} from './result-grid/result-grid.component';
+import {ShowDetailViewerComponent} from './show-detail-viewer/show-detail-viewer.component';
+import {SearchShowComponent} from './search-show/search-show.component';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: '', component: SearchShowComponent},
+  {path: 'details/:showId', component: ShowDetailViewerComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

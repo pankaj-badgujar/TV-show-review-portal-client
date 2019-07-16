@@ -4,7 +4,7 @@
       *ngFor="let result of searchResults"
       class="col-md-2 col-sm-3 m-2">
       <div class="card-deck">
-        <a href="#">
+        <a routerLink="/details/{{result.show.id}}">
           <div class="card h-100">
             <img
             *ngIf="result.show.image == null"

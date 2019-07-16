@@ -12,4 +12,7 @@ export class ShowServiceClientService {
       .then(response => response.json())
 
 
+  getShowDetails = (showId) =>
+    fetch(`http://api.tvmaze.com/shows/${showId}`)
+      .then(response => response.json())
 }

@@ -1,0 +1,26 @@
+<div class="container">
+  <a routerLink="/" class="float-right"><small>back to search page</small></a>
+  <h2 class="mb-2">
+    {{showDetails.name}}
+  </h2>
+
+  <span *ngFor="let genre of showDetails.genres">
+      <app-show-genres [genre]="genre"></app-show-genres>
+    </span>
+
+
+  <div class="row bg-light">
+
+    <div class="col-sm-4">
+      <img src="{{showDetails.image.medium}}">
+    </div>
+    <div class="col-sm-8">
+
+
+    </div>
+  </div>
+  <div class="my-3">
+    <h6>Summary:</h6>{{showDetails.summary}}
+  </div>
+
+</div>
