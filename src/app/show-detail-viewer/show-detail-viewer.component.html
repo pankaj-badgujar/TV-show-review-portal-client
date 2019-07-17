@@ -1,6 +1,8 @@
 <div class="container">
-  <a routerLink="/" class="float-right"><small>back to search page</small></a>
-  <h2 class="mb-2">
+  <a class="float-right" routerLink="/">
+    <small>back to search page</small>
+  </a>
+  <h2 class="mt-5">
     {{showDetails.name}}
   </h2>
 
@@ -11,16 +13,39 @@
 
   <div class="row bg-light">
 
-    <div class="col-sm-4">
+    <div class="col-md-4 col-sm-5 mb-3">
       <img src="{{showDetails.image.medium}}">
     </div>
-    <div class="col-sm-8">
-
-
+    <div class="col-md-8 col-sm-7 px-3">
+      <dl class="row">
+        <dt class="col-6">Language</dt>
+        <dd class="col-6">{{showDetails.language}}</dd>
+        <dt class="col-6">Type</dt>
+        <dd class="col-6">{{showDetails.type}}</dd>
+        <dt class="col-6">Runtime of episode</dt>
+        <dd class="col-6">{{showDetails.runtime}} minutes</dd>
+        <dt class="col-6">Premiere date</dt>
+        <dd class="col-6">{{showDetails.premiered}}</dd>
+        <dt class="col-6">Status</dt>
+        <dd class="col-6">
+          <span
+            [ngClass]="{'badge-danger': showDetails.status == 'Ended',
+            'badge-secondary': showDetails.status == 'To Be Determined',
+            'badge-success': showDetails.status == 'Running'}"
+            class="badge" >
+          {{showDetails.status}}
+        </span>
+        </dd>
+      </dl>
     </div>
   </div>
   <div class="my-3">
-    <h6>Summary:</h6>{{showDetails.summary}}
+    <h6>Summary:</h6>
+    <div
+      [innerHTML]="showDetails.summary">
+      {{showDetails.summary}}
+    </div>
+
   </div>
 
 </div>
