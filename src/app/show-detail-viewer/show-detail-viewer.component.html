@@ -20,7 +20,12 @@
     </div>
   </div>
   <div class="my-3">
-    <h6>Summary:</h6>{{showDetails.summary}}
+    <h6>Summary:</h6>
+    <div
+      class="content" [innerHTML]="showDetails.summary">
+      {{showDetails.summary}}
+    </div>
+
   </div>
 
 </div>
