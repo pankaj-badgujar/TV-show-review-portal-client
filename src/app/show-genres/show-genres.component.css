@@ -2,11 +2,17 @@
   background-color: #ed969e;
 }
 .badge-crime{
-  background-color: #856404;
+  background-color: brown;
+  color: white;
 }
 .badge-comedy{
   background-color: chartreuse;
 }
 .badge-romance{
   background-color: red;
+  color: white;
+}
+.badge-war{
+  background-color: #856404;
+  color: white;
 }
