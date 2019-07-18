@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {ShowServiceClientService} from '../services/show-service-client.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class SearchShowComponent implements OnInit {
   shouldShowResults = false;
   searchResults: [];
 
-  constructor(private showService: ShowServiceClientService) {
+  constructor(private showService: ShowServiceClientService, private router: Router) {
   }
 
   ngOnInit() {
