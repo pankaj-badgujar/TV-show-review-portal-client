@@ -1,5 +1,6 @@
 <div class="container">
   <a class="float-right" routerLink="/">
+    <i class="fa fa-chevron-left p-2"></i>
     <small>Back to search page</small>
   </a>
   <h2 class="mt-5">
@@ -23,19 +24,20 @@
     <div class="col-md-8 col-sm-7 px-3">
       <br>
       <dl class="row">
-        <dt class="col-6">Language</dt>
-        <dd class="col-6">{{showDetails.language}}</dd>
-        <dt class="col-6">Type</dt>
-        <dd class="col-6">{{showDetails.type}}</dd>
-        <dt class="col-6">Runtime of episode</dt>
-        <dd class="col-6">{{showDetails.runtime}} minutes</dd>
-        <dt class="col-6">Premiere date</dt>
-        <dd class="col-6">{{showDetails.premiered}}</dd>
-        <dt class="col-6">Status</dt>
-        <dd class="col-6">
+        <dt *ngIf="showDetails.language" class="col-6">Language</dt>
+        <dd *ngIf="showDetails.language" class="col-6">{{showDetails.language}}</dd>
+        <dt *ngIf="showDetails.type" class="col-6">Type</dt>
+        <dd *ngIf="showDetails.type" class="col-6">{{showDetails.type}}</dd>
+        <dt *ngIf="showDetails.runtime" class="col-6">Runtime of episode</dt>
+        <dd *ngIf="showDetails.runtime" class="col-6">{{showDetails.runtime}} minutes</dd>
+        <dt *ngIf="showDetails.premiered" class="col-6">Premiere date</dt>
+        <dd *ngIf="showDetails.premiered" class="col-6">{{showDetails.premiered}}</dd>
+        <dt *ngIf="showDetails.status" class="col-6">Status</dt>
+        <dd *ngIf="showDetails.status" class="col-6">
           <span
             [ngClass]="{'badge-danger': showDetails.status == 'Ended',
             'badge-secondary': showDetails.status == 'To Be Determined',
+            'badge-warning': showDetails.status == 'In Development',
             'badge-success': showDetails.status == 'Running'}"
             class="badge" >
           {{showDetails.status}}

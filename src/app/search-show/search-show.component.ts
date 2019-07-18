@@ -29,7 +29,6 @@ export class SearchShowComponent implements OnInit {
         .then(show => {
             this.shouldShowResults = true;
             this.searchResults = show;
-            console.log(this.searchResults);
           }
         );
     }
