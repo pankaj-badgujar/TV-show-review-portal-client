@@ -1,7 +1,9 @@
-<div *ngIf="searchResults.length == 0">
-  No Results found !!
-</div>
-<div *ngIf="searchResults.length != 0" class="row">
+<div class="row">
+  <div *ngIf="searchResults != undefined  && searchResults.length == 0 "> No Results found. Please update your search
+    criteria.
+  </div>
+  <div *ngIf="searchResults != undefined && searchResults.length != 0" class="row">
+
     <span
       *ngFor="let result of searchResults"
       class="col-lg-3 col-md-5 col-sm-6 ">
@@ -9,14 +11,14 @@
         <a routerLink="/details/{{result.show.id}}">
           <div class="card border-secondary">
             <img
-            *ngIf="result.show.image == null"
-            class="card-img-top"
-            src="{{this.noPreviewImage}}">
+              *ngIf="result.show.image == null"
+              class="card-img-top"
+              src="{{this.noPreviewImage}}">
 
             <img
-            *ngIf="result.show.image != null"
-            class="card-img-top"
-            src="{{result.show.image.medium}}">
+              *ngIf="result.show.image != null"
+              class="card-img-top"
+              src="{{result.show.image.medium}}">
 
             <div class="card-body text-secondary">
               <h5 class="card-title">{{result.show.name}}</h5>
@@ -29,7 +31,7 @@
         </a>
       </div>
     </span>
-</div>
+  </div>
 
 
 

@@ -8,10 +8,13 @@ import {Component, Input, OnInit} from '@angular/core';
 export class ResultGridComponent implements OnInit {
 
   noPreviewImage: string;
+
+
   @Input() searchResults: any;
 
   constructor() {
     this.noPreviewImage = '/assets/images/No_Image_Available.jpg';
+
   }
 
   ngOnInit() {
