@@ -27,7 +27,6 @@ export class SearchShowComponent implements OnInit {
     if (keyword.trim() !== '') {
       this.showService.searchShow(keyword)
         .then(show => {
-            // this.router.navigate(['/details'])
             this.shouldShowResults = true;
             this.searchResults = show;
             console.log(this.searchResults);
