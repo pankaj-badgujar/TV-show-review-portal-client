@@ -1,22 +1,27 @@
 <div class="container">
   <a class="float-right" routerLink="/">
-    <small>back to search page</small>
+    <small>Back to search page</small>
   </a>
   <h2 class="mt-5">
     {{showDetails.name}}
   </h2>
+  <br>
 
+  <div *ngIf="showDetails.genres != undefined && showDetails.genres.length >= 1">
   <span *ngFor="let genre of showDetails.genres">
       <app-show-genres [genre]="genre"></app-show-genres>
     </span>
+  </div>
 
-
-  <div class="row bg-light">
+  <div *ngIf="shouldShowDetails == true" class="row bg-light">
 
     <div class="col-md-4 col-sm-5 mb-3">
-      <img src="{{showDetails.image.medium}}">
+      <br>
+      <img *ngIf="showDetails.image != undefined" src="{{showDetails.image.medium}}">
+      <img class="h-75 w-50" *ngIf="showDetails.image == undefined" src='/assets/images/No_Image_Available.jpg'>
     </div>
     <div class="col-md-8 col-sm-7 px-3">
+      <br>
       <dl class="row">
         <dt class="col-6">Language</dt>
         <dd class="col-6">{{showDetails.language}}</dd>
@@ -39,11 +44,15 @@
       </dl>
     </div>
   </div>
-  <div class="my-3">
-    <h6>Summary:</h6>
+  <br>
+  <div class="my-3" *ngIf="shouldShowDetails == true">
+    <h4>Summary:</h4>
     <div
-      [innerHTML]="showDetails.summary">
+      [innerHTML]="showDetails.summary" *ngIf="showDetails.summary != ''">
       {{showDetails.summary}}
+    </div>
+    <div *ngIf="showDetails.summary == ''">
+      <p>No summary found</p>
     </div>
 
   </div>
