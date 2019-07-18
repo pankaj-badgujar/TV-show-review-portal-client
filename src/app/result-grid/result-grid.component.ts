@@ -11,10 +11,11 @@ export class ResultGridComponent implements OnInit {
 
   noPreviewImage: string;
 
-  searchResults = [];
+  searchResults = undefined;
   // @Input() searchResults: any;
   // @Input() keyword: any;
   query: '';
+  queryCompleted: boolean;
 
   constructor(private showService: ShowServiceClientService, private activatedRoute: ActivatedRoute, private router: Router) {
     this.noPreviewImage = '/assets/images/No_Image_Available.jpg';
@@ -28,7 +29,7 @@ export class ResultGridComponent implements OnInit {
           this.showService.searchShow(this.query)
               .then(show => {
                   this.searchResults = show;
-                  console.log(this.searchResults);
+                  this.queryCompleted = true;
                 }
               );
         }

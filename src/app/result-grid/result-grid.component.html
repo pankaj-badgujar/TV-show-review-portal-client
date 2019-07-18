@@ -1,5 +1,5 @@
-<div class="row">
-  <div *ngIf="searchResults != undefined  && searchResults.length == 0 "> No Results found. Please update your search
+<div class="row" *ngIf="searchResults">
+  <div *ngIf="query != undefined && query != '' && searchResults != undefined  && searchResults.length == 0 "> No Results found. Please update your search
     criteria.
   </div>
   <div *ngIf="searchResults != undefined && searchResults.length != 0" class="row">

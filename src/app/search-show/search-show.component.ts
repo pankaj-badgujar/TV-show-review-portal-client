@@ -19,7 +19,7 @@ export class SearchShowComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-         this.keyword = params.query;
+        this.keyword = params.query;
         // if(this.query != null) {
         //   this.searchShow(this.query);
         // }
@@ -43,11 +43,12 @@ export class SearchShowComponent implements OnInit {
     //     );
     // }
 
-
-    this.router.navigate([
-      '/',
-      'search',
-      keyword
-    ]);
+    if (keyword !== undefined && keyword.trim() !== '') {
+      this.router.navigate([
+        '/',
+        'search',
+        keyword
+      ]);
+    }
   }
 }
