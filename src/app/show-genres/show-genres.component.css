@@ -12,6 +12,20 @@
   background-color: red;
   color: white;
 }
+.badge-fantasy{
+  background-color: #6f42c1;
+  color: white;
+}
+.badge-mystery{
+  background-color: #0f6674;
+  color: white;
+}
+.badge-anime{
+  background-color: aqua;
+}
+.badge-western{
+  background-color: burlywood;
+}
 .badge-family{
   background-color: #fd7e14;
 }
