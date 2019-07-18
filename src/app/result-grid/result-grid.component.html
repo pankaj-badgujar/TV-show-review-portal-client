@@ -1,4 +1,6 @@
-<h6 *ngIf="searchResults.length != 0">Results</h6>
+<h6 *ngIf="searchResults != undefined &&   searchResults.length != 0">Results</h6>
+<h6 *ngIf="searchResults != undefined  && searchResults.length == 0 "> No Results found. Please update your search criteria.</h6>
+
 <div class="row">
     <span
       *ngFor="let result of searchResults"
