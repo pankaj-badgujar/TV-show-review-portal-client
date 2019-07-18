@@ -7,8 +7,8 @@
     <span
       *ngFor="let result of searchResults"
       class="col-lg-3 col-md-5 col-sm-6 ">
-      <div class="card-deck m-3">
-        <a routerLink="/details/{{result.show.id}}">
+      <div class="card-deck m-3" (click) = "getDetails(result)">
+<!--        <a routerLink="search/{{keyword}}/details/{{result.show.id}}">-->
           <div class="card border-secondary">
             <img
               *ngIf="result.show.image == null"
@@ -28,7 +28,7 @@
               </div>
             </div>
           </div>
-        </a>
+<!--        </a>-->
       </div>
     </span>
   </div>

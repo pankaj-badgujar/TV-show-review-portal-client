@@ -20,7 +20,7 @@ export class ShowDetailViewerComponent implements OnInit {
 
         this.showService.getShowDetails(this.showId)
           .then(showDetails => {
-            this.showDetails = showDetails
+            this.showDetails = showDetails;
           });
 
     }
