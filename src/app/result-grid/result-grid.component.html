@@ -1,15 +1,32 @@
-<div class="row" *ngIf="searchResults">
-  <div *ngIf="query != undefined && query != '' && searchResults != undefined  && searchResults.length == 0 "> No Results found. Please update your search
-    criteria.
+
+<div class="row">
+    <div 
+       *ngIf="query != undefined && query != '' && searchResults != undefined  && searchResults.length == 0 "
+       class="container d-flex justify-content-center">
+    <span
+      *ngIf="searchResults != undefined  && searchResults.length == 0 "
+      class="alert alert-danger">
+        No Results found. <i class="fa fa-frown"></i>
+        Please update your search criteria.
+    </span>
+
   </div>
-  <div *ngIf="searchResults != undefined && searchResults.length != 0" class="row">
+
+  <div *ngIf="searchResults != undefined && searchResults.length != 0"
+       class="row container-fluid">
+
+
+    <div class="col-11 ml-5 alert alert-success">
+        Showing {{searchResults.length}} results
+      <i class="fa fa-smile"></i>
+    </div>
 
     <span
       *ngFor="let result of searchResults"
       class="col-lg-3 col-md-5 col-sm-6 ">
-      <div class="card-deck m-3" (click) = "getDetails(result)">
-<!--        <a routerLink="search/{{keyword}}/details/{{result.show.id}}">-->
-          <div class="card border-secondary">
+      <div class="card-deck mt-3 ml-3" >
+        <a routerLink="/search/{{query}}/details/{{result.show.id}}">
+           <div class="card border-secondary">
             <img
               *ngIf="result.show.image == null"
               class="card-img-top"
@@ -20,15 +37,17 @@
               class="card-img-top"
               src="{{result.show.image.medium}}">
 
-            <div class="card-body text-secondary">
+            <div class="card-body text-success">
               <h5 class="card-title">{{result.show.name}}</h5>
 
               <div class="card-footer">
-                <small class="text-muted">Last updated: {{result.show.updated | date: 'medium' }}</small>
+                <small class="text-info">Language:  {{result.show.language}}</small>
+                <br>
+                <small class="text-info">Last updated: {{result.show.updated | date: 'longDate' }}</small>
               </div>
             </div>
           </div>
-<!--        </a>-->
+       </a>
       </div>
     </span>
   </div>

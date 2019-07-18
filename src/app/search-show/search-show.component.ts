@@ -28,27 +28,13 @@ export class SearchShowComponent implements OnInit {
   }
 
   searchShow(keyword) {
-
-    // if (keyword.trim() === '') {
-    //   this.shouldShowResults = false;
-    // }
-    // if (keyword.trim() !== '') {
-    //   this.query = keyword;
-    //   this.showService.searchShow(keyword)
-    //     .then(show => {
-    //         this.shouldShowResults = true;
-    //         this.searchResults = show;
-    //         console.log(this.searchResults);
-    //       }
-    //     );
-    // }
-
     if (keyword !== undefined && keyword.trim() !== '') {
       this.router.navigate([
         '/',
         'search',
         keyword
       ]);
+
     }
   }
 }

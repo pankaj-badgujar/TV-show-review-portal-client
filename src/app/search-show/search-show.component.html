@@ -1,13 +1,13 @@
+
 <div class="container-fluid">
 
-  <br>
-  <h3 class="heading-color">Welcome to Reviewsheet</h3>
   <div class="row py-3">
 
 
     <span class="col-1"></span>
     <span class="col-sm-7">
       <input
+        (keyup.enter)="searchShow(keyword)"
         [(ngModel)]="keyword"
         placeholder="Enter a keyword to search shows. For eg. Game"
         class="form-control mt-2">

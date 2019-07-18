@@ -11,6 +11,7 @@ export class ShowDetailViewerComponent implements OnInit {
 
   showId: '';
   showDetails: any;
+  shouldShowDetails = false;
 
   constructor(private activatedRoute: ActivatedRoute, private showService: ShowServiceClientService) { }
 
@@ -20,11 +21,13 @@ export class ShowDetailViewerComponent implements OnInit {
 
         this.showService.getShowDetails(this.showId)
           .then(showDetails => {
+
             this.showDetails = showDetails;
           });
 
     }
     );
   }
+
 
 }
