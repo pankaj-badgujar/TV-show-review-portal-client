@@ -1,16 +1,24 @@
-<div class="container">
+<div class="container-fluid">
+
+  <br>
+  <h3 class="heading-color">Welcome to Reviewsheet</h3>
   <div class="row py-3">
-    <span class="col-sm-3">
+
+
+    <span class="col-1"></span>
+    <span class="col-sm-7">
+      <input
+        [(ngModel)]="keyword"
+        placeholder="Enter a keyword to search shows. For eg. Game"
+        class="form-control mt-2">
+    </span>
+
+    <span class="col-sm-2">
       <button
         (click)="searchShow(keyword)"
         class="mt-2 btn btn-block btn-success"> Search</button>
     </span>
-    <span class="col-sm-9">
-      <input
-        [(ngModel)]="keyword"
-        placeholder="Enter a keyword. For eg. Game"
-        class="form-control mt-2">
-    </span>
+
   </div>
-  <app-result-grid [searchResults]="searchResults"></app-result-grid>
+  <app-result-grid [searchResults]="searchResults" *ngIf="shouldShowResults === true"></app-result-grid>
 </div>

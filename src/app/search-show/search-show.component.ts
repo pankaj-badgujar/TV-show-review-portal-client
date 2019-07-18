@@ -9,6 +9,7 @@ import {ShowServiceClientService} from '../services/show-service-client.service'
 export class SearchShowComponent implements OnInit {
 
   keyword: string;
+  shouldShowResults = false;
   searchResults: [];
 
   constructor(private showService: ShowServiceClientService) {
@@ -18,11 +19,18 @@ export class SearchShowComponent implements OnInit {
   }
 
   searchShow(keyword) {
-    this.showService.searchShow(keyword)
-      .then(show => {
-          this.searchResults = show;
-          console.log(this.searchResults);
-        }
-      );
+
+    if (keyword.trim() === '') {
+      this.shouldShowResults = false;
+    }
+    if (keyword.trim() !== '') {
+      this.showService.searchShow(keyword)
+        .then(show => {
+            this.shouldShowResults = true;
+            this.searchResults = show;
+            console.log(this.searchResults);
+          }
+        );
+    }
   }
 }

@@ -1,5 +1,7 @@
-<h6 *ngIf="searchResults.length != 0">Results</h6>
-<div class="row">
+<div *ngIf="searchResults.length == 0">
+  No Results found !!
+</div>
+<div *ngIf="searchResults.length != 0" class="row">
     <span
       *ngFor="let result of searchResults"
       class="col-lg-2 col-md-3 col-sm-4 ">
