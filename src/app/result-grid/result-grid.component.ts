@@ -15,7 +15,6 @@ export class ResultGridComponent implements OnInit {
   constructor() {
     this.noPreviewImage = '/assets/images/No_Image_Available.jpg';
 
-
   }
 
   ngOnInit() {
