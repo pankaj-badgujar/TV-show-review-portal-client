@@ -8,9 +8,11 @@
     </span>
   </div>
 
-  <div *ngIf="searchResults != undefined && searchResults.length != 0" class="row">
+  <div *ngIf="searchResults != undefined && searchResults.length != 0"
+       class="row container-fluid">
 
-    <div class="container d-flex-inline alert alert-success">
+
+    <div class="col-11 ml-5 alert alert-success">
         Showing {{searchResults.length}} results
       <i class="fa fa-smile"></i>
     </div>
@@ -18,7 +20,7 @@
     <span
       *ngFor="let result of searchResults"
       class="col-lg-3 col-md-5 col-sm-6 ">
-      <div class="card-deck m-3">
+      <div class="card-deck mt-3 ml-3">
         <a class="text-dark text-decoration-none" routerLink="/details/{{result.show.id}}">
           <div class="card border-secondary">
             <img
