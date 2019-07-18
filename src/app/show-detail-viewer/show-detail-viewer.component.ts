@@ -21,7 +21,7 @@ export class ShowDetailViewerComponent implements OnInit {
 
         this.showService.getShowDetails(this.showId)
           .then(showDetails => {
-            this.shouldShowDetails = true;
+
             this.showDetails = showDetails;
           });
 

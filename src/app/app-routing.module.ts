@@ -7,7 +7,10 @@ import {SearchShowComponent} from './search-show/search-show.component';
 const routes: Routes = [
   {path: '', component: SearchShowComponent},
   {path: 'search/:query', component: SearchShowComponent},
-  {path: 'details/:showId', component: ShowDetailViewerComponent}
+
+  {path: 'search/:query/details/:showId', component: ShowDetailViewerComponent}
+
+
 ];
 
 @NgModule({
