@@ -10,8 +10,6 @@ import {ShowServiceClientService} from '../services/show-service-client.service'
 export class SearchShowComponent implements OnInit {
 
   keyword: string;
-  shouldShowResults = false;
-  searchResults: [];
   query: '';
 
   constructor(private showService: ShowServiceClientService, private router: Router, private activatedRoute: ActivatedRoute) {
@@ -20,9 +18,6 @@ export class SearchShowComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
         this.keyword = params.query;
-        // if(this.query != null) {
-        //   this.searchShow(this.query);
-        // }
       }
     );
   }

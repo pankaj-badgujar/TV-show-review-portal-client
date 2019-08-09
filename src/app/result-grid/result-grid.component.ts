@@ -12,8 +12,6 @@ export class ResultGridComponent implements OnInit {
   noPreviewImage: string;
 
   searchResults = undefined;
-  // @Input() searchResults: any;
-  // @Input() keyword: any;
   query: '';
   queryCompleted: boolean;
 

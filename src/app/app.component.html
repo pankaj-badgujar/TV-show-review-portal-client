@@ -1,6 +1,24 @@
-<h2
-  class="heading-background-color p-3 text-white text">
-  Tv show review portal
-</h2>
-<router-outlet>
-</router-outlet>
+<div class="container-fluid">
+  <div class="row heading-background-color">
+    <div class="col-8">
+      <div
+        class="titleHover"
+        routerLink="/">
+        <h3
+          class="p-3 text-white text">
+          Tv show review portal
+        </h3>
+      </div>
+
+    </div>
+    <div class="col-4 pt-4">
+      <button
+        class="btn btn-outline-light float-right"
+        routerLink="/login">Sign In
+      </button>
+    </div>
+  </div>
+
+  <router-outlet>
+  </router-outlet>
+</div>
