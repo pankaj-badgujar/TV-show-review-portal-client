@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 float-right my-3">
+      <a routerLink="../">
+        <i class="fa fa-arrow-left"></i>
+        Back to TV Show Details
+      </a>
+    </div>
+  </div>
+  <br>
+
+  <ul class="list-group">
+    <div *ngFor="let episode of episodes">
+      <li class="list-group-item list-group-flush my-3">
+        <div class="row">
+          <div class="col-12 col-sm-4">
+            <img
+              *ngIf="episode.image == null"
+              width="250px"
+              src="{{noPreviewImage}}">
+            <img
+              *ngIf="episode.image != null"
+              src="{{episode.image.medium}}">
+          </div>
+          <div class="col-12 col-sm-8">
+            <h6>
+              Season: {{episode.season}} Episode: {{episode.number}}
+            </h6>
+            <h5>Title: {{episode.name}}</h5>
+            <b>Summary: </b>
+            <div
+              *ngIf="episode.summary == ''">
+              Summary not available
+            </div>
+            <div
+              *ngIf="episode.summary != ''" [innerHTML]="episode.summary">
+              {{episode.summary}}
+            </div>
+            <button class="btn btn-warning">
+              <i class="fa fa-pen-alt"></i>
+              Write Analysis For this episode
+            </button>
+
+          </div>
+
+          <div class="col-12">
+            <p class="float-right">Air-date: {{episode.airdate}}</p>
+          </div>
+
+        </div>
+      </li>
+    </div>
+  </ul>
+</div>

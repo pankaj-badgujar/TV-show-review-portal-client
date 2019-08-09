@@ -1,0 +1,59 @@
+<div class="container mt-5">
+<h1>Login</h1>
+
+  <div *ngIf="invalidCredentialFlag" class="row alert alert-danger">
+     Invalid credentials. Please check your username and password again.
+  </div>
+
+
+<div class="form-group row">
+  <label
+    for="username"
+    class="col-sm-2 col-form-label">
+    Username </label>
+  <div class="col-sm-6">
+    <input
+      [(ngModel)]="username"
+      type="text"
+      class="form-control"
+      id="username"
+      placeholder="Alice">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="password" class="col-sm-2 col-form-label">
+    Password </label>
+  <div class="col-sm-6">
+    <input
+      [(ngModel)]="password"
+      type="password"
+      class="form-control wbdv-password-fld"
+      id="password"
+      placeholder="123qwe#$%">
+  </div>
+</div>
+<div class="form-group row">
+  <label class="col-sm-2 col-form-label"></label>
+  <div class="col-sm-6">
+    <button
+      class="btn btn-primary btn-block"
+      (click)="login(username, password)">
+      Sign in
+    </button>
+
+    <div class="row">
+      <div class="col-6">
+        <a href="#">Forgot Password?</a>
+      </div>
+      <div class="col-6">
+        <a routerLink="/register"
+           class="float-right">Register</a>
+      </div>
+    </div>
+    <br>
+
+
+  </div>
+
+</div>
+</div>

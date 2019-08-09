@@ -2,7 +2,7 @@
 
   <a class="float-right" routerLink="../../">
     <i class="fa fa-chevron-left p-2"></i>
-    <small>Back to search page</small>
+    <small>Back</small>
 
   </a>
   <h2 class="mt-5">
@@ -46,7 +46,14 @@
         </span>
         </dd>
       </dl>
+
     </div>
+    <br>
+    <button
+      routerLink="/details/{{showDetails.id}}/episodes"
+      class="btn btn-block btn-primary">
+      See Episodes List
+    </button>
   </div>
   <br>
   <div class="my-3" *ngIf="shouldShowDetails == true">

@@ -1,0 +1,32 @@
+<div class="row rounded">
+  <div class="col-6 col-sm-3">
+    <img class="mx-3" src="{{show.image.medium}}" width="130">
+  </div>
+  <div class="col-6 col-sm-9">
+    <div class="row">
+      <h5 class="col-12">
+        {{show.id}}. {{show.name}}
+        <span class="col-1 badge badge-primary badge-pill">{{show.rating.average}}</span>
+      </h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <b>Country: </b>
+        <span
+          *ngIf="show.network != null && show.network.country != null">
+          {{show.network.country.name}}
+        </span>
+        <span *ngIf="show.network == null || show.network.country == null">
+          No Information Available
+        </span>
+      </li>
+      <li class="list-group-item">
+        <b>Schedule: </b>{{show.schedule.days}}  {{show.schedule.time}}
+      </li>
+      <li class="list-group-item">
+        <a href="{{show.officialSite}}">Link to official site</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
