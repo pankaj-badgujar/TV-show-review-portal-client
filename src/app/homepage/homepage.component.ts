@@ -11,10 +11,12 @@ export class HomepageComponent implements OnInit {
   showIndex: [];
   pageNo: number;
 
+
   constructor(private homePageIndexService: HomepageIndexService) {
   }
 
   ngOnInit() {
+
     this.pageNo = 0;
     this.homePageIndexService.fetchShowIndex(this.pageNo)
       .then(showIndex => this.showIndex = showIndex)
@@ -22,13 +24,13 @@ export class HomepageComponent implements OnInit {
   }
 
   nextPage = () => {
-    this.pageNo = this.pageNo+1;
+    this.pageNo = this.pageNo + 1;
     this.homePageIndexService.fetchShowIndex(this.pageNo)
       .then(showIndex => this.showIndex = showIndex)
   };
 
   previousPage = () => {
-    this.pageNo = this.pageNo-1;
+    this.pageNo = this.pageNo - 1;
     this.homePageIndexService.fetchShowIndex(this.pageNo)
       .then(showIndex => this.showIndex = showIndex)
   }

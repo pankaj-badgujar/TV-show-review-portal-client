@@ -5,19 +5,25 @@ import {Injectable} from '@angular/core';
 })
 export class LoginServiceClientService {
 
+  loggedInUser : any;
+
   constructor() {
   }
 
-  validateCredentials = (credentials) =>
-    fetch(`http://localhost:8080/api/users`,
+  login = (credentials) =>
+    fetch(`http://localhost:8080/login`,
       {
-        method: 'PUT',
+        method: 'POST',
         body: JSON.stringify(credentials),
         headers: {
           'content-type': 'application/json'
         }
       }
     )
-      .then((res) => res.text())
-      .then((text) => text.length ? JSON.parse(text) : null)
+      .then((res) => {
+        return res.text()
+      })
+      .then((text) => text.length ? this.loggedInUser = JSON.parse(text) : null)
+
+
 }

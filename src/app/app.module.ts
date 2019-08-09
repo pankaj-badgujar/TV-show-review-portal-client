@@ -14,6 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ShowTileComponent } from './show-tile/show-tile.component';
 import { EpisodeListComponent } from './episode-list/episode-list.component';
+import { SignInButtonComponent } from './sign-in-button/sign-in-button.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { EpisodeListComponent } from './episode-list/episode-list.component';
     ProfileComponent,
     HomepageComponent,
     ShowTileComponent,
-    EpisodeListComponent
+    EpisodeListComponent,
+    SignInButtonComponent
   ],
   imports: [
     BrowserModule,

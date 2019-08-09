@@ -1,42 +1,90 @@
 <div class="container mt-5">
   <h1>Register</h1>
-  <form action="">
+  <div *ngIf="this.registrationSuccessful" class="alert alert-success" role="alert">
+    Registration Successful. You will be redirected to home page in 3 seconds</div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="firstNameFld">
+        First Name: </label>
+      <div class="col-sm-6">
+        <input
+          [(ngModel)]="firstName"
+          class="form-control"
+          id="firstNameFld"
+          placeholder="Alice"
+          type="text"/>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="lastNameFld">
+        Last Name: </label>
+      <div class="col-sm-6">
+        <input
+          [(ngModel)]="lastName"
+          class="form-control"
+          id="lastNameFld"
+          placeholder="Wonderland"
+          type="text"/>
+      </div>
+    </div>
+
     <div class="form-group row">
       <label class="col-sm-2 col-form-label" for="usernameFld">
         Username: </label>
       <div class="col-sm-6">
-        <input class="form-control" id="usernameFld" placeholder="Alice" type="text"/>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label" for="passwordFld">
-        Password: </label>
-      <div class="col-sm-6">
-        <input class="form-control" id="passwordFld" placeholder="123qwe#$%" type="password"/>
-      </div>
-    </div>
-
-
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label" for="verifyPasswordFld">
-        Verify Password: </label>
-      <div class="col-sm-6">
-        <input class="form-control" id="verifyPasswordFld" placeholder="123qwe#$%" type="password"/>
+        <input
+          [(ngModel)]="userName"
+          class="form-control"
+          id="usernameFld"
+          placeholder="alice"
+          type="text"/>
       </div>
     </div>
 
     <div class="form-group row">
       <label
+        class="col-sm-2 col-form-label"
+        for="passwordFld">
+        Password: </label>
+
+      <div class="col-sm-6">
+        <input
+          [(ngModel)]="password"
+          class="form-control"
+          id="passwordFld"
+          placeholder="123qwe#$%"
+          type="password"/>
+      </div>
+
+    </div>
+
+
+<!--    <div class="form-group row">-->
+<!--      <label class="col-sm-2 col-form-label" for="verifyPasswordFld">-->
+<!--        Verify Password: </label>-->
+<!--      <div class="col-sm-6">-->
+<!--        <input -->
+<!--          class="form-control" -->
+<!--          id="verifyPasswordFld" -->
+<!--          placeholder="123qwe#$%" -->
+<!--          type="password"/>-->
+<!--      </div>-->
+<!--    </div>-->
+
+    <div class="form-group row">
+      <label
         class="col-form-label col-sm-2"
         for="roleSelect">Role:</label>
-      <div class="col-sm-6">
+      <div
+        class="col-sm-6">
         <select
+          [(ngModel)]="role"
           class="form-control"
           id="roleSelect">
           <option selected>Select a role</option>
-          <option value="student">Student</option>
-          <option value="faculty">Faculty</option>
+          <option value="0">Student</option>
+          <option value="1">Faculty</option>
         </select>
       </div>
     </div>
@@ -45,13 +93,12 @@
     <div class="form-group row">
       <label class="col-sm-2"></label>
       <div class="col-sm-6">
-        <a class="btn btn-primary btn-block"
-           href="../profile/profile.template.client.html" id="registerBtn">Register</a>
+        <button
+          class="btn btn-primary btn-block"
+          (click)="register()"
+           id="registerBtn">Register</button>
 
         <span class="float-right"><a routerLink="/login">Go back to Login</a></span>
       </div>
     </div>
-
-
-  </form>
 </div>

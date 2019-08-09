@@ -1,0 +1,24 @@
+<div class="container-fluid">
+
+  <div
+    *ngIf="loggedInUser != null"
+    class="dropdown">
+    <button
+      aria-expanded="false" aria-haspopup="true"
+      class="btn btn-light dropdown-toggle"
+      data-toggle="dropdown"
+      id="dropdownMenuButton" type="button">
+      Welcome, {{loggedInUser.firstName}}
+    </button>
+
+    <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+      <a class="dropdown-item" href="#">Logout</a>
+    </div>
+  </div>
+
+
+  <button *ngIf="loggedInUser === undefined || loggedInUser === null"
+          class="btn btn-warning float-right"
+          routerLink="/login">Sign In
+  </button>
+</div>

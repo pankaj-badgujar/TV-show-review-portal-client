@@ -11,8 +11,10 @@ export class EpisodeListComponent implements OnInit {
 
   showId: number;
   episodes: [];
+  noPreviewImage: string;
 
   constructor(private episodeService: EpisodeService, private activatedRoute: ActivatedRoute) {
+    this.noPreviewImage = '/assets/images/No_Image_Available.jpg';
   }
 
   ngOnInit() {
