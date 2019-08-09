@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ShowTileComponent } from './show-tile/show-tile.component';
+import { EpisodeListComponent } from './episode-list/episode-list.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ShowTileComponent } from './show-tile/show-tile.component';
     RegisterComponent,
     ProfileComponent,
     HomepageComponent,
-    ShowTileComponent
+    ShowTileComponent,
+    EpisodeListComponent
   ],
   imports: [
     BrowserModule,

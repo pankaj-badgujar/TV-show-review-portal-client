@@ -46,7 +46,14 @@
         </span>
         </dd>
       </dl>
+
     </div>
+    <br>
+    <button
+      routerLink="/details/{{showDetails.id}}/episodes"
+      class="btn btn-block btn-primary">
+      See Episodes List
+    </button>
   </div>
   <br>
   <div class="my-3" *ngIf="shouldShowDetails == true">

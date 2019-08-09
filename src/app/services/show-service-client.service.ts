@@ -9,10 +9,10 @@ export class ShowServiceClientService {
 
   searchShow = (keyword) =>
     fetch(`https://api.tvmaze.com/search/shows?q=${keyword}`)
-      .then(response => response.json())
+      .then(response => response.json());
 
 
   getShowDetails = (showId) =>
     fetch(`https://api.tvmaze.com/shows/${showId}`)
-      .then(response => response.json())
+      .then(response => response.json());
 }

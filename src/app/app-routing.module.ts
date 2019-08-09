@@ -5,6 +5,7 @@ import {SearchShowComponent} from './search-show/search-show.component';
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {HomepageComponent} from "./homepage/homepage.component";
+import {EpisodeListComponent} from "./episode-list/episode-list.component";
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'details/:showId', component: ShowDetailViewerComponent},
   {path: 'search/:query/details/:showId', component: ShowDetailViewerComponent},
   {path: 'login',component: LoginComponent},
-  {path: 'register', component: RegisterComponent}
+  {path: 'register', component: RegisterComponent},
+  {path: 'details/:showId/episodes', component: EpisodeListComponent}
 ];
 
 @NgModule({
