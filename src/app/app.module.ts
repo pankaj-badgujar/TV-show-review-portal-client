@@ -16,6 +16,7 @@ import { ShowTileComponent } from './show-tile/show-tile.component';
 import { EpisodeListComponent } from './episode-list/episode-list.component';
 import { SignInButtonComponent } from './sign-in-button/sign-in-button.component';
 import { LogoutScreenComponent } from './logout-screen/logout-screen.component';
+import { AnalysisEditorComponent } from './analysis-editor/analysis-editor.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { LogoutScreenComponent } from './logout-screen/logout-screen.component';
     ShowTileComponent,
     EpisodeListComponent,
     SignInButtonComponent,
-    LogoutScreenComponent
+    LogoutScreenComponent,
+    AnalysisEditorComponent
   ],
   imports: [
     BrowserModule,

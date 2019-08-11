@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 float-right my-3">
+      <a routerLink="../../">
+        <i class="fa fa-arrow-left"></i>
+        Back to episode list
+      </a>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col-12 col-sm-4">
+      <img *ngIf="episode.image == undefined || episode.image.medium == undefined"
+           class="card-img" src="{{noPreviewImage}}">
+      <img
+        *ngIf="episode.image != null && episode.image.medium != null"
+        class="card-img" src="{{episode.image.medium}}">
+    </div>
+    <div class="col-12 col-sm-8">
+      <h5>
+        S{{episode.season}} E{{episode.number}}. {{episode.name}}
+      </h5>
+      <p [innerHTML]="episode.summary"></p>
+      <p>
+        <small class="text-muted">Air-date: {{episode.airdate}}</small>
+      </p>
+    </div>
+  </div>
+  <br><br>
+  <div class="form-group">
+    <label for="textArea">Analysis : </label>
+    <textarea class="form-control" id="textArea" rows="4"></textarea>
+  </div>
+  <br>
+  <button class="btn btn-secondary float-right">Submit</button>
+</div>
