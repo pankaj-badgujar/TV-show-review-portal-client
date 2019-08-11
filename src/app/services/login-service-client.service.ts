@@ -36,7 +36,6 @@ export class LoginServiceClientService {
   }
 
   logoutUser(){
-    console.log("in logout service now");
     localStorage.removeItem('loggedInUser');
   }
 }

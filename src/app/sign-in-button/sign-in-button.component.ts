@@ -14,13 +14,10 @@ export class SignInButtonComponent implements OnInit {
   constructor(private router: Router, private loginClientService: LoginServiceClientService) { }
 
   ngOnInit() {
-    // this.loggedInUser = this.loginClientService.loggedInUser;
     this.loggedInUser = this.loginClientService.getLoggedInUser();
-    console.log(this.loggedInUser);
   }
 
   logout(){
-    console.log("in logout now");
     this.loginClientService.logoutUser();
     this.router.navigate(['/logout'])
   }

@@ -1,11 +1,18 @@
 <div class="container mt-5">
   <h1>Register</h1>
   <div *ngIf="this.registrationSuccessful" class="alert alert-success" role="alert">
-    Registration Successful. You will be redirected to home page in 3 seconds</div>
+    Registration Successful.
+    You will be redirected to home page in 5 seconds
+    <a (click)="redirectManually()" class="alert-link pointerOnHover">
+      click here
+    </a> to redirect now.
+
+  </div>
 
     <div class="form-group row">
       <label class="col-sm-2 col-form-label" for="firstNameFld">
-        First Name: </label>
+        First Name  <sup class="text-danger">*</sup>  :
+      </label>
       <div class="col-sm-6">
         <input
           [(ngModel)]="firstName"
@@ -18,7 +25,8 @@
 
     <div class="form-group row">
       <label class="col-sm-2 col-form-label" for="lastNameFld">
-        Last Name: </label>
+        Last Name  <sup class="text-danger">*</sup>  :
+      </label>
       <div class="col-sm-6">
         <input
           [(ngModel)]="lastName"
@@ -31,7 +39,8 @@
 
     <div class="form-group row">
       <label class="col-sm-2 col-form-label" for="usernameFld">
-        Username: </label>
+        Username  <sup class="text-danger">*</sup>  :
+      </label>
       <div class="col-sm-6">
         <input
           [(ngModel)]="userName"
@@ -46,7 +55,8 @@
       <label
         class="col-sm-2 col-form-label"
         for="passwordFld">
-        Password: </label>
+        Password <sup class="text-danger">*</sup>  :
+      </label>
 
       <div class="col-sm-6">
         <input
@@ -59,23 +69,12 @@
 
     </div>
 
-
-<!--    <div class="form-group row">-->
-<!--      <label class="col-sm-2 col-form-label" for="verifyPasswordFld">-->
-<!--        Verify Password: </label>-->
-<!--      <div class="col-sm-6">-->
-<!--        <input -->
-<!--          class="form-control" -->
-<!--          id="verifyPasswordFld" -->
-<!--          placeholder="123qwe#$%" -->
-<!--          type="password"/>-->
-<!--      </div>-->
-<!--    </div>-->
-
     <div class="form-group row">
       <label
         class="col-form-label col-sm-2"
-        for="roleSelect">Role:</label>
+        for="roleSelect">
+        Role  <sup class="text-danger">*</sup>  :
+      </label>
       <div
         class="col-sm-6">
         <select
