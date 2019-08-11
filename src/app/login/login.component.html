@@ -25,6 +25,7 @@
     Password </label>
   <div class="col-sm-6">
     <input
+      (keyup.enter)="login(username,password)"
       [(ngModel)]="password"
       type="password"
       class="form-control wbdv-password-fld"

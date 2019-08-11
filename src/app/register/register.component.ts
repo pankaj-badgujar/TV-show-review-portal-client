@@ -38,10 +38,13 @@ export class RegisterComponent implements OnInit {
         this.registrationSuccessful = true;
         setTimeout(() => {
           this.router.navigate(['/']);
-        }, 3000)
+        }, 5000)
       })
 
   }
 
 
+  redirectManually() {
+    this.router.navigate(['/']);
+  }
 }

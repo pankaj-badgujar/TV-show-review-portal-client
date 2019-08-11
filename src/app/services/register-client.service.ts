@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {LoginServiceClientService} from "./login-service-client.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterClientService {
 
-  constructor() { }
+  constructor(private loginService: LoginServiceClientService) {
+  }
 
   register = (user) =>
     fetch(`http://localhost:8080/register`,
@@ -15,9 +17,12 @@ export class RegisterClientService {
         headers: {
           'content-type': 'application/json'
         },
-        'credentials' : 'include'
+        'credentials': 'include'
       }
-      )
-      .then(response => response.json());
+    )
+      .then((res) => {
+        return res.text()
+      })
+      .then((text) => text.length ? this.loginService.addFetchedUserToSessionStorage(text) : null);
 
 }

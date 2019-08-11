@@ -14,7 +14,7 @@ export class LogoutScreenComponent implements OnInit {
 
     setTimeout(() => {
       this.router.navigate(['/']);
-    }, 3000)
+    }, 5000)
   }
 
 
