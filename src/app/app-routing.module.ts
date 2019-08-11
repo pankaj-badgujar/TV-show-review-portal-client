@@ -6,15 +6,17 @@ import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {HomepageComponent} from "./homepage/homepage.component";
 import {EpisodeListComponent} from "./episode-list/episode-list.component";
+import {LogoutScreenComponent} from "./logout-screen/logout-screen.component";
+import {ResultGridComponent} from "./result-grid/result-grid.component";
 
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
-  {path: 'search', component: SearchShowComponent},
-  {path: 'search/:query', component: SearchShowComponent},
+  {path: 'search/:query', component: ResultGridComponent},
   {path: 'details/:showId', component: ShowDetailViewerComponent},
   {path: 'search/:query/details/:showId', component: ShowDetailViewerComponent},
   {path: 'login',component: LoginComponent},
+  {path: 'logout', component: LogoutScreenComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'details/:showId/episodes', component: EpisodeListComponent}
 ];

@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
       "password": password
     };
 
-    this.loginService.login(credentials)
+    this.loginService.authenticate(credentials)
       .then(
         user => {
         if(user === null){
