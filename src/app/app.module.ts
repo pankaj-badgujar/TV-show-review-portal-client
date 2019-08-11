@@ -15,6 +15,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { ShowTileComponent } from './show-tile/show-tile.component';
 import { EpisodeListComponent } from './episode-list/episode-list.component';
 import { SignInButtonComponent } from './sign-in-button/sign-in-button.component';
+import { LogoutScreenComponent } from './logout-screen/logout-screen.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SignInButtonComponent } from './sign-in-button/sign-in-button.component
     HomepageComponent,
     ShowTileComponent,
     EpisodeListComponent,
-    SignInButtonComponent
+    SignInButtonComponent,
+    LogoutScreenComponent
   ],
   imports: [
     BrowserModule,

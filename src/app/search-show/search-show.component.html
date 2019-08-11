@@ -1,26 +1,26 @@
-
-<div class="container-fluid">
-
-  <div class="row py-3">
+<div class="container">
+  <div class="row">
 
 
-    <span class="col-1"></span>
-    <span class="col-sm-7">
+<label class="col-sm-3"></label>
+    <span class="col-sm-6">
       <input
         (keyup.enter)="searchShow(keyword)"
         [(ngModel)]="keyword"
+        aria-label="Search"
+        class="form-control mr-sm-2"
         placeholder="Enter a keyword to search shows. For eg. Game"
-        class="form-control mt-2">
+        type="text">
     </span>
 
-    <span class="col-sm-2">
+    <span class="col-sm-3 ">
       <button
         (click)="searchShow(keyword)"
-        class="mt-2 btn btn-block btn-success">
-          Search
+        class="btn btn-block btn-outline-primary my-2 my-sm-0">
+        Search by keywords
       </button>
     </span>
 
   </div>
-  <app-result-grid   ></app-result-grid>
 </div>
+

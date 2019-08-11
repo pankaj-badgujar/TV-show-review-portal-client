@@ -1,8 +1,71 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          class="navbar-toggler"
+          data-target="#navbarSupportedContent"
+          data-toggle="collapse"
+          type="button">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <!--        <li class="nav-item active">-->
+      <!--          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+      <!--        </li>-->
+      <!--        <li class="nav-item">-->
+      <!--          <a class="nav-link" href="#">Link</a>-->
+      <!--        </li>-->
+
+
+      <!--        <form class="form-inline my-2 my-lg-0">-->
+      <!--          <input-->
+      <!--            aria-label="Search"-->
+      <!--            class="form-control mr-sm-2"-->
+      <!--            placeholder="Search"-->
+      <!--            type="search">-->
+      <!--          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+      <!--        </form>-->
+
+      <!--          <form class="form-inline">-->
+      <!--            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+      <!--            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+      <!--          </form>-->
+
+
+      <app-search-show></app-search-show>
+
+
+      <!--      <li class="nav-item dropdown">-->
+      <!--        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"-->
+      <!--           id="navbarDropdown" role="button">-->
+      <!--          Dropdown-->
+      <!--        </a>-->
+      <!--        <div aria-labelledby="navbarDropdown" class="dropdown-menu">-->
+      <!--          <a class="dropdown-item" href="#">Enroll under faculty</a>-->
+      <!--          <div class="dropdown-divider"></div>-->
+      <!--          <a class="dropdown-item" href="#">Logout</a>-->
+
+
+      <!--        </div>-->
+      <!--      </li>-->
+      <span class="float-right">
+          <app-sign-in-button></app-sign-in-button>
+        </span>
+
+
+    </ul>
+  </div>
+
+</nav>
+
+
 <div class="container">
 
   <div class="row my-5">
 
-    <span class="col-4 col-sm-4">
+    <span class="col-6">
       <button
         (click)="previousPage()"
         [disabled]="pageNo == 0"
@@ -11,13 +74,8 @@
         Previous</button>
     </span>
 
-    <span class="col-5 col-sm-4">
-      <button
-        class="btn btn-primary btn-block"
-        routerLink="/search">Search by keywords</button>
-    </span>
 
-    <span class="col-3 col-sm-4">
+    <span class="col-6">
       <button
         (click)="nextPage()"
         class="btn btn-dark float-right">

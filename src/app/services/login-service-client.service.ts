@@ -1,16 +1,17 @@
 import {Injectable} from '@angular/core';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class LoginServiceClientService {
 
-  loggedInUser : any;
+  loggedInUser: any;
 
   constructor() {
   }
 
-  login = (credentials) =>
+  authenticate = (credentials) =>
     fetch(`http://localhost:8080/login`,
       {
         method: 'POST',
@@ -23,7 +24,21 @@ export class LoginServiceClientService {
       .then((res) => {
         return res.text()
       })
-      .then((text) => text.length ? this.loggedInUser = JSON.parse(text) : null)
+      .then((text) => text.length ? this.addFetchedUserToSessionStorage(text) : null);
 
+  addFetchedUserToSessionStorage(text: string) {
+    localStorage.setItem('loggedInUser', text);
+    return JSON.parse(text);
+  }
 
+  getLoggedInUser(){
+    return JSON.parse(localStorage.getItem('loggedInUser'));
+  }
+
+  logoutUser(){
+    console.log("in logout service now");
+    localStorage.removeItem('loggedInUser');
+  }
 }
+
+
