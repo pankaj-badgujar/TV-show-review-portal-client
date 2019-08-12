@@ -28,10 +28,27 @@
     </div>
   </div>
   <br><br>
-  <div class="form-group">
-    <label for="textArea">Analysis : </label>
-    <textarea class="form-control" id="textArea" rows="4"></textarea>
+
+  <div *ngIf="loggedInUser === undefined || loggedInUser === null">
+    <div class="alert alert-info" role="alert">
+      You have to be logged in to submit your analysis.
+      <a routerLink="/login" class="alert-link">Click here to Login</a>
+    </div>
   </div>
-  <br>
-  <button class="btn btn-secondary float-right">Submit</button>
+
+
+  <div *ngIf="loggedInUser !== undefined && loggedInUser !== null">
+    <div class="form-group">
+      <label for="textArea">Analysis : </label>
+      <textarea
+        [(ngModel)]="content"
+        class="form-control" id="textArea" rows="4"></textarea>
+    </div>
+    <br>
+    <button
+      (click)="submitAnalysis()"
+      class="btn btn-secondary float-right">Submit
+    </button>
+  </div>
+
 </div>

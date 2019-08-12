@@ -17,6 +17,7 @@ import { EpisodeListComponent } from './episode-list/episode-list.component';
 import { SignInButtonComponent } from './sign-in-button/sign-in-button.component';
 import { LogoutScreenComponent } from './logout-screen/logout-screen.component';
 import { AnalysisEditorComponent } from './analysis-editor/analysis-editor.component';
+import { EnrollUnderFacultyComponent } from './enroll-under-faculty/enroll-under-faculty.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AnalysisEditorComponent } from './analysis-editor/analysis-editor.compo
     EpisodeListComponent,
     SignInButtonComponent,
     LogoutScreenComponent,
-    AnalysisEditorComponent
+    AnalysisEditorComponent,
+    EnrollUnderFacultyComponent
   ],
   imports: [
     BrowserModule,
