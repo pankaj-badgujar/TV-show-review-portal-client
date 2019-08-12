@@ -44,7 +44,6 @@ export class RegisterComponent implements OnInit {
 
   }
 
-
   redirectManually() {
     this.router.navigate(['/']);
   }

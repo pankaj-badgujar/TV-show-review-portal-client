@@ -9,6 +9,7 @@ import {EpisodeListComponent} from "./episode-list/episode-list.component";
 import {LogoutScreenComponent} from "./logout-screen/logout-screen.component";
 import {ResultGridComponent} from "./result-grid/result-grid.component";
 import {AnalysisEditorComponent} from "./analysis-editor/analysis-editor.component";
+import {ProfileComponent} from './profile/profile.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,8 @@ const routes: Routes = [
   {path: 'search/:query/details/:showId', component: ShowDetailViewerComponent},
   {path: 'login',component: LoginComponent},
   {path: 'logout', component: LogoutScreenComponent},
+  {path: 'profile', component: ProfileComponent},
+  {path: 'profile/:profileId', component: ProfileComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'details/:showId/episodes', component: EpisodeListComponent},
   {path: 'details/:showId/episodes/:episodeId/analysis', component: AnalysisEditorComponent}

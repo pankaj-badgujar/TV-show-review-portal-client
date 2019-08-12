@@ -17,9 +17,8 @@ export class SignInButtonComponent implements OnInit {
     this.loggedInUser = this.loginClientService.getLoggedInUser();
   }
 
-  logout(){
+  logout() {
     this.loginClientService.logoutUser();
-    this.router.navigate(['/logout'])
+    this.router.navigate(['/logout']);
   }
-
 }

@@ -3,6 +3,7 @@
   <div
     *ngIf="loggedInUser != undefined"
     class="dropdown">
+
     <button
       aria-expanded="false" aria-haspopup="true"
       class="btn btn-light dropdown-toggle"
@@ -12,14 +13,13 @@
     </button>
 
     <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
-      <a class="dropdown-item" href="#">Enroll under faculty</a>
+      <a class="dropdown-item" routerLink="/profile">Profile</a>
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item pointerOnHover"   (click)="logout()">Logout</a>
+      <a class="dropdown-item pointerOnHover" (click)="logout()">Logout</a>
     </div>
   </div>
 
 <!--  <button *ngIf="loggedInUser!= undefined" class="btn btn-danger" (click)="logout()">Logout</button>-->
-
 
   <button *ngIf="loggedInUser === undefined || loggedInUser === null"
           class="btn btn-warning float-right"
