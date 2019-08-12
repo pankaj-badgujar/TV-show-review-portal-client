@@ -11,12 +11,14 @@ import {ResultGridComponent} from "./result-grid/result-grid.component";
 import {AnalysisEditorComponent} from "./analysis-editor/analysis-editor.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {EnrollUnderFacultyComponent} from "./enroll-under-faculty/enroll-under-faculty.component";
+import {ViewPupilsComponent} from "./view-pupils/view-pupils.component";
 
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'enroll', component: EnrollUnderFacultyComponent},
+  {path: 'viewPupils', component: ViewPupilsComponent},
   {path: 'search/:query', component: ResultGridComponent},
   {path: 'details/:showId', component: ShowDetailViewerComponent},
   {path: 'search/:query/details/:showId', component: ShowDetailViewerComponent},

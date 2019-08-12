@@ -11,60 +11,92 @@
   </div>
   <br>
 
-<h4>Current enrolment status:</h4>
+  <h4>Current enrolment status:</h4>
   <h6>(Note that you can enrol only under one faculty for a term)</h6>
-    <table class="table">
-      <thead class="thead-light">
-      <tr>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Status</th>
-        <th scope="col">Options</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngIf="facultyEnrolled != null">
-        <td>{{facultyEnrolled.user.firstName}}</td>
-        <td>{{facultyEnrolled.user.lastName}}</td>
-        <td><b>Enrolled</b></td>
-        <td>
-          <button
+  <table class="table">
+    <thead class="thead-light">
+    <tr>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Status</th>
+      <th scope="col">Options</th>
+    </tr>
+    </thead>
+
+
+      <h5 *ngIf="facultyEnrolled == null">You are currently not enrolled under any faculty</h5>
+
+    <tbody>
+    <tr *ngIf="facultyEnrolled != null">
+      <td>{{facultyEnrolled.user.firstName}}</td>
+      <td>{{facultyEnrolled.user.lastName}}</td>
+      <td><b>Enrolled</b></td>
+      <td>
+        <button
+          (click)="cancelEnrollment()"
+          class="btn btn-danger">
+          <i
             (click)="cancelEnrollment()"
-            class="btn btn-danger">
-            <i
-              (click)="cancelEnrollment()"
-              class="fa fa-trash-alt"></i>
-          </button>
+            class="fa fa-trash-alt"></i>
+        </button>
 
-        </td>
-      </tr>
-      </tbody>
-    </table>
-<br><hr><br>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <br>
+  <hr>
+  <br>
+  <h4>Faculties:</h4>
+  <br>
 
-  <div *ngFor="let faculty of facultiesAvailable">
-    <table class="table">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">First Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Options</th>
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Options</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <ng-container *ngFor="let faculty of facultiesAvailable">
+
+      <tr *ngIf="facultiesAvailable == null">
+        <br>
+        <h5>No faculties available to enroll in</h5>
       </tr>
-      </thead>
-      <tbody>
-      <tr>
+
+      <tr *ngIf="facultiesAvailable !== null">
         <td>{{faculty.user.firstName}}</td>
         <td>{{faculty.user.lastName}}</td>
-
         <td>
-          <button
-            (click)="enroll(faculty)"
-            class="btn btn-success">Enroll</button>
+          <ng-container *ngIf="facultyEnrolled != undefined">
+            <button
+              *ngIf="faculty.user.id == facultyEnrolled.user.id "
+              class="btn btn-info" disabled>
+              Enrolled
+            </button>
+            <button
+              *ngIf="faculty.user.id !== facultyEnrolled.user.id"
+              (click)="enroll(faculty)"
+              class="btn btn-success">Enroll
+            </button>
+
+          </ng-container>
+
+          <ng-container *ngIf="facultyEnrolled == undefined">
+            <button
+              (click)="enroll(faculty)"
+              class="btn btn-success">Enroll
+            </button>
+          </ng-container>
         </td>
-      </tr>
 
-      </tbody>
-    </table>
 
-  </div>
+    </ng-container>
+
+    </tbody>
+  </table>
+
 </div>
