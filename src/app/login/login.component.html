@@ -25,12 +25,19 @@
     Password </label>
   <div class="col-sm-6">
     <input
+      (keyup.enter)="login(username,password)"
       [(ngModel)]="password"
-      type="password"
+      type="{{showPassword ? 'text':'password'}}"
       class="form-control wbdv-password-fld"
       id="password"
       placeholder="123qwe#$%">
+
   </div>
+  <div class="pt-3">
+    <i *ngIf="showPassword" (click)="togglePasswordVisibility()" class="fas fa-eye"></i>
+    <i *ngIf="!showPassword" (click)="togglePasswordVisibility()" class="fa fa-eye-slash"></i>
+  </div>
+
 </div>
 <div class="form-group row">
   <label class="col-sm-2 col-form-label"></label>

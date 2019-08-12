@@ -8,6 +8,7 @@ import {HomepageComponent} from "./homepage/homepage.component";
 import {EpisodeListComponent} from "./episode-list/episode-list.component";
 import {LogoutScreenComponent} from "./logout-screen/logout-screen.component";
 import {ResultGridComponent} from "./result-grid/result-grid.component";
+import {AnalysisEditorComponent} from "./analysis-editor/analysis-editor.component";
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: 'login',component: LoginComponent},
   {path: 'logout', component: LogoutScreenComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'details/:showId/episodes', component: EpisodeListComponent}
+  {path: 'details/:showId/episodes', component: EpisodeListComponent},
+  {path: 'details/:showId/episodes/:episodeId/analysis', component: AnalysisEditorComponent}
 ];
 
 @NgModule({

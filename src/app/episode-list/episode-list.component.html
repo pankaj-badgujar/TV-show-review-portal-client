@@ -16,8 +16,8 @@
           <div class="col-12 col-sm-4">
             <img
               *ngIf="episode.image == null"
-              width="250px"
-              src="{{noPreviewImage}}">
+              src="{{noPreviewImage}}"
+              width="250px">
             <img
               *ngIf="episode.image != null"
               src="{{episode.image.medium}}">
@@ -29,14 +29,17 @@
             <h5>Title: {{episode.name}}</h5>
             <b>Summary: </b>
             <div
-              *ngIf="episode.summary == ''">
+              *ngIf="episode.summary == '' || episode.summary == null
+|| episode.summary == undefined">
               Summary not available
             </div>
             <div
               *ngIf="episode.summary != ''" [innerHTML]="episode.summary">
               {{episode.summary}}
             </div>
-            <button class="btn btn-warning">
+            <button
+              class="btn btn-warning"
+              routerLink="/details/{{showId}}/episodes/{{episode.id}}/analysis">
               <i class="fa fa-pen-alt"></i>
               Write Analysis For this episode
             </button>

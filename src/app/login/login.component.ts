@@ -12,8 +12,10 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
   invalidCredentialFlag = false;
+  showPassword: boolean;
 
   constructor(private loginService: LoginServiceClientService, private router: Router) {
+    this.showPassword = false;
   }
 
   ngOnInit() {
@@ -28,15 +30,17 @@ export class LoginComponent implements OnInit {
     this.loginService.authenticate(credentials)
       .then(
         user => {
-        if(user === null){
-          this.invalidCredentialFlag = true;
+          if (user === null) {
+            this.invalidCredentialFlag = true;
+          } else {
+            this.invalidCredentialFlag = false;
+            this.router.navigate(['/'])
+          }
         }
-        else{
-          this.invalidCredentialFlag = false;
-          this.router.navigate(['/'])
-        }
-      }
       )
   }
 
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
 }

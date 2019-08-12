@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {EpisodeService} from "../services/episode.service";
 import {ActivatedRoute} from "@angular/router";
+import {EpisodeService} from "../services/episode.service";
 
 @Component({
   selector: 'app-episode-list',
