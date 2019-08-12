@@ -13,7 +13,13 @@
     </button>
 
     <div aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+<<<<<<< HEAD
       <a class="dropdown-item" routerLink="/profile">Profile</a>
+=======
+      <a class="dropdown-item pointerOnHover" routerLink="/profile">My Profile</a>
+      <a *ngIf="loggedInUser.role == 'STUDENT'" class="dropdown-item pointerOnHover" routerLink="/enroll">Enroll under faculty</a>
+      <a *ngIf="loggedInUser.role == 'FACULTY'" class="dropdown-item pointerOnHover" routerLink="/viewPupils">View my pupils</a>
+>>>>>>> 72bbdd5904a667c79d77223602750cac863baac3
       <div class="dropdown-divider"></div>
       <a class="dropdown-item pointerOnHover" (click)="logout()">Logout</a>
     </div>

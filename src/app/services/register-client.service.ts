@@ -25,4 +25,22 @@ export class RegisterClientService {
       })
       .then((text) => text.length ? this.loginService.addFetchedUserToSessionStorage(text) : null);
 
+
+  registerStudent = (student) =>
+    fetch(`http://localhost:8080/registerStudent`,{
+      method: 'POST',
+      body: JSON.stringify(student),
+      headers: {
+        'content-type' : 'application/json'
+      }
+    }).then();
+
+  registerFaculty = (faculty) =>
+    fetch(`http://localhost:8080/registerFaculty`,{
+      method: 'POST',
+      body: JSON.stringify(faculty),
+      headers: {
+        'content-type' : 'application/json'
+      }
+    }).then();
 }

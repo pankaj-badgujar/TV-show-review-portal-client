@@ -35,7 +35,11 @@ export class RegisterComponent implements OnInit {
       "role": Number(this.role)
     };
     this.registerClientService.register(newUser)
-      .then(() => {
+      .then((user) => {
+
+        this.role == "1" ? this.registerFaculty(user) : this.registerStudent(user);
+
+
         this.registrationSuccessful = true;
         setTimeout(() => {
           this.router.navigate(['/']);
@@ -44,6 +48,24 @@ export class RegisterComponent implements OnInit {
 
   }
 
+<<<<<<< HEAD
+=======
+  registerStudent(user){
+    let studentJSON = {
+      "user" : user
+    };
+    this.registerClientService.registerStudent(studentJSON).then();
+
+  }
+
+  registerFaculty(user){
+    let facultyJSON = {
+      "user" : user
+    };
+    this.registerClientService.registerFaculty(facultyJSON).then();
+  }
+
+>>>>>>> 72bbdd5904a667c79d77223602750cac863baac3
   redirectManually() {
     this.router.navigate(['/']);
   }
