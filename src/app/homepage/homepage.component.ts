@@ -9,17 +9,23 @@ import {HomepageIndexService} from "../services/homepage-index.service";
 export class HomepageComponent implements OnInit {
 
   showIndex: [];
+  showIndexCarousel: []
   pageNo: number;
-
+  noPreviewImage: string;
 
   constructor(private homePageIndexService: HomepageIndexService) {
+    this.noPreviewImage = '/assets/images/No_Image_Available.jpg';
   }
 
   ngOnInit() {
 
     this.pageNo = 0;
     this.homePageIndexService.fetchShowIndex(this.pageNo)
-      .then(showIndex => this.showIndex = showIndex)
+      .then(showIndex => {
+        this.showIndex = showIndex
+        this.showIndexCarousel= showIndex.slice(0,6);
+
+      })
 
   }
 
