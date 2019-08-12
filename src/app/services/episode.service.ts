@@ -14,4 +14,14 @@ export class EpisodeService {
   getEpisodeInformation = (episodeId) =>
     fetch(`https://api.tvmaze.com/episodes/${episodeId}`)
       .then(response => response.json());
+
+
+  createEpisodeInDB = (episodeDetails) =>
+    fetch(`http://localhost:8080/api/episode`,{
+      method: 'POST',
+      body: JSON.stringify(episodeDetails),
+      headers: {
+        'content-type' : 'application/json'
+      }
+    }).then()
 }

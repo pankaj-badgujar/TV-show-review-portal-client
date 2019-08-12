@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 float-right my-3">
+      <a routerLink="../">
+        <i class="fa fa-arrow-left"></i>
+        Back
+      </a>
+    </div>
+  </div>
+  <br>
+  
+<h4>Students currently enrolled under you :</h4>
+  <br>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+    </tr>
+    </thead>
+    <tbody *ngIf="faculty !== undefined">
+    <ng-container *ngFor="let student of faculty.studentList">
+      <tr *ngIf="faculty.studentList.length == 0">
+        <h5>No students currently enrolled under you</h5>
+      </tr>
+    <tr>
+      <td>{{student.user.firstName}}</td>
+      <td>{{student.user.lastName}}</td>
+
+    </tr>
+    </ng-container>
+    </tbody>
+  </table>
+
+</div>
