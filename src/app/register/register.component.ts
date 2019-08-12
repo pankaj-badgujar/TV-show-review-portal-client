@@ -1,3 +1,4 @@
+/* tslint:disable */
 import {Component, OnInit} from '@angular/core';
 import {RegisterClientService} from "../services/register-client.service";
 import {Router} from "@angular/router";
@@ -22,11 +23,11 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.registrationSuccessful = false
+    this.registrationSuccessful = false;
   }
 
   register() {
-    let newUser = {
+    const newUser = {
       "firstName": this.firstName,
       "lastName": this.lastName,
       "username": this.userName,
