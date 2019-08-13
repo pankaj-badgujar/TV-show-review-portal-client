@@ -1,2 +1,110 @@
-<p>profile works!</p>
-This is me : {{userId}}
+<div class="container">
+  <div class="row">
+    <div class="col-12 float-right my-3">
+      <a routerLink="../../">
+        <i class="fa fa-arrow-left"></i>
+        Back
+      </a>
+    </div>
+  </div>
+  <br>
+  <div class="bg-light p-5 m-5 rounded">
+
+    <div class="py-5">
+
+      <h2 *ngIf="!ownAccount">Profile</h2>
+      <h2 *ngIf="ownAccount">
+        My profile
+        <button
+          (click)="toggleEditing()"
+          *ngIf="!editing"
+          class="btn btn-info">
+          Edit
+          <i
+            (click)="toggleEditing()"
+            class="fa fa-pencil-alt"></i>
+        </button>
+        <button
+          (click)="toggleEditing()"
+          *ngIf="editing"
+          class="btn btn-success">
+          Save
+          <i
+            (click)="toggleEditing()"
+            class="fas fa-check"></i>
+        </button>
+      </h2>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="row p-4">
+
+      <div class="col-4 col-sm-3">
+        <label
+          class="col-form-label"
+          for="firstNameFld">
+          First Name :
+        </label>
+      </div>
+      <div class="col-8 col-sm-6">
+        <input
+          [(ngModel)]="firstName"
+          [disabled]="!editing"
+          class="form-control" id="firstNameFld">
+      </div>
+    </div>
+
+    <div class="row p-4 my-3">
+      <div class="col-4 col-sm-3">
+        <label
+          class="col-form-label"
+          for="lastNameFld">
+          Last Name :
+        </label>
+      </div>
+      <div class="col-8 col-sm-6">
+        <input
+          [(ngModel)]="lastName"
+          [disabled]="!editing"
+          class="form-control" id="lastNameFld">
+      </div>
+    </div>
+
+    <div class="row p-4 my-3">
+      <div class="col-4 col-sm-3">
+        <label
+          class="col-form-label"
+          for="usernameFld">
+          username :
+        </label>
+      </div>
+      <div class="col-8 col-sm-6">
+        <input
+          [(ngModel)]="username"
+          [disabled]="!editing"
+          class="form-control" id="usernameFld">
+      </div>
+    </div>
+
+    <div class="row p-4 my-3">
+      <div class="col-4 col-sm-3">
+        <label
+          class="col-form-label"
+          for="passwordFld">
+          Password :
+        </label>
+      </div>
+      <div class="col-8 col-sm-6">
+        <input
+          [(ngModel)]="password"
+          [type]="editing?'text' : 'password'"
+          [disabled]="!editing"
+          class="form-control" id="passwordFld">
+      </div>
+    </div>
+
+  </div>
+
+</div>
