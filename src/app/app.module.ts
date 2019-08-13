@@ -19,6 +19,7 @@ import { LogoutScreenComponent } from './logout-screen/logout-screen.component';
 import { AnalysisEditorComponent } from './analysis-editor/analysis-editor.component';
 import { EnrollUnderFacultyComponent } from './enroll-under-faculty/enroll-under-faculty.component';
 import { ViewPupilsComponent } from './view-pupils/view-pupils.component';
+import { AnalysisPreviouslySubmittedComponent } from './analysis-previously-submitted/analysis-previously-submitted.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ViewPupilsComponent } from './view-pupils/view-pupils.component';
     LogoutScreenComponent,
     AnalysisEditorComponent,
     EnrollUnderFacultyComponent,
-    ViewPupilsComponent
+    ViewPupilsComponent,
+    AnalysisPreviouslySubmittedComponent
   ],
   imports: [
     BrowserModule,
