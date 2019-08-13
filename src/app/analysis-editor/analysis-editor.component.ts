@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {EpisodeService} from "../services/episode.service";
 import {ActivatedRoute} from "@angular/router";
 import {LoginServiceClientService} from "../services/login-service-client.service";
 import {AnalysisService} from "../services/analysis.service";
-
+import {AnalysisPreviouslySubmittedComponent} from "../analysis-previously-submitted/analysis-previously-submitted.component";
 
 @Component({
   selector: 'app-analysis-editor',
@@ -19,6 +19,9 @@ export class AnalysisEditorComponent implements OnInit {
   loggedInUser: object;
 
   content: String;
+  
+  @ViewChild(AnalysisPreviouslySubmittedComponent, {static: false})
+  previousAnalysisComponent: AnalysisPreviouslySubmittedComponent;
 
   constructor(private loginService: LoginServiceClientService,
               private episodeService: EpisodeService,
@@ -46,8 +49,24 @@ export class AnalysisEditorComponent implements OnInit {
       "content": this.content,
     };
 
-    // @ts-ignore
-    this.analysisService.createAnalysis(this.loggedInUser.id, this.episodeId, analysisJSON)
-      .then(() => this.content = '');
+
+    let episodeJSON = {
+      "id" : this.episodeId,
+      "showId" : this.showId
+    };
+
+    this.episodeService.createEpisodeInDB(episodeJSON)
+      .then(() => {
+
+        // @ts-ignore
+        this.analysisService.createAnalysis(this.loggedInUser.id, this.episodeId, analysisJSON)
+          .then(() => {
+            this.content = '';
+            this.previousAnalysisComponent.refreshPreviousAnalysis(this.episodeId);
+
+          });
+
+      });
+
   }
 }

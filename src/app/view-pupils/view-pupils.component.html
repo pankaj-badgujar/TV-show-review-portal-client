@@ -19,10 +19,10 @@
     </tr>
     </thead>
     <tbody *ngIf="faculty !== undefined">
+    <tr *ngIf="faculty.studentList.length === 0">
+      <h5>No students currently enrolled under you</h5>
+    </tr>
     <ng-container *ngFor="let student of faculty.studentList">
-      <tr *ngIf="faculty.studentList.length == 0">
-        <h5>No students currently enrolled under you</h5>
-      </tr>
     <tr>
       <td>{{student.user.firstName}}</td>
       <td>{{student.user.lastName}}</td>

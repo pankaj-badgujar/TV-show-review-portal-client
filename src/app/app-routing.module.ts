@@ -16,7 +16,7 @@ import {ViewPupilsComponent} from "./view-pupils/view-pupils.component";
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
-  {path: 'profile', component: ProfileComponent},
+  {path: 'profile/:userId', component: ProfileComponent},
   {path: 'enroll', component: EnrollUnderFacultyComponent},
   {path: 'viewPupils', component: ViewPupilsComponent},
   {path: 'search/:query', component: ResultGridComponent},

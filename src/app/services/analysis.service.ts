@@ -18,4 +18,14 @@ export class AnalysisService {
         }
       })
       .then(res => res.json());
+
+  findAllAnalysisForEpisode = (episodeId) =>
+    fetch(`http://localhost:8080/api/episode/${episodeId}/analysis`)
+      .then(res => res.json());
+
+  findAllAnalysisOfStudent = (userId,episodeId) =>
+    fetch(`http://localhost:8080/api/user/${userId}/episode/${episodeId}/analysis`)
+      .then(res => res.json());
+
+
 }
