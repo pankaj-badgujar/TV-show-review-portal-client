@@ -9,7 +9,7 @@
   </div>
   <br>
 
-  <div class="row">
+  <div *ngIf="episode !== undefined" class="row">
     <div class="col-12 col-sm-4">
       <img *ngIf="episode.image == undefined || episode.image.medium == undefined"
            class="card-img" src="{{noPreviewImage}}">
@@ -32,7 +32,7 @@
   <div *ngIf="loggedInUser === undefined || loggedInUser === null">
     <div class="alert alert-info" role="alert">
       You have to be logged in to submit your analysis.
-      <a routerLink="/login" class="alert-link">Click here to Login</a>
+      <a class="alert-link" routerLink="/login">Click here to Login</a>
     </div>
   </div>
 
@@ -47,8 +47,37 @@
     <br>
     <button
       (click)="submitAnalysis()"
-      class="btn btn-secondary float-right">Submit
+      class="btn btn-secondary float-right"
+      data-target="#exampleModal" data-toggle="modal">Submit
     </button>
   </div>
+
+  <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" role="dialog"
+       tabindex="-1">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h3 class="modal-title " id="exampleModalLabel">Submission complete</h3>
+          <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h4>Analysis submitted successfully</h4>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <app-analysis-previously-submitted
+    [episodeId]="episodeId">
+
+  </app-analysis-previously-submitted>
+  <br>
+  <br>
 
 </div>

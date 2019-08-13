@@ -14,7 +14,6 @@ export class EnrollUnderFacultyService {
         return res.text()
       })
       .then(text => text.length ? JSON.parse(text) : null);
-  // .then(res => res.json());
 
   findAllFaculties = () =>
     fetch(`http://localhost:8080/faculties`)
