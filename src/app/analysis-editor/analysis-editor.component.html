@@ -32,7 +32,7 @@
   <div *ngIf="loggedInUser === undefined || loggedInUser === null">
     <div class="alert alert-info" role="alert">
       You have to be logged in to submit your analysis.
-      <a routerLink="/login" class="alert-link">Click here to Login</a>
+      <a class="alert-link" routerLink="/login">Click here to Login</a>
     </div>
   </div>
 
@@ -47,8 +47,28 @@
     <br>
     <button
       (click)="submitAnalysis()"
-      class="btn btn-secondary float-right">Submit
+      class="btn btn-secondary float-right"
+      data-toggle="modal" data-target="#exampleModal">Submit
     </button>
+  </div>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Submission complete</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h6>Analysis submitted successfully</h6>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
   </div>
 
 </div>

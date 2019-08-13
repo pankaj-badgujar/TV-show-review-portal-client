@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {LoginServiceClientService} from "../services/login-service-client.service";
 import {AnalysisService} from "../services/analysis.service";
 
+
 @Component({
   selector: 'app-analysis-editor',
   templateUrl: './analysis-editor.component.html',
@@ -23,11 +24,11 @@ export class AnalysisEditorComponent implements OnInit {
               private episodeService: EpisodeService,
               private analysisService: AnalysisService,
               private activatedRoute: ActivatedRoute) {
+
     this.noPreviewImage = '/assets/images/No_Image_Available.jpg';
   }
 
   ngOnInit() {
-
     this.loggedInUser = this.loginService.getLoggedInUser();
 
     this.activatedRoute.params.subscribe(params => {
@@ -43,15 +44,10 @@ export class AnalysisEditorComponent implements OnInit {
 
     let analysisJSON = {
       "content": this.content,
-      "episode_id": this.episodeId,
-      // @ts-ignore
-      "student_id": this.loggedInUser.id
     };
 
     // @ts-ignore
-    this.analysisService.createAnalysis(this.loggedInUser.id,this.showId,this.episodeId,analysisJSON)
-
-    // this.analysisService.createAnalysis(,)
-
+    this.analysisService.createAnalysis(this.loggedInUser.id, this.episodeId, analysisJSON)
+      .then(() => this.content = '');
   }
 }
