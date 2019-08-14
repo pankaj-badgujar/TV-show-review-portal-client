@@ -6,6 +6,8 @@ import {Injectable} from '@angular/core';
 export class ShowServiceClientService {
 
 
+  server = 'http://localhost:8080/';
+
   constructor() {
   }
 
@@ -19,7 +21,7 @@ export class ShowServiceClientService {
       .then(response => response.json());
 
   addShowInDB = (show) =>
-    fetch(`http://localhost:8080/api/show`, {
+    fetch(this.server + `api/show`, {
       method: 'POST',
       body: JSON.stringify(show),
       headers: {

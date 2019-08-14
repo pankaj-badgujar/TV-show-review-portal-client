@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class EpisodeService {
 
+  server = 'http://localhost:8080/';
+
   constructor() { }
 
   getEpisodeList = (showId) =>
@@ -17,7 +19,7 @@ export class EpisodeService {
 
 
   createEpisodeInDB = (episodeDetails) =>
-    fetch(`http://localhost:8080/api/episode`,{
+    fetch(this.server + `api/episode`,{
       method: 'POST',
       body: JSON.stringify(episodeDetails),
       headers: {

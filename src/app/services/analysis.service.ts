@@ -5,11 +5,13 @@ import {Injectable} from '@angular/core';
 })
 export class AnalysisService {
 
+  server= 'http://localhost:8080/';
+
   constructor() {
   }
 
   createAnalysis = (userId, showId, episodeId, analysisJSON) =>
-    fetch(`http://localhost:8080/api/user/${userId}/show/${showId}/episode/${episodeId}/analysis`,
+    fetch(this.server + `api/user/${userId}/show/${showId}/episode/${episodeId}/analysis`,
       {
         method: 'POST',
         body: JSON.stringify(analysisJSON),

@@ -5,9 +5,11 @@ import { Injectable } from '@angular/core';
 })
 export class StudentService {
 
+  server = 'http://localhost:8080/';
+
   constructor() { }
 
   findStudentByStudentId = (studentId) =>
-    fetch(`http://localhost:8080/findStudent/${studentId}`)
+    fetch(this.server + `findStudent/${studentId}`)
       .then(res => res.json())
 }

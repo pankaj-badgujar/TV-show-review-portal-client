@@ -6,10 +6,12 @@ import {init} from 'protractor/built/launcher';
 })
 export class ReviewService {
 
+  server = 'http://localhost:8080/';
+
   constructor() { }
 
   createReview = (userId, analysisId, reviewJSON) =>
-    fetch(`http://localhost:8080/api/faculty/${userId}/analysis/${analysisId}/review`,
+    fetch(this.server +`api/faculty/${userId}/analysis/${analysisId}/review`,
       {
         method: 'POST',
         body: JSON.stringify(reviewJSON),
@@ -20,7 +22,7 @@ export class ReviewService {
       .then(res => res.json());
 
   updateReview = (reviewId, reviewJSON) =>
-    fetch(`http://localhost:8080/api/review/${reviewId}`,{
+    fetch(this.server + `api/review/${reviewId}`,{
       method: 'PUT',
       body: JSON.stringify(reviewJSON),
       headers: {
@@ -30,12 +32,12 @@ export class ReviewService {
       .then(res => res.json());
 
   deleteReview = (reviewId) =>
-    fetch(`http://localhost:8080/api/review/${reviewId}`,{
+    fetch(this.server + `api/review/${reviewId}`,{
       method: 'PUT',
     })
       .then(res => res.json());
 
   getReviewsForAnalysisByFaculty = (facultyId, analysisId) =>
-    fetch(`http://localhost:8080/api/faculty/${facultyId}/analysis/${analysisId}/review`)
+    fetch(this.server + `api/faculty/${facultyId}/analysis/${analysisId}/review`)
       .then(res => res.json());
 }

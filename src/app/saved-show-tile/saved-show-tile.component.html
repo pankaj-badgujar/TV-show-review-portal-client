@@ -3,10 +3,13 @@
   <h2> {{headingToBeDisplayed}}</h2>
 </div>
 
-  <div class="row my-5">
+  <div class="row my-5"
+       *ngIf= "showsToBeDisplayed.length > 0"
+  >
 
     <span class="col-6">
       <button
+        *ngIf= "showsToBeDisplayed.length > 0"
         [disabled]="startIndex == 0"
         (click)="previousPage()"
         class="btn btn-dark float-left">
@@ -17,6 +20,7 @@
 
     <span class="col-6">
       <button
+        *ngIf= "showsToBeDisplayed.length > 0"
         [disabled]="endIndex >= showsToBeDisplayed.length"
         (click)="nextPage()"
         class="btn btn-dark float-right">
@@ -28,6 +32,12 @@
   </div>
 
   <div>
+
+    <div *ngIf= "showsToBeDisplayed.length == 0">
+      There are no shows in this category Currently.
+    </div >
+
+
 
     <span
       *ngFor="let show of showsToBeDisplayedCurrently"

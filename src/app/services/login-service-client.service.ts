@@ -7,11 +7,13 @@ export class LoginServiceClientService {
 
   loggedInUser: any;
 
+  server = 'http://localhost:8080/';
+
   constructor() {
   }
 
   authenticate = (credentials) =>
-    fetch(`http://localhost:8080/login`,
+    fetch(this.server + `login`,
       {
         method: 'POST',
         body: JSON.stringify(credentials),
