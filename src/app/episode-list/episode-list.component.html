@@ -37,12 +37,22 @@
               *ngIf="episode.summary != ''" [innerHTML]="episode.summary">
               {{episode.summary}}
             </div>
-            <button
-              class="btn btn-warning"
-              routerLink="/details/{{showId}}/episodes/{{episode.id}}/analysis">
-              <i class="fa fa-pen-alt"></i>
-              Write Analysis For this episode
-            </button>
+            <div *ngIf="this.loggedInUser!= null && this.loggedInUser.role == 'STUDENT'">
+              <button
+                class="btn btn-warning"
+                routerLink="/details/{{showId}}/episodes/{{episode.id}}/analysis">
+                <i class="fa fa-pen-alt"></i>
+                Write Analysis For this episode
+              </button>
+            </div>
+            <div *ngIf="this.loggedInUser!= null && this.loggedInUser.role == 'FACULTY'">
+              <button
+                class="btn btn-warning"
+                routerLink="/details/{{showId}}/episodes/{{episode.id}}/analysis">
+                <i class="fa fa-pen-alt"></i>
+                Review submissions
+              </button>
+            </div>
 
           </div>
 

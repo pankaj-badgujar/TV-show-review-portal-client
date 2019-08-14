@@ -9,6 +9,7 @@ import {LoginServiceClientService} from "../services/login-service-client.servic
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
+
 export class ProfileComponent implements OnInit {
 
   editing: boolean;

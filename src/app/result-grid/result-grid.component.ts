@@ -10,14 +10,12 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class ResultGridComponent implements OnInit {
 
   noPreviewImage: string;
-
   searchResults = undefined;
   query: '';
   queryCompleted: boolean;
 
   constructor(private showService: ShowServiceClientService, private activatedRoute: ActivatedRoute, private router: Router) {
     this.noPreviewImage = '/assets/images/No_Image_Available.jpg';
-
   }
 
   ngOnInit() {
@@ -44,5 +42,4 @@ export class ResultGridComponent implements OnInit {
       result.show.id
     ]);
   }
-
 }

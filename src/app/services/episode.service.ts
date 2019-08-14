@@ -9,11 +9,11 @@ export class EpisodeService {
 
   getEpisodeList = (showId) =>
     fetch(`https://api.tvmaze.com/shows/${showId}/episodes`)
-      .then(response => response.json());
+      .then(response => response.json())
 
   getEpisodeInformation = (episodeId) =>
     fetch(`https://api.tvmaze.com/episodes/${episodeId}`)
-      .then(response => response.json());
+      .then(response => response.json())
 
 
   createEpisodeInDB = (episodeDetails) =>

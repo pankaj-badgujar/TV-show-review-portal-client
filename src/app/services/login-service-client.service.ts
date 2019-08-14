@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -39,5 +38,3 @@ export class LoginServiceClientService {
     localStorage.removeItem('loggedInUser');
   }
 }
-
-

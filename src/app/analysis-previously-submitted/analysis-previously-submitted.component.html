@@ -33,11 +33,6 @@
             {{analysis.studentsFullName}}
           </a>
         </span>
-        <span
-          *ngIf="this.loggedInUser!= null && this.loggedInUser.role == 'FACULTY'"
-          class="float-right">
-          <a class="btn btn-outline-info" href="#">Review submission</a>
-        </span>
       </div>
       <div class="card-body">
         <p class="card-text">
@@ -50,5 +45,15 @@
         <span class="float-right text-muted">{{analysis.dateOfSubmission}}</span>
       </div>
     </div>
+
+    <br>
+
+    <div>
+      <app-analysis-review
+        [analysis]="analysisList">
+      </app-analysis-review>
+    </div>
+
+    <br>
   </div>
 </div>

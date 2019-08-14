@@ -22,8 +22,10 @@ const routes: Routes = [
   {path: 'search/:query', component: ResultGridComponent},
   {path: 'details/:showId', component: ShowDetailViewerComponent},
   {path: 'search/:query/details/:showId', component: ShowDetailViewerComponent},
-  {path: 'login',component: LoginComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutScreenComponent},
+  {path: 'profile', component: ProfileComponent},
+  {path: 'profile/:profileId', component: ProfileComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'details/:showId/episodes', component: EpisodeListComponent},
   {path: 'details/:showId/episodes/:episodeId/analysis', component: AnalysisEditorComponent}
