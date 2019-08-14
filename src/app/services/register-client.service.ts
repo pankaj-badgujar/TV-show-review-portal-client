@@ -17,7 +17,6 @@ export class RegisterClientService {
         headers: {
           'content-type': 'application/json'
         },
-        mode:'no-cors'
       }
     )
       .then((res) => {
@@ -32,7 +31,6 @@ export class RegisterClientService {
       headers: {
         'content-type' : 'application/json'
       },
-      mode:'no-cors'
     }).then();
 
   registerFaculty = (faculty) =>
@@ -42,6 +40,5 @@ export class RegisterClientService {
       headers: {
         'content-type' : 'application/json'
       },
-      mode:'no-cors'
     }).then();
 }

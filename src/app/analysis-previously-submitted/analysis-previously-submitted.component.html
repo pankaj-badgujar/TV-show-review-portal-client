@@ -1,3 +1,4 @@
+<script src="analysis-previously-submitted.component.ts"></script>
 <div *ngIf="analysisList != undefined">
   <hr>
   <br>
@@ -48,19 +49,25 @@
           </button>
 
           <button
-            (click)="deleteAnalysis()"
+            (click)="deleteAnalysis(analysis.id)"
             class="btn btn-danger mx-2">
               <i
-                (click)="deleteAnalysis()"
+                (click)="deleteAnalysis(analysis.id)"
                 class="fa fa-trash"></i>
           </button>
 
         </span>
       </div>
       <div class="card-body">
-        <p class="card-text">
+        <p
+          *ngIf="!analysisEdit"
+          class="card-text">
           {{analysis.content}}
         </p>
+        <textarea
+          *ngIf="analysisEdit">
+
+        </textarea>
 
 
       </div>

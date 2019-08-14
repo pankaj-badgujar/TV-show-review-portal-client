@@ -27,5 +27,10 @@ export class ShowServiceClientService {
       }
     }).then(res => res.json());
 
+  deleteShowFromDB = (showId) =>
+  fetch(`http://localhost:8080/api/show/${showId}`,{
+    method: 'DELETE'
+  }).then();
+
 }
 

@@ -27,5 +27,10 @@ export class AnalysisService {
     fetch(`http://localhost:8080/api/user/${userId}/episode/${episodeId}/analysis`)
       .then(res => res.json());
 
+  deleteAnalysis = (analysisId) =>
+    fetch(`http://localhost:8080/analysis/${analysisId}`,{
+      method: 'DELETE'
+    })
+      .then();
 
 }
