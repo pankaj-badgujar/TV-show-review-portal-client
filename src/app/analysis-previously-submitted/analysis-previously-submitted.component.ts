@@ -43,7 +43,4 @@ export class AnalysisPreviouslySubmittedComponent implements OnInit {
     this.analysisService.findAllAnalysisOfStudent(this.loggedInUser.id, this.episodeId)
       .then(analysisList => this.analysisList = analysisList)
   }
-
-
-
 }

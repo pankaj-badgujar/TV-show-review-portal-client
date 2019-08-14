@@ -20,6 +20,7 @@ import { AnalysisEditorComponent } from './analysis-editor/analysis-editor.compo
 import { EnrollUnderFacultyComponent } from './enroll-under-faculty/enroll-under-faculty.component';
 import { ViewPupilsComponent } from './view-pupils/view-pupils.component';
 import { AnalysisPreviouslySubmittedComponent } from './analysis-previously-submitted/analysis-previously-submitted.component';
+import { AnalysisReviewComponent } from './analysis-review/analysis-review.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AnalysisPreviouslySubmittedComponent } from './analysis-previously-subm
     AnalysisEditorComponent,
     EnrollUnderFacultyComponent,
     ViewPupilsComponent,
-    AnalysisPreviouslySubmittedComponent
+    AnalysisPreviouslySubmittedComponent,
+    AnalysisReviewComponent
   ],
   imports: [
     BrowserModule,

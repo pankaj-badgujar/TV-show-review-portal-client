@@ -48,8 +48,6 @@ export class RegisterComponent implements OnInit {
 
   }
 
-<<<<<<< HEAD
-=======
   registerStudent(user){
     let studentJSON = {
       "user" : user
@@ -65,7 +63,6 @@ export class RegisterComponent implements OnInit {
     this.registerClientService.registerFaculty(facultyJSON).then();
   }
 
->>>>>>> 72bbdd5904a667c79d77223602750cac863baac3
   redirectManually() {
     this.router.navigate(['/']);
   }

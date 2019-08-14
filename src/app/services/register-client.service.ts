@@ -17,7 +17,7 @@ export class RegisterClientService {
         headers: {
           'content-type': 'application/json'
         },
-        'credentials': 'include'
+        mode:'no-cors'
       }
     )
       .then((res) => {
@@ -25,14 +25,14 @@ export class RegisterClientService {
       })
       .then((text) => text.length ? this.loginService.addFetchedUserToSessionStorage(text) : null);
 
-
   registerStudent = (student) =>
     fetch(`http://localhost:8080/registerStudent`,{
       method: 'POST',
       body: JSON.stringify(student),
       headers: {
         'content-type' : 'application/json'
-      }
+      },
+      mode:'no-cors'
     }).then();
 
   registerFaculty = (faculty) =>
@@ -41,6 +41,7 @@ export class RegisterClientService {
       body: JSON.stringify(faculty),
       headers: {
         'content-type' : 'application/json'
-      }
+      },
+      mode:'no-cors'
     }).then();
 }
