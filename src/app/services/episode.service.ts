@@ -25,5 +25,12 @@ export class EpisodeService {
       headers: {
         'content-type' : 'application/json'
       }
-    }).then()
+    }).then();
+
+
+  deleteEpisodeFromDB = (episodeId) =>
+    fetch(`http://localhost:8080/api/episode/${episodeId}`,{
+      method: 'DELETE'
+    }).then();
+
 }

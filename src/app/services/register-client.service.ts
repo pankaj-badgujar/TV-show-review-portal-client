@@ -19,6 +19,7 @@ export class RegisterClientService {
         headers: {
           'content-type': 'application/json'
         }
+
       }
     )
       .then((res) => {
@@ -32,7 +33,9 @@ export class RegisterClientService {
       body: JSON.stringify(student),
       headers: {
         'content-type' : 'application/json'
+
       }
+
     }).then();
 
   registerFaculty = (faculty) =>
@@ -42,5 +45,6 @@ export class RegisterClientService {
       headers: {
         'content-type' : 'application/json'
       }
+
     }).then();
 }
