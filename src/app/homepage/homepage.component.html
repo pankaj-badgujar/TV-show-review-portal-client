@@ -11,45 +11,10 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <!--        <li class="nav-item active">-->
-      <!--          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
-      <!--        </li>-->
-      <!--        <li class="nav-item">-->
-      <!--          <a class="nav-link" href="#">Link</a>-->
-      <!--        </li>-->
-
-
-      <!--        <form class="form-inline my-2 my-lg-0">-->
-      <!--          <input-->
-      <!--            aria-label="Search"-->
-      <!--            class="form-control mr-sm-2"-->
-      <!--            placeholder="Search"-->
-      <!--            type="search">-->
-      <!--          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-      <!--        </form>-->
-
-      <!--          <form class="form-inline">-->
-      <!--            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
-      <!--            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-      <!--          </form>-->
 
 
       <app-search-show></app-search-show>
 
-
-      <!--      <li class="nav-item dropdown">-->
-      <!--        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"-->
-      <!--           id="navbarDropdown" role="button">-->
-      <!--          Dropdown-->
-      <!--        </a>-->
-      <!--        <div aria-labelledby="navbarDropdown" class="dropdown-menu">-->
-      <!--          <a class="dropdown-item" href="#">Enroll under faculty</a>-->
-      <!--          <div class="dropdown-divider"></div>-->
-      <!--          <a class="dropdown-item" href="#">Logout</a>-->
-
-
-      <!--        </div>-->
-      <!--      </li>-->
       <span class="float-right">
           <app-sign-in-button></app-sign-in-button>
         </span>
@@ -61,37 +26,42 @@
 
 <div class="container">
 
-  <div class="row my-5">
+  <div *ngIf="loggedInUser.role === 'STUDENT'">
 
-    <span class="col-6">
-      <button
-        (click)="previousPage()"
-        [disabled]="pageNo == 0"
-        class="btn btn-dark float-left">
-        <i class="fa fa-backward"></i>
-        Previous</button>
-    </span>
+    <app-saved-show-tile [showsToBeDisplayed]="analysedShows"
+                         [headingToBeDisplayed]="'Analysed By You'"
+                         [isSavedShow]="true">
 
-
-    <span class="col-6">
-      <button
-        (click)="nextPage()"
-        class="btn btn-dark float-right">
-        Next
-              <i class="fa fa-forward"></i>
-      </button>
-    </span>
-  </div>
-
-  <div *ngFor="let show of showIndex">
-    <div class="list-group">
-      <a class="list-group-item list-group-item-action my-1"
-         routerLink="/details/{{show.id}}">
-        <app-show-tile [show]="show"></app-show-tile>
-      </a>
-    </div>
+    </app-saved-show-tile>
 
   </div>
 
+<!--  <div *ngIf="loggedInUser.role === 'FACULTY'" >-->
+<!--    <app-saved-show-tile [showsToBeDisplayed]="reviewedShows"-->
+<!--                         [headingToBeDisplayed]="'Reviewed By You'"-->
+<!--                         [isSavedShow]="true"-->
+<!--    ></app-saved-show-tile>-->
+<!--  </div>-->
 
+<!--  <div *ngIf="loggedInUser.role === 'FACULTY'">-->
+
+<!--    <app-saved-show-tile [showsToBeDisplayed]="toBeReviewedShows"-->
+<!--                         [headingToBeDisplayed]="'To Be Reviewed'"-->
+<!--                         [isSavedShow]="true">-->
+
+<!--    </app-saved-show-tile>-->
+
+<!--  </div>-->
+
+
+
+  <div>
+
+    <app-saved-show-tile [showsToBeDisplayed]="showIndex"
+                         [headingToBeDisplayed]="'Latest Shows'"
+                         [isSavedShow]="false">
+
+    </app-saved-show-tile>
+
+  </div>
 </div>

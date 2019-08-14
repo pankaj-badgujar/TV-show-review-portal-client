@@ -21,6 +21,8 @@ import { EnrollUnderFacultyComponent } from './enroll-under-faculty/enroll-under
 import { ViewPupilsComponent } from './view-pupils/view-pupils.component';
 import { AnalysisPreviouslySubmittedComponent } from './analysis-previously-submitted/analysis-previously-submitted.component';
 import { AnalysisReviewComponent } from './analysis-review/analysis-review.component';
+import { SavedShowTileComponent } from './saved-show-tile/saved-show-tile.component';
+
 
 @NgModule({
   declarations: [
@@ -38,10 +40,14 @@ import { AnalysisReviewComponent } from './analysis-review/analysis-review.compo
     SignInButtonComponent,
     LogoutScreenComponent,
     AnalysisEditorComponent,
+
     EnrollUnderFacultyComponent,
     ViewPupilsComponent,
     AnalysisPreviouslySubmittedComponent,
-    AnalysisReviewComponent
+    AnalysisReviewComponent,
+    SavedShowTileComponent
+
+
   ],
   imports: [
     BrowserModule,
