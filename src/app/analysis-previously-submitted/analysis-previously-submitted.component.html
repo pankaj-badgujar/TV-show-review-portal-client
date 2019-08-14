@@ -6,8 +6,18 @@
       (ngModelChange)="filterMyAnalysis()"
       [(ngModel)]="whoseSubmissions"
       class="form-control form-control-lg bg-light">
-      <option [ngValue]=0>All submissions</option>
-      <option *ngIf="this.loggedInUser != null" [ngValue]=1>Your submissions</option>
+      <option
+        *ngIf="this.loggedInUser.role == 'FACULTY'"
+        [ngValue]=0>All submissions
+      </option>
+      <option
+        *ngIf="this.loggedInUser.role == 'STUDENT'"
+        [ngValue]=1>My submissions
+      </option>
+      <option
+        *ngIf="this.loggedInUser.role == 'FACULTY'"
+        [ngValue]=2>Submissions from my pupils
+      </option>
     </select>
 
 

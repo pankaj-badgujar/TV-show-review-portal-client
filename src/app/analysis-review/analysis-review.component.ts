@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {LoginServiceClientService} from "../services/login-service-client.service";
-import {ActivatedRoute} from "@angular/router";
+import {LoginServiceClientService} from '../services/login-service-client.service';
+import {ActivatedRoute} from '@angular/router';
 import {ReviewService} from '../services/review.service';
 
 @Component({
@@ -25,12 +25,15 @@ export class AnalysisReviewComponent implements OnInit {
               private loginService: LoginServiceClientService,
               private reviewService: ReviewService) {
     this.grade = 0;
-    this.feedback = "";
+    this.feedback = '';
     this.analysisId = 0;
     this.gradeValues = Array(100).keys();
     if (this.analysis !== undefined) {
+      // @ts-ignore
       this.analysisId = this.analysis[0].id;
+      // @ts-ignore
       this.feedback = this.analysis[0].feedback;
+      // @ts-ignore
       this.grade = this.analysis[0].grade;
     }
   }
@@ -44,6 +47,7 @@ export class AnalysisReviewComponent implements OnInit {
       this.showId = params.showId;
     });
 
+    // @ts-ignore
     this.reviewService.getReviewsForAnalysisByFaculty(this.loggedInUser.id, this.analysisId)
       .then(review => this.review = review);
   }
@@ -51,19 +55,22 @@ export class AnalysisReviewComponent implements OnInit {
   submitReview() {
 
     const reviewJSON = {
-      "feedback" : this.feedback,
-      "grade" : this.grade
+      'feedback' : this.feedback,
+      'grade' : this.grade
     };
 
+    // @ts-ignore
     this.reviewService.createReview(this.loggedInUser.id, this.analysisId, reviewJSON)
       .then(review => this.review = review);
   }
-
   updateReview() {
 
+    // @ts-ignore
     this.review.grade = this.grade;
+    // @ts-ignore
     this.review.feedback = this.feedback;
 
+    // @ts-ignore
     this.reviewService.updateReview(this.review.id, this.review)
       .then(review => this.review = review);
   }
