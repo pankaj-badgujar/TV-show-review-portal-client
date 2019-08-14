@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {ShowDetailViewerComponent} from './show-detail-viewer/show-detail-viewer.component';
-import {SearchShowComponent} from './search-show/search-show.component';
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {HomepageComponent} from "./homepage/homepage.component";
@@ -12,13 +11,14 @@ import {AnalysisEditorComponent} from "./analysis-editor/analysis-editor.compone
 import {ProfileComponent} from "./profile/profile.component";
 import {EnrollUnderFacultyComponent} from "./enroll-under-faculty/enroll-under-faculty.component";
 import {ViewPupilsComponent} from "./view-pupils/view-pupils.component";
+import {AuthGuard} from "./guards/auth.guard";
 
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
   {path: 'profile/:userId', component: ProfileComponent},
-  {path: 'enroll', component: EnrollUnderFacultyComponent},
-  {path: 'viewPupils', component: ViewPupilsComponent},
+  {path: 'enroll', component: EnrollUnderFacultyComponent,canActivate: [AuthGuard]},
+  {path: 'viewPupils', component: ViewPupilsComponent,canActivate: [AuthGuard]},
   {path: 'search/:query', component: ResultGridComponent},
   {path: 'details/:showId', component: ShowDetailViewerComponent},
   {path: 'search/:query/details/:showId', component: ShowDetailViewerComponent},

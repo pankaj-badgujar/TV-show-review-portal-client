@@ -3,7 +3,7 @@
     <div class="col-12 float-right my-3">
       <a routerLink="../../">
         <i class="fa fa-arrow-left"></i>
-        Back to episode list
+        Back
       </a>
     </div>
   </div>
@@ -73,10 +73,14 @@
   </div>
 
   <br>
-  <app-analysis-previously-submitted
-    [episodeId]="episodeId">
-  </app-analysis-previously-submitted>
-  <br>
-  <br>
+
+  <ng-container *ngIf="loggedInUser != null">
+    <app-analysis-previously-submitted
+      [episodeId]="episodeId">
+
+    </app-analysis-previously-submitted>
+    <br>
+    <br>
+  </ng-container>
 
 </div>
