@@ -11,45 +11,10 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <!--        <li class="nav-item active">-->
-      <!--          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
-      <!--        </li>-->
-      <!--        <li class="nav-item">-->
-      <!--          <a class="nav-link" href="#">Link</a>-->
-      <!--        </li>-->
-
-
-      <!--        <form class="form-inline my-2 my-lg-0">-->
-      <!--          <input-->
-      <!--            aria-label="Search"-->
-      <!--            class="form-control mr-sm-2"-->
-      <!--            placeholder="Search"-->
-      <!--            type="search">-->
-      <!--          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-      <!--        </form>-->
-
-      <!--          <form class="form-inline">-->
-      <!--            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
-      <!--            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-      <!--          </form>-->
 
 
       <app-search-show></app-search-show>
 
-
-      <!--      <li class="nav-item dropdown">-->
-      <!--        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"-->
-      <!--           id="navbarDropdown" role="button">-->
-      <!--          Dropdown-->
-      <!--        </a>-->
-      <!--        <div aria-labelledby="navbarDropdown" class="dropdown-menu">-->
-      <!--          <a class="dropdown-item" href="#">Enroll under faculty</a>-->
-      <!--          <div class="dropdown-divider"></div>-->
-      <!--          <a class="dropdown-item" href="#">Logout</a>-->
-
-
-      <!--        </div>-->
-      <!--      </li>-->
       <span class="float-right">
           <app-sign-in-button></app-sign-in-button>
         </span>
@@ -63,76 +28,42 @@
 
 <div class="container">
 
-  <div class="row my-5">
+  <div *ngIf="loggedInUser.role === 'STUDENT'">
 
-    <span class="col-6">
-      <button
-        (click)="previousPage()"
-        [disabled]="pageNo == 0"
-        class="btn btn-dark float-left">
-        <i class="fa fa-backward"></i>
-        Previous</button>
-    </span>
+    <app-saved-show-tile [showsToBeDisplayed]="analysedShows"
+                         [headingToBeDisplayed]="'Analysed By You'"
+                         [isSavedShow]="true">
 
+    </app-saved-show-tile>
 
-    <span class="col-6">
-      <button
-        (click)="nextPage()"
-        class="btn btn-dark float-right">
-        Next
-              <i class="fa fa-forward"></i>
-      </button>
-    </span>
   </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 py-3">
-        <h2 class="pb-2">Upcoming Events</h2>
-        <ngb-carousel *ngIf="eventlist">
-          <ng-template ngbSlide *ngFor="let event of upcomingevents">
-            <img [src]="event.img" alt="Random slide">
-            <div class="carousel-caption">
-              <h3>{{ event.eventLocation }}</h3>
-              <p [innerText]="event.eventDescription"></p>
-            </div>
-          </ng-template>
-        </ngb-carousel>
-      </div>
-    </div>
+<!--  <div *ngIf="loggedInUser.role === 'FACULTY'" >-->
+<!--    <app-saved-show-tile [showsToBeDisplayed]="reviewedShows"-->
+<!--                         [headingToBeDisplayed]="'Reviewed By You'"-->
+<!--                         [isSavedShow]="true"-->
+<!--    ></app-saved-show-tile>-->
+<!--  </div>-->
+
+<!--  <div *ngIf="loggedInUser.role === 'FACULTY'">-->
+
+<!--    <app-saved-show-tile [showsToBeDisplayed]="toBeReviewedShows"-->
+<!--                         [headingToBeDisplayed]="'To Be Reviewed'"-->
+<!--                         [isSavedShow]="true">-->
+
+<!--    </app-saved-show-tile>-->
+
+<!--  </div>-->
+
+
+
+  <div>
+
+    <app-saved-show-tile [showsToBeDisplayed]="showIndex"
+                         [headingToBeDisplayed]="'Latest Shows'"
+                         [isSavedShow]="false">
+
+    </app-saved-show-tile>
+
   </div>
-
-
-<div>
-  <span
-    *ngFor="let show of showIndex"
-    class="col-lg-3 col-md-5 col-sm-6 ">
-      <div class="card-deck mt-3 ml-3" >
-        <a routerLink="/details/{{show.id}}">
-           <div class="card border-secondary">
-            <img
-              *ngIf="show.image == null"
-              class="card-img-top"
-              src="{{this.noPreviewImage}}">
-
-            <img
-              *ngIf="show.image != null"
-              class="card-img-top"
-              src="{{show.image.medium}}">
-
-            <div class="card-body text-success">
-              <h5 class="card-title">{{show.name}}</h5>
-
-              <div class="card-footer">
-                <small class="text-info">Language:  {{show.language}}</small>
-                <br>
-                <small class="text-info">Last updated: {{show.updated | date: 'longDate' }}</small>
-              </div>
-            </div>
-          </div>
-       </a>
-      </div>
-    </span>
-
-</div>
 </div>

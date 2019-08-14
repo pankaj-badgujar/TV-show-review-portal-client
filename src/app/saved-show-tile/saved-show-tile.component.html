@@ -1,0 +1,74 @@
+<div class="container">
+<div>
+  <h2> {{headingToBeDisplayed}}</h2>
+</div>
+
+  <div class="row my-5">
+
+    <span class="col-6">
+      <button
+        (click)="previousPage()"
+        class="btn btn-dark float-left">
+        <i class="fa fa-backward"></i>
+        Previous</button>
+    </span>
+
+
+    <span class="col-6">
+      <button
+        (click)="nextPage()"
+        class="btn btn-dark float-right">
+        Next
+              <i class="fa fa-forward"></i>
+      </button>
+    </span>
+
+  </div>
+
+  <div>
+<span
+  *ngFor="let show of showsToBeDisplayedCurrently"
+  class="col-lg-3 col-md-5 col-sm-6 ">
+      <div class="card-deck mt-3 ml-3">
+        <a routerLink="/details/{{show.id}}">
+           <div class="card border-secondary" >
+             <span *ngIf= "this.isSavedShow === true">
+            <img
+              *ngIf="show.img == null "
+              class="card-img-top"
+              src="{{this.noPreviewImage}}">
+
+            <img
+              *ngIf="show.img != null "
+              class="card-img-top"
+              src="{{show.img}}">
+             </span>
+
+              <span *ngIf= "this.isSavedShow !== true">
+          <img
+            *ngIf="show.image == null && !this.isSavedShow"
+            class="card-img-top"
+            src="{{this.noPreviewImage}}">
+
+            <img
+              *ngIf="show.image.medium && !this.isSavedShow"
+              class="card-img-top"
+              src="{{show.image.medium}}">
+              </span>
+
+            <div class="card-body text-success">
+              <h5 class="card-title">{{show.name}}</h5>
+
+              <div class="card-footer">
+                <small class="text-info">Language:  {{show.language}}</small>
+                <br>
+                <small class="text-info">Last updated: {{show.updated | date: 'longDate' }}</small>
+              </div>
+            </div>
+          </div>
+       </a>
+      </div>
+    </span>
+  </div>
+
+</div>

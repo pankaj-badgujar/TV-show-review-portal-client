@@ -9,5 +9,20 @@ export class HomepageIndexService {
 
   fetchShowIndex = (pageNo) =>
     fetch(`http://api.tvmaze.com/shows?page=${pageNo}`)
-      .then(response=> response.json())
+      .then(response=> response.json());
+
+
+  fetchParticularShowIndex = (showId) =>
+    fetch(`http://api.tvmaze.com/shows/1`)
+      .then(response=> response.json());
+
+
+  fetchShowsAnalysedByStudent = (sid) =>  fetch(`http://localhost:8080/api/user/analysedAhowIds/${sid}`)
+    .then(response=> response.json());
+
+  fetchShowsReviewedByFaculty = (fid) =>  fetch(`http://localhost:8080/api/faculty/showsReviewed/${fid}`)
+    .then(response=> response.json());
+
+  fetchShowsToBeReviewedByFaculty = (fid) =>  fetch(`http://localhost:8080/api/faculty/showsToBeReviewed/${fid}`)
+    .then(response=> response.json());
 }
