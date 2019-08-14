@@ -29,6 +29,7 @@
   <div *ngIf="loggedInUser.role === 'STUDENT'">
 
     <app-saved-show-tile [showsToBeDisplayed]="analysedShows"
+                         [showsToBeDisplayedCurrently]="analysedShowsCurrently"
                          [headingToBeDisplayed]="'Analysed By You'"
                          [isSavedShow]="true">
 
@@ -36,28 +37,31 @@
 
   </div>
 
-<!--  <div *ngIf="loggedInUser.role === 'FACULTY'" >-->
-<!--    <app-saved-show-tile [showsToBeDisplayed]="reviewedShows"-->
-<!--                         [headingToBeDisplayed]="'Reviewed By You'"-->
-<!--                         [isSavedShow]="true"-->
-<!--    ></app-saved-show-tile>-->
-<!--  </div>-->
+  <div *ngIf="loggedInUser.role === 'FACULTY'" >
+    <app-saved-show-tile [showsToBeDisplayed]="reviewedShows"
+                         [showsToBeDisplayedCurrently]="reviewedShowsCurrently"
+                         [headingToBeDisplayed]="'Reviewed By You'"
+                         [isSavedShow]="true"
+    ></app-saved-show-tile>
+  </div>
 
-<!--  <div *ngIf="loggedInUser.role === 'FACULTY'">-->
+  <div *ngIf="loggedInUser.role === 'FACULTY'">
 
-<!--    <app-saved-show-tile [showsToBeDisplayed]="toBeReviewedShows"-->
-<!--                         [headingToBeDisplayed]="'To Be Reviewed'"-->
-<!--                         [isSavedShow]="true">-->
+    <app-saved-show-tile [showsToBeDisplayed]="toBeReviewedShows"
+                         [showsToBeDisplayedCurrently]="toBeReviewedShowsCurrently"
+                         [headingToBeDisplayed]="'To Be Reviewed'"
+                         [isSavedShow]="true">
 
-<!--    </app-saved-show-tile>-->
+    </app-saved-show-tile>
 
-<!--  </div>-->
+  </div>
 
 
 
   <div>
 
     <app-saved-show-tile [showsToBeDisplayed]="showIndex"
+                         [showsToBeDisplayedCurrently]="showIndexCurrently"
                          [headingToBeDisplayed]="'Latest Shows'"
                          [isSavedShow]="false">
 

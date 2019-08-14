@@ -13,10 +13,16 @@ import {AnalysisPreviouslySubmittedComponent} from "../analysis-previously-submi
 export class HomepageComponent implements OnInit {
 
   showIndex: [];
+  showIndexCurrently: any[];
   showIndexCarousel: [];
   analysedShows: any[];
+  analysedShowsCurrently: any[];
+
   reviewedShows: any[];
+  reviewedShowsCurrently: any[];
   toBeReviewedShows: any[];
+  toBeReviewedShowsCurrently: any[];
+
   pageNo: number;
   noPreviewImage: string;
   loggedInUser: any;
@@ -36,10 +42,12 @@ export class HomepageComponent implements OnInit {
     this.analysedShows = [];
     this.reviewedShows = [];
     this.toBeReviewedShows = [];
+
     this.homePageIndexService.fetchShowIndex(this.pageNo)
       .then(showIndex => {
-        this.showIndex = showIndex
+        this.showIndex = showIndex;
 
+        this.showIndexCurrently = showIndex.slice(0,24);
 
       })
     this.loggedInUser = this.loginClientService.getLoggedInUser();
@@ -52,7 +60,7 @@ export class HomepageComponent implements OnInit {
       this.homePageIndexService.fetchShowsAnalysedByStudent(this.loggedInUser.id).then(
         shows => {
           this.analysedShows = shows;
-          this.savedShowTileComponent.loadTiles();
+          this.analysedShowsCurrently = shows.slice(0,24);
         }
       );
     }
@@ -62,14 +70,14 @@ export class HomepageComponent implements OnInit {
       this.homePageIndexService.fetchShowsReviewedByFaculty(this.loggedInUser.id).then(
         shows => {
           this.reviewedShows = shows;
-          this.savedShowTileComponent.loadTiles();
+          this.reviewedShowsCurrently = shows.slice(0,24);
         }
       );
 
       this.homePageIndexService.fetchShowsToBeReviewedByFaculty(this.loggedInUser.id).then(
         shows => {
           this.toBeReviewedShows = shows;
-          this.savedShowTileComponent.loadTiles();
+          this.toBeReviewedShowsCurrently = shows.slice(0,24);
         }
       );
     }
