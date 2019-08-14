@@ -21,17 +21,40 @@
     </select>
 
 
-  <div *ngIf="analysisList.length === 0">
+  <div *ngIf="this.loggedInUser.role == 'FACULTY' && analysisList.length === 0">
     <h5> No student has submitted analysis on this episode yet</h5>
+  </div>
+
+  <div *ngIf="this.loggedInUser.role == 'STUDENT' && analysisList.length === 0">
+    <h5> You have not submitted analysis on this episode yet</h5>
   </div>
 
   <div *ngIf="analysisList.length !== 0">
     <div *ngFor="let analysis of analysisList.slice().reverse()" class="card my-4">
       <div class="card-header">
-        <span class="card-title float-left">
+        <span class="card-title">
           <a routerLink="/profile/{{analysis.userIdOfStudent}}">
             {{analysis.studentsFullName}}
           </a>
+        </span>
+        <span class="float-right">
+
+          <button
+            (click)="editAnalysis()"
+            class="btn btn-warning mx-2">
+              <i
+                (click)="editAnalysis()"
+                class="fa fa-pencil-alt"></i>
+          </button>
+
+          <button
+            (click)="deleteAnalysis()"
+            class="btn btn-danger mx-2">
+              <i
+                (click)="deleteAnalysis()"
+                class="fa fa-trash"></i>
+          </button>
+
         </span>
       </div>
       <div class="card-body">

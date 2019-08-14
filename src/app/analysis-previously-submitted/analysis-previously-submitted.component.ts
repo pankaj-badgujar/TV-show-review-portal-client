@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {AnalysisService} from "../services/analysis.service";
 import {LoginServiceClientService} from "../services/login-service-client.service";
 import {StudentService} from "../services/student.service";
@@ -15,6 +15,9 @@ export class AnalysisPreviouslySubmittedComponent implements OnInit {
   whoseSubmissions: number;
   loggedInUser: object;
 
+  @Output() notify: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+
   constructor(private studentService: StudentService,
               private loginService: LoginServiceClientService,
               private analysisService: AnalysisService) {
@@ -24,12 +27,17 @@ export class AnalysisPreviouslySubmittedComponent implements OnInit {
   ngOnInit() {
     this.loggedInUser = this.loginService.getLoggedInUser();
 
-      // @ts-ignore
-      this.loggedInUser.role == "FACULTY" ? this.refreshPreviousAnalysis(this.episodeId)
-        :this.showMyAnalysis();
+    this.showAppropriateAnalysisList();
 
     // @ts-ignore
     this.whoseSubmissions = this.loggedInUser.role == "FACULTY" ? 0 : 1;
+
+  }
+
+  showAppropriateAnalysisList(){
+    // @ts-ignore
+    this.loggedInUser.role == "FACULTY" ? this.refreshPreviousAnalysis(this.episodeId)
+      :this.showMyAnalysis();
 
   }
 
@@ -60,7 +68,12 @@ export class AnalysisPreviouslySubmittedComponent implements OnInit {
   showMyAnalysis() {
     // @ts-ignore
     this.analysisService.findAllAnalysisOfStudent(this.loggedInUser.id, this.episodeId)
-      .then(analysisList => this.analysisList = analysisList)
+      .then(analysisList => {
+        this.analysisList = analysisList;
+        this.analysisList.length > 0 ? this.notify.emit(true)
+          :this.notify.emit(false)
+
+      })
   }
 
   showAnalysisOfMyPupils(){
@@ -68,4 +81,11 @@ export class AnalysisPreviouslySubmittedComponent implements OnInit {
   }
 
 
+  deleteAnalysis() {
+
+  }
+
+  editAnalysis() {
+
+  }
 }

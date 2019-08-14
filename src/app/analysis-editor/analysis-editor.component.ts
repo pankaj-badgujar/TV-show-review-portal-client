@@ -22,6 +22,7 @@ export class AnalysisEditorComponent implements OnInit {
   
   @ViewChild(AnalysisPreviouslySubmittedComponent, {static: false})
   previousAnalysisComponent: AnalysisPreviouslySubmittedComponent;
+  private submittedAlready: boolean;
 
   constructor(private loginService: LoginServiceClientService,
               private episodeService: EpisodeService,
@@ -62,11 +63,15 @@ export class AnalysisEditorComponent implements OnInit {
         this.analysisService.createAnalysis(this.loggedInUser.id, this.episodeId, analysisJSON)
           .then(() => {
             this.content = '';
-            this.previousAnalysisComponent.refreshPreviousAnalysis(this.episodeId);
+            this.previousAnalysisComponent.showAppropriateAnalysisList();
 
           });
 
       });
 
+  }
+
+  onNotify(submitted: boolean) {
+    this.submittedAlready = submitted;
   }
 }
