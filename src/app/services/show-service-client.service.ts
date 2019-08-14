@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShowServiceClientService {
 
-  constructor() { }
+
+  constructor() {
+  }
 
   searchShow = (keyword) =>
     fetch(`https://api.tvmaze.com/search/shows?q=${keyword}`)
@@ -15,4 +17,15 @@ export class ShowServiceClientService {
   getShowDetails = (showId) =>
     fetch(`https://api.tvmaze.com/shows/${showId}`)
       .then(response => response.json());
+
+  addShowInDB = (show) =>
+    fetch(`http://localhost:8080/api/show`, {
+      method: 'POST',
+      body: JSON.stringify(show),
+      headers: {
+        'content-type': 'application/json'
+      }
+    }).then(res => res.json());
+
 }
+

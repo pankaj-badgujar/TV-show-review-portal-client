@@ -41,7 +41,8 @@ export class HomepageComponent implements OnInit {
         this.showIndex = showIndex
 
 
-      })
+      });
+
     this.loggedInUser = this.loginClientService.getLoggedInUser();
 
     if(this.loggedInUser == null || this.loggedInUser === undefined){

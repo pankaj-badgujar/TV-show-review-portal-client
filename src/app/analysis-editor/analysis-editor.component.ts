@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {LoginServiceClientService} from "../services/login-service-client.service";
 import {AnalysisService} from "../services/analysis.service";
 import {AnalysisPreviouslySubmittedComponent} from "../analysis-previously-submitted/analysis-previously-submitted.component";
+import {ShowServiceClientService} from "../services/show-service-client.service";
 
 @Component({
   selector: 'app-analysis-editor',
@@ -17,14 +18,15 @@ export class AnalysisEditorComponent implements OnInit {
   showId: Number;
   noPreviewImage: string;
   loggedInUser: object;
-
   content: String;
-  
+
   @ViewChild(AnalysisPreviouslySubmittedComponent, {static: false})
   previousAnalysisComponent: AnalysisPreviouslySubmittedComponent;
   private submittedAlready: boolean;
 
-  constructor(private loginService: LoginServiceClientService,
+
+  constructor(private showService: ShowServiceClientService,
+              private loginService: LoginServiceClientService,
               private episodeService: EpisodeService,
               private analysisService: AnalysisService,
               private activatedRoute: ActivatedRoute) {
@@ -42,6 +44,7 @@ export class AnalysisEditorComponent implements OnInit {
 
     this.episodeService.getEpisodeInformation(this.episodeId)
       .then(episode => this.episode = episode);
+
   }
 
   submitAnalysis() {
@@ -52,13 +55,30 @@ export class AnalysisEditorComponent implements OnInit {
 
 
     let episodeJSON = {
-      "id" : this.episodeId,
-      "showId" : this.showId
+      "id": this.episodeId,
+      "showId": this.showId
     };
 
-    this.episodeService.createEpisodeInDB(episodeJSON)
+    this.showService.getShowDetails(this.showId)
+      .then(show => {
+        let showJSON = {
+          // @ts-ignore
+          "tvShowId": show.id,
+          // @ts-ignore
+          "img": show.image.medium,
+          // @ts-ignore
+          "name": show.name,
+          // @ts-ignore
+          "updated": show.updated,
+          // @ts-ignore
+          "language": show.language
+        };
+        return this.showService.addShowInDB(showJSON);
+      })
       .then(() => {
-
+        return this.episodeService.createEpisodeInDB(episodeJSON)
+      })
+      .then(() => {
         // @ts-ignore
         this.analysisService.createAnalysis(this.loggedInUser.id, this.episodeId, analysisJSON)
           .then(() => {
@@ -66,7 +86,6 @@ export class AnalysisEditorComponent implements OnInit {
             this.previousAnalysisComponent.showAppropriateAnalysisList();
 
           });
-
       });
 
   }
