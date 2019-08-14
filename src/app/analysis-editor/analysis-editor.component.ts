@@ -80,7 +80,7 @@ export class AnalysisEditorComponent implements OnInit {
       })
       .then(() => {
         // @ts-ignore
-        this.analysisService.createAnalysis(this.loggedInUser.id, this.episodeId, analysisJSON)
+        this.analysisService.createAnalysis(this.loggedInUser.id, this.showId, this.episodeId, analysisJSON)
           .then(() => {
             this.content = '';
             this.previousAnalysisComponent.showAppropriateAnalysisList();
