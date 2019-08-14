@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {HomepageIndexService} from "../services/homepage-index.service";
 import {Router} from "@angular/router";
 import {LoginServiceClientService} from "../services/login-service-client.service";
+import {SavedShowTileComponent} from "../saved-show-tile/saved-show-tile.component";
+import {AnalysisPreviouslySubmittedComponent} from "../analysis-previously-submitted/analysis-previously-submitted.component";
 
 @Component({
   selector: 'app-homepage',
@@ -18,6 +20,9 @@ export class HomepageComponent implements OnInit {
   pageNo: number;
   noPreviewImage: string;
   loggedInUser: any;
+
+  @ViewChild(SavedShowTileComponent, {static: false})
+  savedShowTileComponent: SavedShowTileComponent;
 
   constructor(private homePageIndexService: HomepageIndexService,
               private router: Router, private loginClientService: LoginServiceClientService) {
@@ -45,18 +50,27 @@ export class HomepageComponent implements OnInit {
 
     if(this.loggedInUser != null && this.loggedInUser.role === 'STUDENT'){
       this.homePageIndexService.fetchShowsAnalysedByStudent(this.loggedInUser.id).then(
-        shows => this.analysedShows = shows
+        shows => {
+          this.analysedShows = shows;
+          this.savedShowTileComponent.loadTiles();
+        }
       );
     }
 
     else if (this.loggedInUser != null && this.loggedInUser.role === 'FACULTY') {
 
       this.homePageIndexService.fetchShowsReviewedByFaculty(this.loggedInUser.id).then(
-        shows => this.reviewedShows = shows
+        shows => {
+          this.reviewedShows = shows;
+          this.savedShowTileComponent.loadTiles();
+        }
       );
 
       this.homePageIndexService.fetchShowsToBeReviewedByFaculty(this.loggedInUser.id).then(
-        shows => this.toBeReviewedShows = shows
+        shows => {
+          this.toBeReviewedShows = shows;
+          this.savedShowTileComponent.loadTiles();
+        }
       );
     }
 

@@ -37,13 +37,12 @@ export class SavedShowTileComponent implements OnInit {
     }
   }
 
-  ngOnChanges() {
+  loadTiles = () =>{
     this.showsToBeDisplayedCurrently = this.showsToBeDisplayed.slice(this.startIndex, this.endIndex);
   }
 
   nextPage = () => {
 
-    this.showsToBeDisplayedCurrently = this.showsToBeDisplayed;
     this.startIndex = this.startIndex + 24;
     this.endIndex = this.endIndex + 24;
     this.showsToBeDisplayedCurrently = this.showsToBeDisplayed.slice(this.startIndex,this.endIndex);
