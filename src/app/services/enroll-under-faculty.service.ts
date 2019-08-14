@@ -33,10 +33,12 @@ export class EnrollUnderFacultyService {
     })
       .then(res => res.json());
 
-  cancelEnrollment = (userId) =>
-    fetch(`http://localhost:8080/cancelEnrollment/${userId}`, {
-      method: 'DELETE'
+  cancelEnrollment(userId) {
+    return fetch(`http://localhost:8080/cancelEnrollment/${userId}`, {
+      method: 'DELETE',
     }).then(res => res.json());
+
+  }
 
   findFacultyByUserId = (userId) =>
     fetch(`http://localhost:8080/findFacultyByUserId/${userId}`)
