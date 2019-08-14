@@ -47,6 +47,7 @@ export class AnalysisReviewComponent implements OnInit {
       this.showId = params.showId;
     });
 
+    // @ts-ignore
     this.reviewService.getReviewsForAnalysisByFaculty(this.loggedInUser.id, this.analysisId)
       .then(review => this.review = review);
   }
