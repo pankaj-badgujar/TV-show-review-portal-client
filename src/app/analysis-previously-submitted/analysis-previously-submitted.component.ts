@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {AnalysisService} from "../services/analysis.service";
 import {LoginServiceClientService} from "../services/login-service-client.service";
 import {StudentService} from "../services/student.service";
@@ -29,12 +29,13 @@ export class AnalysisPreviouslySubmittedComponent implements OnInit {
   refreshPreviousAnalysis(episodeId) {
     this.analysisService.findAllAnalysisForEpisode(episodeId)
       .then(analysisList => {
+        console.log(analysisList);
         this.analysisList = analysisList;
       })
   }
 
   filterMyAnalysis() {
-    this.whoseSubmissions == 1 ? this.refreshPreviousAnalysis(this.episodeId)
+    this.whoseSubmissions === 1 ? this.refreshPreviousAnalysis(this.episodeId)
       : this.showMyAnalysis();
   }
 
