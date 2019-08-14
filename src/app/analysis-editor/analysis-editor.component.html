@@ -80,6 +80,7 @@
 
   <ng-container *ngIf="loggedInUser != null">
     <app-analysis-previously-submitted
+      [showId]="showId"
       (notify)="onNotify($event)"
       [episodeId]="episodeId">
 

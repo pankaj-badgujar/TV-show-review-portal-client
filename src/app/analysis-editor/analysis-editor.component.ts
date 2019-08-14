@@ -63,7 +63,7 @@ export class AnalysisEditorComponent implements OnInit {
       .then(show => {
         let showJSON = {
           // @ts-ignore
-          "tvShowId": show.id,
+          "id": show.id,
           // @ts-ignore
           "img": show.image.medium,
           // @ts-ignore

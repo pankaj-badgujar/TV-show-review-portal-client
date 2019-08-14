@@ -1,7 +1,9 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AnalysisService} from "../services/analysis.service";
 import {LoginServiceClientService} from "../services/login-service-client.service";
 import {StudentService} from "../services/student.service";
+import {ShowServiceClientService} from "../services/show-service-client.service";
+import {EpisodeService} from "../services/episode.service";
 
 @Component({
   selector: 'app-analysis-previously-submitted',
@@ -11,16 +13,22 @@ import {StudentService} from "../services/student.service";
 export class AnalysisPreviouslySubmittedComponent implements OnInit {
 
   @Input() episodeId: number;
+  @Input() showId: number;
   analysisList: [];
   whoseSubmissions: number;
   loggedInUser: object;
+  analysisEdit: boolean;
 
   @Output() notify: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 
-  constructor(private studentService: StudentService,
+  constructor(private showService: ShowServiceClientService,
+              private episodeService: EpisodeService,
+              private studentService: StudentService,
               private loginService: LoginServiceClientService,
               private analysisService: AnalysisService) {
+
+    this.analysisEdit = false;
 
   }
 
@@ -34,10 +42,10 @@ export class AnalysisPreviouslySubmittedComponent implements OnInit {
 
   }
 
-  showAppropriateAnalysisList(){
+  showAppropriateAnalysisList() {
     // @ts-ignore
     this.loggedInUser.role == "FACULTY" ? this.refreshPreviousAnalysis(this.episodeId)
-      :this.showMyAnalysis();
+      : this.showMyAnalysis();
 
   }
 
@@ -50,7 +58,7 @@ export class AnalysisPreviouslySubmittedComponent implements OnInit {
   }
 
   filterMyAnalysis() {
-    switch(this.whoseSubmissions){
+    switch (this.whoseSubmissions) {
       case 1:
         this.showMyAnalysis();
         break;
@@ -71,21 +79,30 @@ export class AnalysisPreviouslySubmittedComponent implements OnInit {
       .then(analysisList => {
         this.analysisList = analysisList;
         this.analysisList.length > 0 ? this.notify.emit(true)
-          :this.notify.emit(false)
+          : this.notify.emit(false)
 
       })
   }
 
-  showAnalysisOfMyPupils(){
+  showAnalysisOfMyPupils() {
     alert('hi');
   }
 
 
-  deleteAnalysis() {
+  deleteAnalysis(analysisId) {
 
+    this.analysisService.deleteAnalysis(analysisId)
+      .then(() => {
+        return this.episodeService.deleteEpisodeFromDB(this.episodeId)
+      })
+      .then(() => {
+        return this.showService.deleteShowFromDB(this.showId)
+      })
+      .then(() => this.showMyAnalysis());
   }
 
   editAnalysis() {
+    this.analysisEdit = true;
 
   }
 }
