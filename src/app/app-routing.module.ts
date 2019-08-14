@@ -11,7 +11,7 @@ import {AnalysisEditorComponent} from "./analysis-editor/analysis-editor.compone
 import {ProfileComponent} from "./profile/profile.component";
 import {EnrollUnderFacultyComponent} from "./enroll-under-faculty/enroll-under-faculty.component";
 import {ViewPupilsComponent} from "./view-pupils/view-pupils.component";
-import {AuthGuard} from "./auth.guard";
+import {AuthGuard} from "./guards/auth.guard";
 
 
 const routes: Routes = [

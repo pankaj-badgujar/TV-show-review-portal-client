@@ -17,12 +17,16 @@ export class HomepageIndexService {
       .then(response=> response.json());
 
 
-  fetchShowsAnalysedByStudent = (sid) =>  fetch(`http://localhost:8080/api/user/analysedAhowIds/${sid}`)
+  fetchShowsAnalysedByStudent = (sid) =>  fetch(`http://localhost:8080/api/user/analysedShowIds/${sid}`)
     .then(response=> response.json());
 
-  fetchShowsReviewedByFaculty = (fid) =>  fetch(`http://localhost:8080/api/faculty/showsReviewed/${fid}`)
+  fetchShowsReviewedByFaculty = (fid) =>  fetch(`http://localhost:8080/api/faculty/showsReviewed/${fid}`,{
+    mode: 'no-cors'
+  })
     .then(response=> response.json());
 
-  fetchShowsToBeReviewedByFaculty = (fid) =>  fetch(`http://localhost:8080/api/faculty/showsToBeReviewed/${fid}`)
+  fetchShowsToBeReviewedByFaculty = (fid) =>  fetch(`http://localhost:8080/api/faculty/showsToBeReviewed/${fid}`,{
+    mode: 'no-cors'
+  })
     .then(response=> response.json());
 }

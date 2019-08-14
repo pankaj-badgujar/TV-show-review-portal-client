@@ -26,15 +26,15 @@ export class LoginServiceClientService {
       .then((text) => text.length ? this.addFetchedUserToSessionStorage(text) : null);
 
   addFetchedUserToSessionStorage(text: string) {
-    localStorage.setItem('loggedInUser', text);
+    sessionStorage.setItem('loggedInUser', text);
     return JSON.parse(text);
   }
 
   getLoggedInUser(){
-    return JSON.parse(localStorage.getItem('loggedInUser'));
+    return JSON.parse(sessionStorage.getItem('loggedInUser'));
   }
 
   logoutUser(){
-    localStorage.removeItem('loggedInUser');
+    sessionStorage.removeItem('loggedInUser');
   }
 }
