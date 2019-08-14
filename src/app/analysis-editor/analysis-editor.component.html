@@ -39,13 +39,17 @@
 
   <div *ngIf="loggedInUser !== undefined && loggedInUser !== null">
     <div class="form-group">
-      <label for="textArea">Analysis : </label>
+      <label
+        class="col-form-label"
+        for="textArea"><h3>Analysis :</h3> (Note that students are only allowed to submit one analysis per episode)</label>
       <textarea
+        [disabled]="submittedAlready"
         [(ngModel)]="content"
         class="form-control" id="textArea" rows="4"></textarea>
     </div>
     <br>
     <button
+      [disabled]="submittedAlready"
       (click)="submitAnalysis()"
       class="btn btn-secondary float-right"
       data-target="#exampleModal" data-toggle="modal">Submit
@@ -76,6 +80,7 @@
 
   <ng-container *ngIf="loggedInUser != null">
     <app-analysis-previously-submitted
+      (notify)="onNotify($event)"
       [episodeId]="episodeId">
 
     </app-analysis-previously-submitted>

@@ -8,8 +8,8 @@ export class AnalysisService {
   constructor() {
   }
 
-  createAnalysis = (userId, episodeId, analysisJSON) =>
-    fetch(`http://localhost:8080/api/user/${userId}/episode/${episodeId}/analysis`,
+  createAnalysis = (userId, showId, episodeId, analysisJSON) =>
+    fetch(`http://localhost:8080/api/user/${userId}/show/${showId}/episode/${episodeId}/analysis`,
       {
         method: 'POST',
         body: JSON.stringify(analysisJSON),
