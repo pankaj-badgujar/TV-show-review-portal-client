@@ -19,6 +19,41 @@
 
 <div *ngIf="this.loggedInUser!= null && this.loggedInUser.role == 'FACULTY'">
 
+  <div *ngIf="(this.review != null || this.review != undefined) && this.isEditing === false">
+
+    <div>
+      <label for="feedbackField" class="control-label float-left">Feedback</label>
+    </div>
+    <div class="row float-right">
+      <button
+        class="btn btn-warning mx-2 float-right">
+        <i
+          (click)="allowEditing()"
+          class="fa fa-pencil-alt"></i>
+      </button>
+      <button
+        class="btn btn-danger mx-2 float-right">
+        <i
+          (click)="deleteReview()"
+          class="fa fa-trash-alt"></i>
+      </button>
+    </div>
+    <br>
+    <br>
+    <textarea
+      [(ngModel)]="feedback"
+      class="form-control" id="feedbackNonField" rows="4" disabled="true">
+    </textarea>
+
+    <br>
+    <!--    <div class="row">-->
+    <!--      <label class="custom-control-label">Grade</label>-->
+    <!--      <label class="custom-control-label">{{this.grade}}</label>-->
+    <!--    </div>-->
+
+  </div>
+
+
   <div *ngIf="this.review === null || this.review === undefined || this.isEditing === true">
 
     <label for="feedbackField" class="control-label">Feedback</label>
@@ -38,39 +73,6 @@
       class="btn btn-secondary float-right"
       data-target="#exampleModal" data-toggle="modal">Submit
     </button>
-  </div>
-
-  <div *ngIf="(this.review != null || this.review != undefined) && this.isEditing === false">
-
-    <div>
-    <label for="feedbackField" class="control-label float-left">Feedback</label>
-    </div>
-    <div class="row float-right">
-      <button
-        class="btn btn-warning mx-2 float-right">
-        <i
-          (click)="allowEditing()"
-          class="fa fa-pencil-alt"></i>
-      </button>
-      <button
-        class="btn btn-danger mx-2 float-right">
-        <i
-          (click)="deleteReview()"
-          class="fa fa-trash-alt"></i>
-      </button>
-    </div>
-    <br>
-     <textarea
-       [(ngModel)]="feedback"
-       class="form-control" id="feedbackNonField" rows="4" disabled="true">
-    </textarea>
-
-    <br>
-<!--    <div class="row">-->
-<!--      <label class="custom-control-label">Grade</label>-->
-<!--      <label class="custom-control-label">{{this.grade}}</label>-->
-<!--    </div>-->
-
   </div>
 
   <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" role="dialog"
