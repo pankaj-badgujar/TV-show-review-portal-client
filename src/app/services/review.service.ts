@@ -44,4 +44,11 @@ export class ReviewService {
   getReviewsForAnalysisId = (analysisId) =>
     fetch(this.server + `api/analysis/${analysisId}/review`)
       .then(res => res.json());
+
+  getReviewsByFaculty = (userId) =>
+    fetch(this.server + `api/review/${userId}`)
+      .then((res) => {
+        return res.text()
+      })
+      .then((text) => text.length ? JSON.parse(text) : null);
 }

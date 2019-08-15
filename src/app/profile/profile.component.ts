@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../services/user.service";
 import {LoginServiceClientService} from "../services/login-service-client.service";
 import {StudentService} from "../services/student.service";
+import {ReviewService} from "../services/review.service";
 
 
 @Component({
@@ -27,7 +28,8 @@ export class ProfileComponent implements OnInit {
   private mySubmissions: [];
 
 
-  constructor(private studentService: StudentService,
+  constructor(private reviewService: ReviewService,
+              private studentService: StudentService,
               private loginService: LoginServiceClientService,
               private userService: UserService,
               private activatedRoute: ActivatedRoute) {
@@ -48,7 +50,7 @@ export class ProfileComponent implements OnInit {
     } else {
       // @ts-ignore
       // this.ownAccount = this.userId == this.loggedInUser.id;
-      if(this.userId === null || this.userId === undefined){
+      if (this.userId === null || this.userId === undefined) {
         // @ts-ignore
         this.userId = this.loggedInUser.id;
         this.ownAccount = true
@@ -64,17 +66,28 @@ export class ProfileComponent implements OnInit {
         this.getFieldValues(user);
       });
 
-    // @ts-ignore
-    if (this.loggedInUser.role == 'FACULTY' || this.ownAccount ) {
+    if (this.loggedInUser != null) {
 
-      this.studentService.findStudentByUserId(this.userId)
-        .then(student => {
-          this.mySubmissions = student.analysisList;
-        })
+      // @ts-ignore
+      if (this.loggedInUser.role == 'FACULTY' && this.ownAccount) {
 
+        this.reviewService.getReviewsByFaculty(this.userId)
+          .then(reviews => {
+            this.mySubmissions = reviews;
+          })
+
+      } else {
+
+        // @ts-ignore
+        if (this.loggedInUser.role == 'FACULTY' || this.ownAccount) {
+
+          this.studentService.findStudentByUserId(this.userId)
+            .then(student => {
+              this.mySubmissions = student.analysisList;
+            })
+        }
+      }
     }
-
-
   }
 
   getFieldValues(user) {
@@ -92,7 +105,7 @@ export class ProfileComponent implements OnInit {
         alert('Fields cannot be blank');
         return;
       }
-      if(this.phoneNumber.toString().length !== 10){
+      if (this.phoneNumber.toString().length !== 10) {
         alert('Invalid Length of Phone Number');
         return;
       }
