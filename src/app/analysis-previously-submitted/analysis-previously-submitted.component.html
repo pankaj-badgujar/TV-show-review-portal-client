@@ -1,33 +1,87 @@
+<script src="analysis-previously-submitted.component.ts"></script>
 <div *ngIf="analysisList != undefined">
   <hr>
   <br>
 
-    <select
-      (ngModelChange)="filterMyAnalysis()"
-      [(ngModel)]="whoseSubmissions"
-      class="form-control form-control-lg bg-light">
-      <option [ngValue]=0>All submissions</option>
-      <option *ngIf="this.loggedInUser != null" [ngValue]=1>Your submissions</option>
-    </select>
+  <select
+    (ngModelChange)="filterMyAnalysis()"
+    [(ngModel)]="whoseSubmissions"
+    class="form-control form-control-lg bg-light">
+    <option
+      [ngValue]=0>All submissions
+    </option>
+    <option
+      *ngIf="this.loggedInUser !== null && this.loggedInUser.role == 'STUDENT'"
+      [ngValue]=1>My submissions
+    </option>
+    <option
+      *ngIf="this.loggedInUser !== null && this.loggedInUser.role == 'FACULTY'"
+      [ngValue]=2>Submissions from my pupils
+    </option>
+  </select>
 
 
-  <div *ngIf="analysisList.length === 0">
+  <div *ngIf="this.loggedInUser !== null && this.loggedInUser.role == 'FACULTY' && analysisList.length === 0">
     <h5> No student has submitted analysis on this episode yet</h5>
+  </div>
+
+  <div *ngIf="this.loggedInUser !== null && this.loggedInUser.role == 'STUDENT' && analysisList.length === 0">
+    <h5> You have not submitted analysis on this episode yet</h5>
   </div>
 
   <div *ngIf="analysisList.length !== 0">
     <div *ngFor="let analysis of analysisList.slice().reverse()" class="card my-4">
       <div class="card-header">
-        <span class="card-title float-left">
+        <span class="card-title">
           <a routerLink="/profile/{{analysis.userIdOfStudent}}">
             {{analysis.studentsFullName}}
           </a>
         </span>
+        <span
+          *ngIf="this.loggedInUser !== null && this.loggedInUser.role == 'STUDENT'
+&&analysis.userIdOfStudent == this.loggedInUser.id"
+          class="float-right">
+
+          <button
+            (click)="editAnalysis(analysis)"
+            *ngIf="analysisEdit"
+            class="btn btn-success mx-2">
+          <i
+            (click)="editAnalysis(analysis)"
+            class="fa fa-check"></i>
+          </button>
+
+
+          <button
+            (click)="editAnalysis(analysis)"
+            *ngIf="!analysisEdit"
+            class="btn btn-warning mx-2">
+              <i
+                (click)="editAnalysis(analysis)"
+                class="fa fa-pencil-alt"></i>
+          </button>
+
+          <button
+            (click)="deleteAnalysis(analysis.id)"
+            class="btn btn-danger mx-2">
+              <i
+                (click)="deleteAnalysis(analysis.id)"
+                class="fa fa-trash"></i>
+          </button>
+
+        </span>
       </div>
       <div class="card-body">
-        <p class="card-text">
+        <p
+          *ngIf="!analysisEdit"
+          class="card-text">
           {{analysis.content}}
         </p>
+
+        <textarea
+          *ngIf="analysisEdit"
+          [(ngModel)]="editedAnalysis"
+          class="form-control" id="textArea" rows="4"></textarea>
 
 
       </div>

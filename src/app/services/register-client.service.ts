@@ -6,18 +6,20 @@ import {LoginServiceClientService} from "./login-service-client.service";
 })
 export class RegisterClientService {
 
+  server = 'http://localhost:8080/';
+
   constructor(private loginService: LoginServiceClientService) {
   }
 
   register = (user) =>
-    fetch(`http://localhost:8080/register`,
+    fetch(this.server + `/register`,
       {
         method: 'POST',
         body: JSON.stringify(user),
         headers: {
           'content-type': 'application/json'
-        },
-        mode:'no-cors'
+        }
+
       }
     )
       .then((res) => {
@@ -26,22 +28,23 @@ export class RegisterClientService {
       .then((text) => text.length ? this.loginService.addFetchedUserToSessionStorage(text) : null);
 
   registerStudent = (student) =>
-    fetch(`http://localhost:8080/registerStudent`,{
+    fetch(this.server +`registerStudent`,{
       method: 'POST',
       body: JSON.stringify(student),
       headers: {
         'content-type' : 'application/json'
-      },
-      mode:'no-cors'
+
+      }
+
     }).then();
 
   registerFaculty = (faculty) =>
-    fetch(`http://localhost:8080/registerFaculty`,{
+    fetch(this.server + `registerFaculty`,{
       method: 'POST',
       body: JSON.stringify(faculty),
       headers: {
         'content-type' : 'application/json'
-      },
-      mode:'no-cors'
+      }
+
     }).then();
 }

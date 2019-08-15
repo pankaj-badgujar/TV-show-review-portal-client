@@ -5,11 +5,13 @@ import {Injectable} from '@angular/core';
 })
 export class AnalysisService {
 
+  server= 'http://localhost:8080/';
+
   constructor() {
   }
 
-  createAnalysis = (userId, episodeId, analysisJSON) =>
-    fetch(`http://localhost:8080/api/user/${userId}/episode/${episodeId}/analysis`,
+  createAnalysis = (userId, showId, episodeId, analysisJSON) =>
+    fetch(this.server + `api/user/${userId}/show/${showId}/episode/${episodeId}/analysis`,
       {
         method: 'POST',
         body: JSON.stringify(analysisJSON),
@@ -23,9 +25,23 @@ export class AnalysisService {
     fetch(`http://localhost:8080/api/episode/${episodeId}/analysis`)
       .then(res => res.json());
 
-  findAllAnalysisOfStudent = (userId,episodeId) =>
+  findAllAnalysisOfStudent = (userId, episodeId) =>
     fetch(`http://localhost:8080/api/user/${userId}/episode/${episodeId}/analysis`)
       .then(res => res.json());
 
+  deleteAnalysis = (analysisId) =>
+    fetch(`http://localhost:8080/analysis/${analysisId}`, {
+      method: 'DELETE'
+    })
+      .then();
+
+  updateAnalysis = (analysisId, content) =>
+    fetch(`http://localhost:8080/analysis/${analysisId}/content/${content}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+      .then(res => res.json());
 
 }

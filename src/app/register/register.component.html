@@ -59,12 +59,19 @@
       </label>
 
       <div class="col-sm-6">
+
         <input
           [(ngModel)]="password"
           class="form-control"
           id="passwordFld"
           placeholder="123qwe#$%"
-          type="password"/>
+          type="{{showPassword ? 'text':'password'}}"
+        />
+
+      </div>
+      <div class="pt-3">
+        <i *ngIf="showPassword" (click)="togglePasswordVisibility()" class="fas fa-eye"></i>
+        <i *ngIf="!showPassword" (click)="togglePasswordVisibility()" class="fa fa-eye-slash"></i>
       </div>
 
     </div>

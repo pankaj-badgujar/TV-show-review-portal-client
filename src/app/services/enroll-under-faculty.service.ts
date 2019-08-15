@@ -5,18 +5,20 @@ import {Injectable} from '@angular/core';
 })
 export class EnrollUnderFacultyService {
 
+  server = 'http://localhost:8080/';
+
   constructor() {
   }
 
   findFacultyEnrolledIn = (userId) =>
-    fetch(`http://localhost:8080/findFacultyOfStudent/${userId}`)
+    fetch(this.server + `findFacultyOfStudent/${userId}`)
       .then((res) => {
         return res.text()
       })
       .then(text => text.length ? JSON.parse(text) : null);
 
   findAllFaculties = () =>
-    fetch(`http://localhost:8080/faculties`)
+    fetch(this.server + `/faculties`)
       .then((res) => {
         return res.text()
       })
@@ -24,7 +26,7 @@ export class EnrollUnderFacultyService {
 
 
   enrollUnderFaculty = (userId, faculty) =>
-    fetch(`http://localhost:8080/enroll/${userId}`, {
+    fetch(this.server + `enroll/${userId}`, {
       method: 'PUT',
       body: JSON.stringify(faculty),
       headers: {
@@ -33,12 +35,14 @@ export class EnrollUnderFacultyService {
     })
       .then(res => res.json());
 
-  cancelEnrollment = (userId) =>
-    fetch(`http://localhost:8080/cancelEnrollment/${userId}`, {
-      method: 'DELETE'
+  cancelEnrollment(userId) {
+    return fetch(this.server + `cancelEnrollment/${userId}`, {
+      method: 'DELETE',
     }).then(res => res.json());
 
+  }
+
   findFacultyByUserId = (userId) =>
-    fetch(`http://localhost:8080/findFacultyByUserId/${userId}`)
+    fetch(this.server + `findFacultyByUserId/${userId}`)
       .then(res => res.json());
 }

@@ -5,14 +5,16 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
 
+  server = 'http://localhost:8080/';
+
   constructor() { }
 
   findUserById = (userId) =>
-    fetch(`http://localhost:8080/api/users/${userId}`)
+    fetch(this.server + `api/users/${userId}`)
       .then(res => res.json());
 
   updateUser = (userId,user) =>
-    fetch(`http://localhost:8080/api/users/${userId}`,{
+    fetch(this.server + `api/users/${userId}`,{
       method : 'PUT',
       body: JSON.stringify(user),
       headers: {

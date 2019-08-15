@@ -3,10 +3,14 @@
   <h2> {{headingToBeDisplayed}}</h2>
 </div>
 
-  <div class="row my-5">
+  <div class="row my-5"
+       *ngIf= "showsToBeDisplayed.length > 0"
+  >
 
     <span class="col-6">
       <button
+        *ngIf= "showsToBeDisplayed.length > 0"
+        [disabled]="startIndex == 0"
         (click)="previousPage()"
         class="btn btn-dark float-left">
         <i class="fa fa-backward"></i>
@@ -16,6 +20,8 @@
 
     <span class="col-6">
       <button
+        *ngIf= "showsToBeDisplayed.length > 0"
+        [disabled]="endIndex >= showsToBeDisplayed.length"
         (click)="nextPage()"
         class="btn btn-dark float-right">
         Next
@@ -26,9 +32,16 @@
   </div>
 
   <div>
-<span
-  *ngFor="let show of showsToBeDisplayed"
-  class="col-lg-3 col-md-5 col-sm-6 ">
+
+    <div *ngIf= "showsToBeDisplayed.length == 0">
+      There are no shows in this category Currently.
+    </div >
+
+
+
+    <span
+      *ngFor="let show of showsToBeDisplayedCurrently"
+      class="col-lg-3 col-md-5 col-sm-6 ">
       <div class="card-deck mt-3 ml-3">
         <a routerLink="/details/{{show.id}}">
            <div class="card border-secondary" >

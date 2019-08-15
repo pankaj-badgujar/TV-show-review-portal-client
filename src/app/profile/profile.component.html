@@ -1,4 +1,3 @@
-
 <div class="container">
   <div class="row">
     <div class="col-12 float-right my-3">
@@ -100,12 +99,43 @@
       <div class="col-8 col-sm-6">
         <input
           [(ngModel)]="password"
-          [type]="editing?'text' : 'password'"
           [disabled]="!editing"
+          [type]="editing?'text' : 'password'"
           class="form-control" id="passwordFld">
       </div>
     </div>
+    <ng-container *ngIf="(this.loggedInUser.role == 'FACULTY') || (ownAccount)">
+      <div class="row p-4 my-3">
+        <div class="col-4 col-sm-3">
+          <label
+            class="col-form-label">
+            Previous submissions :
+          </label>
+        </div>
+      </div>
 
+      <br>
+      <div *ngFor="let analysis of mySubmissions">
+        <div class="card bg-light my-5">
+          <div class="card-header">
+            <a routerLink="/details/{{analysis.show.id}}"><b>{{analysis.show.name}}</b></a>
+          </div>
+          <div class="card-body">
+            <a
+              routerLink="/details/{{analysis.show.id}}/episodes/{{analysis.episode.id}}/analysis"
+              class="card-title">Episode name : {{analysis.episode.episodeName}}</a>
+            <hr>
+            <br>
+            <p class="card-text">
+              {{analysis.content}}
+            </p>
+          </div>
+          <div class="card-footer text-muted">
+            <span class="float-right">{{analysis.dateOfSubmission}}</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
   </div>
 
 </div>

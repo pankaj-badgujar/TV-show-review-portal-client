@@ -1,13 +1,21 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
 
-  constructor() { }
+  server = 'http://localhost:8080/';
+
+  constructor() {
+  }
 
   findStudentByStudentId = (studentId) =>
-    fetch(`http://localhost:8080/findStudent/${studentId}`)
-      .then(res => res.json())
+    fetch(this.server + `findStudent/${studentId}`)
+      .then(res => res.json());
+
+  findStudentByUserId = (userId) =>
+    fetch(this.server + `findStudentByUserId/${userId}`)
+      .then(res => res.text())
+      .then(text => text.length ? JSON.parse(text) : null);
 }

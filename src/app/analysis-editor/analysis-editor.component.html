@@ -3,7 +3,7 @@
     <div class="col-12 float-right my-3">
       <a routerLink="../../">
         <i class="fa fa-arrow-left"></i>
-        Back to episode list
+        Back
       </a>
     </div>
   </div>
@@ -30,23 +30,30 @@
   <br><br>
 
   <div *ngIf="loggedInUser === undefined || loggedInUser === null">
+
     <div class="alert alert-info" role="alert">
-      You have to be logged in to submit your analysis.
+      You have to be logged in student to submit your analysis.
       <a class="alert-link" routerLink="/login">Click here to Login</a>
     </div>
   </div>
 
 
-  <div *ngIf="loggedInUser !== undefined && loggedInUser !== null">
+  <div *ngIf="loggedInUser !== undefined && loggedInUser !== null
+  && loggedInUser.role !== 'FACULTY'">
     <div class="form-group">
-      <label for="textArea">Analysis : </label>
+      <label
+        class="col-form-label"
+        for="textArea"><h3>Analysis :</h3> (Note that students are only allowed to submit one analysis per
+        episode)</label>
       <textarea
         [(ngModel)]="content"
+        [disabled]="submittedAlready"
         class="form-control" id="textArea" rows="4"></textarea>
     </div>
     <br>
     <button
       (click)="submitAnalysis()"
+      [disabled]="submittedAlready"
       class="btn btn-secondary float-right"
       data-target="#exampleModal" data-toggle="modal">Submit
     </button>
@@ -73,8 +80,12 @@
   </div>
 
   <br>
+
   <app-analysis-previously-submitted
-    [episodeId]="episodeId">
+    (notify)="onNotify($event)"
+    [episodeId]="episodeId"
+    [showId]="showId">
+
   </app-analysis-previously-submitted>
   <br>
   <br>

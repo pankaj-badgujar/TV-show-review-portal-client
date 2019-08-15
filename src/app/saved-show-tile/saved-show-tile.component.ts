@@ -9,10 +9,11 @@ export class SavedShowTileComponent implements OnInit {
 
 
   noPreviewImage: any;
-
-
   startIndex: number;
   endIndex: number;
+  analysedShows: any[];
+  reviewedShows: any[];
+  toBeReviewedShows: any[];
 
   @Input() showsToBeDisplayed : any[];
 
@@ -20,7 +21,7 @@ export class SavedShowTileComponent implements OnInit {
 
   @Input() isSavedShow: boolean;
 
-  showsToBeDisplayedCurrently: any[];
+  @Input() showsToBeDisplayedCurrently: any[];
 
   constructor() {
     this.noPreviewImage = '/assets/images/No_Image_Available.jpg';
@@ -37,22 +38,26 @@ export class SavedShowTileComponent implements OnInit {
     }
   }
 
-  ngOnChanges() {
-    this.showsToBeDisplayedCurrently = this.showsToBeDisplayed.slice(this.startIndex, this.endIndex);
-  }
-
   nextPage = () => {
 
-    this.showsToBeDisplayedCurrently = this.showsToBeDisplayed;
-    this.startIndex = this.startIndex + 24;
-    this.endIndex = this.endIndex + 24;
-    this.showsToBeDisplayedCurrently = this.showsToBeDisplayed.slice(this.startIndex,this.endIndex);
+    if(this.endIndex < this.showsToBeDisplayed.length) {
+
+      this.startIndex = this.startIndex + 24;
+      this.endIndex = this.endIndex + 24;
+      this.showsToBeDisplayedCurrently = this.showsToBeDisplayed.slice(this.startIndex, this.endIndex);
+    }
   };
 
   previousPage = () => {
 
+
     this.startIndex = this.startIndex - 24;
     this.endIndex = this.endIndex - 24;
+    if(this.startIndex < 0){
+      this.startIndex =0;
+      this.endIndex = 24;
+    }
+
     this.showsToBeDisplayedCurrently = this.showsToBeDisplayed.slice(this.startIndex,this.endIndex);
   };
 
