@@ -5,7 +5,8 @@ import {Injectable} from '@angular/core';
 })
 export class AnalysisService {
 
-  server= 'http://localhost:8080/';
+  // server= 'http://localhost:8080/';
+  server = 'http://wbdv-su19-java-server-group-13.herokuapp.com/'
 
   constructor() {
   }
