@@ -8,8 +8,8 @@
     </div>
   </div>
   <br>
-  
-<h4>Students currently enrolled under you :</h4>
+
+  <h4>Students currently enrolled under you :</h4>
   <br>
   <table class="table table-striped">
     <thead>
@@ -23,11 +23,18 @@
       <h5>No students currently enrolled under you</h5>
     </tr>
     <ng-container *ngFor="let student of faculty.studentList">
-    <tr>
-      <td>{{student.user.firstName}}</td>
-      <td>{{student.user.lastName}}</td>
 
-    </tr>
+      <tr class="hoverOn" routerLink="/profile/{{student.user.id}}">
+        <td>
+          <a routerLink="/profile/{{student.user.id}}">
+            {{student.user.firstName}}
+          </a></td>
+        <td><a routerLink="/profile/{{student.user.id}}">
+          {{student.user.lastName}}
+        </a>
+        </td>
+      </tr>
+
     </ng-container>
     </tbody>
   </table>

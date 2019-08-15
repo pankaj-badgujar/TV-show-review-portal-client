@@ -20,6 +20,7 @@ export class AnalysisPreviouslySubmittedComponent implements OnInit {
   analysisEdit: boolean;
 
   @Output() notify: EventEmitter<boolean> = new EventEmitter<boolean>();
+  editedAnalysis: string;
 
 
   constructor(private showService: ShowServiceClientService,
@@ -38,39 +39,39 @@ export class AnalysisPreviouslySubmittedComponent implements OnInit {
     this.showAppropriateAnalysisList();
 
     // @ts-ignore
-    this.whoseSubmissions = this.loggedInUser.role == "FACULTY" ? 0 : 1;
+    this.whoseSubmissions =
+      // @ts-ignore
+      (this.loggedInUser == null || this.loggedInUser.role == "FACULTY") ? 0 : 1
+
+
+    // // @ts-ignore
+    // this.whoseSubmissions = this.loggedInUser.role == "FACULTY" ? 0 : 1;
 
   }
 
   showAppropriateAnalysisList() {
+
     // @ts-ignore
-    this.loggedInUser.role == "FACULTY" ? this.refreshPreviousAnalysis(this.episodeId)
+    (this.loggedInUser == null || this.loggedInUser.role == "FACULTY")
+      ? this.refreshPreviousAnalysis(this.episodeId)
       : this.showMyAnalysis();
+
+    // // @ts-ignore
+    // this.loggedInUser.role == "FACULTY" ? this.refreshPreviousAnalysis(this.episodeId)
+    //   : this.showMyAnalysis();
 
   }
 
   refreshPreviousAnalysis(episodeId) {
     this.analysisService.findAllAnalysisForEpisode(episodeId)
       .then(analysisList => {
-        console.log(analysisList);
         this.analysisList = analysisList;
       })
   }
 
   filterMyAnalysis() {
-    switch (this.whoseSubmissions) {
-      case 1:
-        this.showMyAnalysis();
-        break;
-      case 2:
-        this.refreshPreviousAnalysis(this.episodeId);
-        break;
-      case 0:
-        this.showAnalysisOfMyPupils();
-        break;
-      default:
-
-    }
+   this.whoseSubmissions == 1? this.refreshPreviousAnalysis(this.episodeId)
+     : this.showMyAnalysis()
   }
 
   showMyAnalysis() {
@@ -101,8 +102,16 @@ export class AnalysisPreviouslySubmittedComponent implements OnInit {
       .then(() => this.showMyAnalysis());
   }
 
-  editAnalysis() {
-    this.analysisEdit = true;
+  editAnalysis(analysis) {
+    if (this.analysisEdit) {
+      this.analysisService.updateAnalysis(analysis.id,this.editedAnalysis)
+        .then(() => {
+          this.showMyAnalysis()
+        });
+    } else {
+      this.editedAnalysis = analysis.content;
+    }
+    this.analysisEdit = !this.analysisEdit;
 
   }
 }

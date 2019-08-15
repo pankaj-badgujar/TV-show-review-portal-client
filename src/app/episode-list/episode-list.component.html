@@ -45,9 +45,21 @@
                 Write Analysis For this episode
               </button>
             </div>
+
+            <div *ngIf="this.loggedInUser== null">
+              <button
+                class="btn btn-primary"
+                routerLink="/details/{{showId}}/episodes/{{episode.id}}/analysis">
+                <i class="fa fa-book-open"></i>
+                Read analysis of this episode
+              </button>
+            </div>
+
+
+
             <div *ngIf="this.loggedInUser!= null && this.loggedInUser.role == 'FACULTY'">
               <button
-                class="btn btn-warning"
+                class="btn btn-danger"
                 routerLink="/details/{{showId}}/episodes/{{episode.id}}/analysis">
                 <i class="fa fa-pen-alt"></i>
                 Review submissions

@@ -1,0 +1,4 @@
+.hoverOn tr:hover{
+  cursor: pointer;
+  background-color: #ccc;
+}

@@ -15,11 +15,14 @@ export class RegisterComponent implements OnInit {
   userName: string;
   password: string;
   role: string;
+  showPassword: boolean;
+
 
   registrationSuccessful : boolean;
 
   constructor(private registerClientService: RegisterClientService,
               private router: Router) {
+    this.showPassword = false;
   }
 
   ngOnInit() {
@@ -65,5 +68,9 @@ export class RegisterComponent implements OnInit {
 
   redirectManually() {
     this.router.navigate(['/']);
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 }
