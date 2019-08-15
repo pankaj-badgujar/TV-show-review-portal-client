@@ -29,8 +29,7 @@
   </div>
   <br><br>
 
-  <div *ngIf="loggedInUser === undefined || loggedInUser === null
-  || loggedInUser.role === 'FACULTY'">
+  <div *ngIf="loggedInUser === undefined || loggedInUser === null">
 
     <div class="alert alert-info" role="alert">
       You have to be logged in student to submit your analysis.

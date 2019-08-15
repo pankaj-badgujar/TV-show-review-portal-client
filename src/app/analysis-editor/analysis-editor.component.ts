@@ -54,9 +54,12 @@ export class AnalysisEditorComponent implements OnInit {
     };
 
 
+
     let episodeJSON = {
       "id": this.episodeId,
-      "showId": this.showId
+      "showId": this.showId,
+      // @ts-ignore
+      "episodeName" : this.episode.name
     };
 
     this.showService.getShowDetails(this.showId)

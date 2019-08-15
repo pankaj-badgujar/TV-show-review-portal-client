@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../services/user.service";
 import {LoginServiceClientService} from "../services/login-service-client.service";
+import {StudentService} from "../services/student.service";
 
 
 @Component({
@@ -21,9 +22,11 @@ export class ProfileComponent implements OnInit {
   lastName: string;
   username: string;
   password: string;
+  private mySubmissions: [];
 
 
-  constructor(private loginService: LoginServiceClientService,
+  constructor(private studentService: StudentService,
+              private loginService: LoginServiceClientService,
               private userService: UserService,
               private activatedRoute: ActivatedRoute) {
 
@@ -38,10 +41,9 @@ export class ProfileComponent implements OnInit {
       this.userId = params["userId"];
     });
 
-    if(this.loggedInUser == null){
-      this.ownAccount =  false;
-    }
-    else{
+    if (this.loggedInUser == null) {
+      this.ownAccount = false;
+    } else {
       // @ts-ignore
       this.ownAccount = this.userId == this.loggedInUser.id;
     }
@@ -52,10 +54,20 @@ export class ProfileComponent implements OnInit {
         this.getFieldValues(user);
       });
 
+    // @ts-ignore
+    if (this.loggedInUser.role == 'FACULTY' || this.ownAccount ) {
+
+      this.studentService.findStudentByUserId(this.userId)
+        .then(student => {
+          this.mySubmissions = student.analysisList;
+        })
+
+    }
+
 
   }
 
-  getFieldValues(user){
+  getFieldValues(user) {
     this.firstName = user.firstName;
     this.lastName = user.lastName;
     this.username = user.username;
@@ -64,7 +76,7 @@ export class ProfileComponent implements OnInit {
 
   toggleEditing() {
     if (this.editing) {
-      if(this.valuesInvalid()){
+      if (this.valuesInvalid()) {
         alert('Fields cannot be blank');
         return;
       }
