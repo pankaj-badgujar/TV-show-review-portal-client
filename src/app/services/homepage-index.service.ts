@@ -12,12 +12,12 @@ export class HomepageIndexService {
   constructor() { }
 
   fetchShowIndex = (pageNo) =>
-    fetch(`http://api.tvmaze.com/shows?page=${pageNo}`)
+    fetch(`https://api.tvmaze.com/shows?page=${pageNo}`)
       .then(response=> response.json());
 
 
   fetchParticularShowIndex = (showId) =>
-    fetch(`http://api.tvmaze.com/shows/1`)
+    fetch(`https://api.tvmaze.com/shows/1`)
       .then(response=> response.json());
 
 

@@ -31,7 +31,7 @@ export class EpisodeService {
 
 
   deleteEpisodeFromDB = (episodeId) =>
-    fetch(`http://localhost:8080/api/episode/${episodeId}`,{
+    fetch(this.server + `api/episode/${episodeId}`,{
       method: 'DELETE'
     }).then();
 
