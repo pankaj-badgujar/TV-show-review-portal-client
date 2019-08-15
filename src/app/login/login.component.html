@@ -1,63 +1,62 @@
 <div class="container mt-5">
-<h1>Login</h1>
+  <h1>Login</h1>
 
   <div *ngIf="invalidCredentialFlag" class="row alert alert-danger">
-     Invalid credentials. Please check your username and password again.
+    Invalid credentials. Please check your username and password again.
   </div>
 
 
-<div class="form-group row">
-  <label
-    for="username"
-    class="col-sm-2 col-form-label">
-    Username </label>
-  <div class="col-sm-6">
-    <input
-      [(ngModel)]="username"
-      type="text"
-      class="form-control"
-      id="username"
-      placeholder="Alice">
-  </div>
-</div>
-<div class="form-group row">
-  <label for="password" class="col-sm-2 col-form-label">
-    Password </label>
-  <div class="col-sm-6">
-    <input
-      (keyup.enter)="login(username,password)"
-      [(ngModel)]="password"
-      type="{{showPassword ? 'text':'password'}}"
-      class="form-control wbdv-password-fld"
-      id="password"
-      placeholder="123qwe#$%">
+  <div class="form-group row">
+    <label
+      class="col-sm-2 col-form-label"
+      for="username">
+      Username : </label>
+    <div class="col-sm-6">
 
+      <input
+        [(ngModel)]="username"
+        class="form-control"
+        id="username"
+        placeholder="Alice"
+        type="text">
+    </div>
   </div>
-  <div class="pt-3">
-    <i *ngIf="showPassword" (click)="togglePasswordVisibility()" class="fas fa-eye"></i>
-    <i *ngIf="!showPassword" (click)="togglePasswordVisibility()" class="fa fa-eye-slash"></i>
-  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="password">
+      Password : </label>
+    <div class="col-sm-6">
 
+      <input
+        (keyup.enter)="login(username,password)"
+        [(ngModel)]="password"
+        class="form-control wbdv-password-fld"
+        id="password"
+        placeholder="123qwe#$%"
+        type="{{showPassword ? 'text':'password'}}">
+
+      <span class="pt-2 float-right">
+            <i (click)="togglePasswordVisibility()"
+               *ngIf="showPassword"
+               class="fas fa-eye"></i>
+            <i (click)="togglePasswordVisibility()"
+               *ngIf="!showPassword"
+               class="fa fa-eye-slash"></i>
+          </span>
+  </div>
 </div>
 <div class="form-group row">
   <label class="col-sm-2 col-form-label"></label>
   <div class="col-sm-6">
-    <button
-      class="btn btn-primary btn-block"
-      (click)="login(username, password)">
-      Sign in
-    </button>
 
-    <div class="row">
-      <div class="float-md-none">
-        <a routerLink="/register"
-           class="float-right">Register</a>
-      </div>
-    </div>
-    <br>
-
+        <button
+          (click)="login(username, password)"
+          class="btn btn-primary btn-block">
+          Sign in
+        </button>
+        <h4>Don't have an account?<a class="float-right" routerLink="/register">Register here</a>
+        </h4>
 
   </div>
-
 </div>
+
 </div>

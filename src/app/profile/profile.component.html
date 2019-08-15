@@ -1,7 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-12 float-right my-3">
-      <a routerLink="../../">
+      <a *ngIf="this.loggedInUser == null || !ownAccount"
+         routerLink="../../">
+        <i class="fa fa-arrow-left"></i>
+        Back
+      </a>
+      <a *ngIf="ownAccount"
+         routerLink="../">
         <i class="fa fa-arrow-left"></i>
         Back
       </a>
@@ -53,8 +59,8 @@
           [(ngModel)]="firstName"
           [disabled]="!editing"
           class="form-control" id="firstNameFld">
-      </div >
-      <div class="col" *ngIf="editing && firstName.length == 0">
+      </div>
+      <div *ngIf="editing && firstName.length == 0" class="col">
         This Field Cannot Be Blank
       </div>
     </div>
@@ -73,12 +79,12 @@
           [disabled]="!editing"
           class="form-control" id="lastNameFld">
       </div>
-      <div class="col" *ngIf="editing && lastName.length == 0">
+      <div *ngIf="editing && lastName.length == 0" class="col">
         This Field Cannot Be Blank
       </div>
     </div>
 
-    <div class="row p-4 my-3">
+    <div class="row p-4 my-3" *ngIf="ownAccount">
       <div class="col-4 col-sm-3">
         <label
           class="col-form-label"
@@ -92,12 +98,12 @@
           [disabled]="!editing"
           class="form-control" id="usernameFld">
       </div>
-      <div class="col" *ngIf="editing && username.length == 0">
+      <div *ngIf="editing && username.length == 0" class="col">
         This Field Cannot Be Blank
       </div>
     </div>
 
-    <div class="row p-4 my-3">
+    <div class="row p-4 my-3" *ngIf="ownAccount">
       <div class="col-4 col-sm-3">
         <label
           class="col-form-label"
@@ -112,12 +118,13 @@
           [type]="editing?'text' : 'password'"
           class="form-control" id="passwordFld">
       </div>
-      <div class="col" *ngIf="editing && password.length == 0">
+      <div *ngIf="editing && password.length == 0" class="col">
         This Field Cannot Be Blank
       </div>
     </div>
 
-    <div class="row p-4 my-3">
+    <div class="row p-4 my-3" *ngIf="ownAccount ||
+    (this.loggedInUser != null && this.loggedInUser.role == 'FACULTY')">
       <div class="col-4 col-sm-3">
         <label
           class="col-form-label"
@@ -131,12 +138,13 @@
           [disabled]="!editing"
           class="form-control" id="phoneNumberFld">
       </div>
-      <div class="col" *ngIf="editing && phoneNumber.toString().length != 10">
+      <div *ngIf="editing && phoneNumber.toString().length != 10" class="col">
         Invalid Phone Number.
       </div>
     </div>
 
-    <div class="row p-4 my-3">
+    <div class="row p-4 my-3" *ngIf="ownAccount ||
+    (this.loggedInUser != null && this.loggedInUser.role == 'FACULTY')">
       <div class="col-4 col-sm-3">
         <label
           class="col-form-label"
@@ -150,42 +158,91 @@
           [disabled]="!editing"
           class="form-control" id="emailFld">
       </div>
-      <div class="col" *ngIf="editing && email.length == 0">
+      <div *ngIf="editing && email.length == 0" class="col">
         This Field Cannot Be Blank
       </div>
     </div>
 
+    <ng-container *ngIf="this.loggedInUser != null">
     <ng-container *ngIf="(this.loggedInUser.role == 'FACULTY') || (ownAccount)">
       <div class="row p-4 my-3">
         <div class="col-4 col-sm-3">
-          <label
-            class="col-form-label">
+          <label *ngIf="(this.loggedInUser.role == 'STUDENT' && this.ownAccount)
+           || (this.loggedInUser.role == 'FACULTY' && !ownAccount)"
+                 class="col-form-label">
             Previous submissions :
+          </label>
+          <label *ngIf="this.loggedInUser.role == 'FACULTY' && ownAccount"
+                 class="col-form-label">
+            Previous feedback :
           </label>
         </div>
       </div>
 
-      <br>
-      <div *ngFor="let analysis of mySubmissions">
-        <div class="card bg-light my-5">
-          <div class="card-header">
-            <a routerLink="/details/{{analysis.show.id}}"><b>{{analysis.show.name}}</b></a>
-          </div>
-          <div class="card-body">
-            <a
-              routerLink="/details/{{analysis.show.id}}/episodes/{{analysis.episode.id}}/analysis"
-              class="card-title">Episode name : {{analysis.episode.episodeName}}</a>
-            <hr>
-            <br>
-            <p class="card-text">
-              {{analysis.content}}
-            </p>
-          </div>
-          <div class="card-footer text-muted">
-            <span class="float-right">{{analysis.dateOfSubmission}}</span>
+      <div *ngIf="mySubmissions == null && this.loggedInUser.role == 'STUDENT'">
+        No submissions made
+      </div>
+
+      <div *ngIf="mySubmissions == null && this.loggedInUser.role == 'FACULTY'">
+        No feedback given
+      </div>
+
+      <ng-container *ngIf="this.loggedInUser.role == 'FACULTY' && ownAccount">
+
+        <div *ngFor="let eachFeedback of mySubmissions">
+          <div class="card bg-light my-5">
+            <div class="card-header">
+              <a routerLink="/details/{{eachFeedback.analysis.show.id}}"><b>{{eachFeedback.analysis.show.name}}</b></a>
+              <span class="float-right">
+              <a
+                class="card-title"
+                routerLink="/details/{{eachFeedback.analysis.show.id}}/episodes/{{eachFeedback.analysis.episode.id}}/analysis">Episode name : {{eachFeedback.analysis.episode.episodeName}}</a>
+            </span>
+            </div>
+            <div class="card-body">
+              <div class="card-text">
+                <b>Your feedback :</b>
+                <p>{{eachFeedback.feedback}}</p>
+                <hr>
+                <b>Analysis:</b>
+               <p>{{eachFeedback.analysis.content}}</p>
+              </div>
+            </div>
+            <div class="card-footer text-muted">
+              <span class="float-right">{{eachFeedback.analysis.dateOfSubmission}}</span>
+            </div>
           </div>
         </div>
-      </div>
+
+      </ng-container>
+
+      <ng-container *ngIf="(this.loggedInUser.role == 'STUDENT' && this.ownAccount)
+           || (this.loggedInUser.role == 'FACULTY' && !ownAccount)">
+        <div *ngFor="let analysis of mySubmissions">
+          <div class="card bg-light my-5">
+            <div class="card-header">
+              <a routerLink="/details/{{analysis.show.id}}"><b>{{analysis.show.name}}</b></a>
+            </div>
+            <div class="card-body">
+              <a
+                class="card-title"
+                routerLink="/details/{{analysis.show.id}}/episodes/{{analysis.episode.id}}/analysis">Episode name
+                : {{analysis.episode.episodeName}}</a>
+              <hr>
+              <br>
+              <p class="card-text">
+                <b>Analysis: </b>
+                {{analysis.content}}
+              </p>
+            </div>
+            <div class="card-footer text-muted">
+              <span class="float-right">{{analysis.dateOfSubmission}}</span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+    </ng-container>
     </ng-container>
   </div>
 

@@ -23,9 +23,13 @@ export class RegisterClientService {
       }
     )
       .then((res) => {
-        return res.text()
+
+        return res.status != 200? "error" : res.text()
+
       })
-      .then((text) => text.length ? this.loginService.addFetchedUserToSessionStorage(text) : null);
+      .then((text) => {
+        return text == "error" ? null : this.loginService.addFetchedUserToSessionStorage(text)
+      });
 
   registerStudent = (student) =>
     fetch(this.server +`registerStudent`,{
