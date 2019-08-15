@@ -1,7 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-12 float-right my-3">
-      <a routerLink="../../">
+      <a *ngIf="!ownAccount"
+         routerLink="../../">
+        <i class="fa fa-arrow-left"></i>
+        Back
+      </a>
+      <a *ngIf="ownAccount"
+         routerLink="../">
         <i class="fa fa-arrow-left"></i>
         Back
       </a>
