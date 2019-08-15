@@ -1,28 +1,34 @@
-# WbdvProjectSf19AngularClientGroup13
+This project is made with following technologies: 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.0.
+Front end: Angular JS
+Middle tier: java server
+Database : mySQL
 
-## Development server
+*************************************************************************************************************************
+The project is hosted on heroku: 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Front end: https://github.ccs.neu.edu/pankajbadgujar/wbdv-project-sf19-angular-client-group13
 
-## Code scaffolding
+Back end: https://github.ccs.neu.edu/pankajbadgujar/wbdv-project-sf19-java-server-group13
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+*************************************************************************************************************************
+The database is loaded by test data by us already to better understand the functionality of the web application.
 
-## Build
+*************************************************************************************************************************
+For running on local machines :
+ 
+----------- For frontend: ----------- 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+npm start
+Runs the app in the development mode.
+Open http://localhost:3000 to view it in the browser.
 
-## Running unit tests
+The page will reload if you make edits.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+----------- For backend:------------
 
-## Running end-to-end tests
+* The java server should have details of the connection of Mysql databaseof the local machine
+ 
+* Also, the links in our code in git are those of heroku server's mySQL db. hence in order to run the project on local machine, these links have to be altered with localhost links.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-"# wbdv-project-sf19-angular-client-group13" 
+* Most of our services at the client side 'Server' variable that can be changed to "http://localhost:8080/" and all other service functions can use the localhost server to make their calls.
