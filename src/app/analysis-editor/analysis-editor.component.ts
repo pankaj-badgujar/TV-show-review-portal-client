@@ -53,8 +53,6 @@ export class AnalysisEditorComponent implements OnInit {
       "content": this.content,
     };
 
-
-
     let episodeJSON = {
       "id": this.episodeId,
       "showId": this.showId,
