@@ -24,13 +24,9 @@ export class HomepageIndexService {
   fetchShowsAnalysedByStudent = (sid) =>  fetch(this.server + `api/user/analysedShowIds/${sid}`)
     .then(response=> response.json());
 
-  fetchShowsReviewedByFaculty = (fid) =>  fetch(this.server + `api/faculty/showsReviewed/${fid}`,{
-    mode: 'no-cors'
-  })
+  fetchShowsReviewedByFaculty = (fid) =>  fetch(this.server + `api/faculty/showsReviewed/${fid}`)
     .then(response=> response.json());
 
-  fetchShowsToBeReviewedByFaculty = (fid) =>  fetch(this.server + `api/faculty/showsToBeReviewed/${fid}`,{
-    mode: 'no-cors'
-  })
+  fetchShowsToBeReviewedByFaculty = (fid) =>  fetch(this.server + `api/faculty/showsToBeReviewed/${fid}`)
     .then(response=> response.json());
 }
