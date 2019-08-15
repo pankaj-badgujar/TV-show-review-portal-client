@@ -23,21 +23,21 @@ export class AnalysisService {
       .then(res => res.json());
 
   findAllAnalysisForEpisode = (episodeId) =>
-    fetch(`http://localhost:8080/api/episode/${episodeId}/analysis`)
+    fetch(this.server+ `api/episode/${episodeId}/analysis`)
       .then(res => res.json());
 
   findAllAnalysisOfStudent = (userId, episodeId) =>
-    fetch(`http://localhost:8080/api/user/${userId}/episode/${episodeId}/analysis`)
+    fetch(this.server + `api/user/${userId}/episode/${episodeId}/analysis`)
       .then(res => res.json());
 
   deleteAnalysis = (analysisId) =>
-    fetch(`http://localhost:8080/analysis/${analysisId}`, {
+    fetch(this.server + `analysis/${analysisId}`, {
       method: 'DELETE'
     })
       .then();
 
   updateAnalysis = (analysisId, content) =>
-    fetch(`http://localhost:8080/analysis/${analysisId}/content/${content}`, {
+    fetch(this.server + `analysis/${analysisId}/content/${content}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json'
