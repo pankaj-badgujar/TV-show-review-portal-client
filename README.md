@@ -6,7 +6,7 @@ Middle tier: java server
 
 Database : mySQL
 
-API user: https://www.tvmaze.com/api
+API used: https://www.tvmaze.com/api
 *************************************************************************************************************************
 The project is hosted on heroku: 
 
