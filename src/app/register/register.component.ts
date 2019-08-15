@@ -54,10 +54,7 @@ export class RegisterComponent implements OnInit {
           this.role == "1" ? this.registerFaculty(user) : this.registerStudent(user);
 
 
-          this.registrationSuccessful = 1;
-          this.timer = setTimeout(() => {
-            this.router.navigate(['/']);
-          }, 5000)
+
         }
 
       })
@@ -67,19 +64,58 @@ export class RegisterComponent implements OnInit {
   registerStudent(user) {
 
     // Check FOR PHONE NUMBER AND REQUIRED FIELDS
+    if (this.valuesInvalid()) {
+      alert('Fields cannot be blank');
+      return;
+    }
+    if (this.phoneNumber.toString().length !== 10) {
+      alert('Invalid Length of Phone Number');
+      return;
+    }
 
     let studentJSON = {
       "user": user
     };
     this.registerClientService.registerStudent(studentJSON).then();
 
+    this.registrationSuccessful = 1;
+    this.timer = setTimeout(() => {
+      this.router.navigate(['/']);
+    }, 5000)
+  }
+
+  valuesInvalid() {
+    if (this.firstName ===undefined || this.firstName.trim().length < 1 ||
+      this.lastName === undefined || this.lastName.trim().length < 1 ||
+      this.userName === undefined || this.userName.trim().length < 1 ||
+      this.password === undefined || this.password.trim().length < 1||
+    this.email.trim().length < 1)
+    {
+      return true;
+    }
   }
 
   registerFaculty(user) {
+
+    // Check FOR PHONE NUMBER AND REQUIRED FIELDS
+    if (this.valuesInvalid()) {
+      alert('Fields cannot be blank');
+      return;
+    }
+    if (this.phoneNumber.toString().length !== 10) {
+      alert('Invalid Length of Phone Number');
+      return;
+    }
+
     let facultyJSON = {
       "user": user
     };
     this.registerClientService.registerFaculty(facultyJSON).then();
+
+    this.registrationSuccessful = 1;
+    this.timer = setTimeout(() => {
+      this.router.navigate(['/']);
+    }, 5000)
   }
 
   redirectManually() {
