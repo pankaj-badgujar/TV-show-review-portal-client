@@ -10,7 +10,7 @@ import {ReviewService} from '../services/review.service';
 })
 export class AnalysisReviewComponent implements OnInit {
 
-  @Input() analysis: [];
+   analysis: object;
 
   grade: number;
   isEditing: boolean;
@@ -19,24 +19,24 @@ export class AnalysisReviewComponent implements OnInit {
   showId: number;
   loggedInUser: object;
   review: object;
-  analysisId: number;
-  gradeValues: Iterable<number>;
+  @Input() analysisId: number;
 
   constructor(private activatedRoute: ActivatedRoute,
               private loginService: LoginServiceClientService,
               private reviewService: ReviewService) {
     this.grade = 0;
     this.feedback = '';
-    this.analysisId = 1;
+    // @ts-ignore
     this.isEditing = false;
-    this.gradeValues = Array(100).keys();
-    if (this.analysis !== undefined) {
+    // if (this.analysis !== undefined) {
+    //   // @ts-ignore
+    //   this.analysisId = this.analysis.id;
+    //   // @ts-ignore
+    //   this.grade = this.review.grade;
+    // }
+    if (this.review !== undefined) {
       // @ts-ignore
-      this.analysisId = this.analysis[0].id;
-      // @ts-ignore
-      this.feedback = this.analysis[0].feedback;
-      // @ts-ignore
-      this.grade = this.analysis[0].grade;
+      this.feedback = this.review.feedback;
     }
   }
 
@@ -50,8 +50,20 @@ export class AnalysisReviewComponent implements OnInit {
     });
 
     // @ts-ignore
-    this.reviewService.getReviewsForAnalysisByFaculty(this.loggedInUser.id, this.analysisId)
-      .then(review => this.review = review);
+    if (this.loggedInUser.role === 'FACULTY') {
+      // @ts-ignore
+      this.reviewService.getReviewsForAnalysisByFaculty(this.loggedInUser.id, this.analysisId)
+        .then(review => {
+          this.review = review;
+          this.feedback = review.feedback;
+        });
+    } else {
+      this.reviewService.getReviewsForAnalysisId(this.analysisId)
+        .then(review => {
+          this.review = review;
+          this.feedback = review.feedback;
+        });
+    }
   }
 
   submitReview() {
@@ -72,6 +84,7 @@ export class AnalysisReviewComponent implements OnInit {
   deleteReview() {
     // @ts-ignore
     this.reviewService.deleteReview(this.review.id).then(res => this.review = null);
+    this.feedback = '';
     this.review = null;
   }
   updateReview() {

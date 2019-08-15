@@ -87,16 +87,17 @@
       </div>
       <div class="card-footer">
         <span class="float-right text-muted">{{analysis.dateOfSubmission}}</span>
+        <br>
+        <div>
+          <app-analysis-review
+            [analysisId]="analysis.id">
+          </app-analysis-review>
+        </div>
+
       </div>
     </div>
 
     <br>
-
-    <div>
-      <app-analysis-review
-        [analysis]="analysisList">
-      </app-analysis-review>
-    </div>
 
     <br>
   </div>

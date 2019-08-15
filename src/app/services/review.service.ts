@@ -33,11 +33,15 @@ export class ReviewService {
 
   deleteReview = (reviewId) =>
     fetch(this.server + `api/review/${reviewId}`,{
-      method: 'PUT',
+      method: 'DELETE',
     })
       .then(res => res.json());
 
   getReviewsForAnalysisByFaculty = (facultyId, analysisId) =>
     fetch(this.server + `api/faculty/${facultyId}/analysis/${analysisId}/review`)
+      .then(res => res.json());
+
+  getReviewsForAnalysisId = (analysisId) =>
+    fetch(this.server + `api/analysis/${analysisId}/review`)
       .then(res => res.json());
 }

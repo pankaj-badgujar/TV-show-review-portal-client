@@ -4,8 +4,17 @@
     <h5>Submission is yet to be reviewed.</h5>
   </div>
   <div *ngIf="this.review != null || this.review != undefined">
-
+    <div>
+      <label class="float-left">Feedback by  </label>
+      <a routerLink="/profile/{{review.userIdOfFaculty}}">{{review.facultyFullName}}</a>
+    </div>
+    <br>
+    <br>
+    <p class="float-left">{{feedback}}
+    </p>
+    <br>
   </div>
+
 </div>
 
 <div *ngIf="this.loggedInUser!= null && this.loggedInUser.role == 'FACULTY'">
@@ -31,29 +40,26 @@
     </button>
   </div>
 
-  <div *ngIf="this.review != null || this.review != undefined">
+  <div *ngIf="(this.review != null || this.review != undefined) && this.isEditing === false">
 
     <div>
     <label for="feedbackField" class="control-label float-left">Feedback</label>
-      <div class="row">
+    </div>
+    <div class="row float-right">
       <button
-        (click)="allowEditing()"
-        class="btn btn-info float-right">
-        Edit
+        class="btn btn-warning mx-2 float-right">
         <i
           (click)="allowEditing()"
           class="fa fa-pencil-alt"></i>
       </button>
-        <button
+      <button
+        class="btn btn-danger mx-2 float-right">
+        <i
           (click)="deleteReview()"
-          class="btn btn-info float-right">
-          Edit
-          <i
-            (click)="allowEditing()"
-            class="fa fa-trash-alt"></i>
-        </button>
-      </div>
+          class="fa fa-trash-alt"></i>
+      </button>
     </div>
+    <br>
      <textarea
        [(ngModel)]="feedback"
        class="form-control" id="feedbackNonField" rows="4" disabled="true">
