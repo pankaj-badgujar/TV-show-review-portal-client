@@ -22,6 +22,8 @@ export class ProfileComponent implements OnInit {
   lastName: string;
   username: string;
   password: string;
+  phoneNumber: number;
+  email: string;
   private mySubmissions: [];
 
 
@@ -45,7 +47,13 @@ export class ProfileComponent implements OnInit {
       this.ownAccount = false;
     } else {
       // @ts-ignore
-      this.ownAccount = this.userId == this.loggedInUser.id;
+      // this.ownAccount = this.userId == this.loggedInUser.id;
+      if(this.userId === null || this.userId === undefined){
+        this.userId = this.loggedInUser.id;
+        this.ownAccount = true
+      } else {
+        this.ownAccount = this.userId == this.loggedInUser.id;
+      }
     }
 
 
@@ -72,12 +80,18 @@ export class ProfileComponent implements OnInit {
     this.lastName = user.lastName;
     this.username = user.username;
     this.password = user.password;
+    this.email = user.email;
+    this.phoneNumber = user.phoneNumber;
   }
 
   toggleEditing() {
     if (this.editing) {
       if (this.valuesInvalid()) {
         alert('Fields cannot be blank');
+        return;
+      }
+      if(this.phoneNumber.toString().length !== 10){
+        alert('Invalid Length of Phone Number');
         return;
       }
       this.updateUser();
@@ -100,7 +114,9 @@ export class ProfileComponent implements OnInit {
       "firstName": this.firstName,
       "lastName": this.lastName,
       "username": this.username,
-      "password": this.password
+      "password": this.password,
+      "phoneNumber": this.phoneNumber,
+      "email": this.email
     };
 
     this.userService.updateUser(this.userId, userJSON)

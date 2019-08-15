@@ -53,6 +53,9 @@
           [(ngModel)]="firstName"
           [disabled]="!editing"
           class="form-control" id="firstNameFld">
+      </div >
+      <div class="col" *ngIf="editing && firstName.length == 0">
+        This Field Cannot Be Blank
       </div>
     </div>
 
@@ -70,6 +73,9 @@
           [disabled]="!editing"
           class="form-control" id="lastNameFld">
       </div>
+      <div class="col" *ngIf="editing && lastName.length == 0">
+        This Field Cannot Be Blank
+      </div>
     </div>
 
     <div class="row p-4 my-3">
@@ -85,6 +91,9 @@
           [(ngModel)]="username"
           [disabled]="!editing"
           class="form-control" id="usernameFld">
+      </div>
+      <div class="col" *ngIf="editing && username.length == 0">
+        This Field Cannot Be Blank
       </div>
     </div>
 
@@ -103,7 +112,49 @@
           [type]="editing?'text' : 'password'"
           class="form-control" id="passwordFld">
       </div>
+      <div class="col" *ngIf="editing && password.length == 0">
+        This Field Cannot Be Blank
+      </div>
     </div>
+
+    <div class="row p-4 my-3">
+      <div class="col-4 col-sm-3">
+        <label
+          class="col-form-label"
+          for="phoneNumberFld">
+          Phone Number :
+        </label>
+      </div>
+      <div class="col-8 col-sm-6">
+        <input
+          [(ngModel)]="phoneNumber"
+          [disabled]="!editing"
+          class="form-control" id="phoneNumberFld">
+      </div>
+      <div class="col" *ngIf="editing && phoneNumber.toString().length != 10">
+        Invalid Phone Number.
+      </div>
+    </div>
+
+    <div class="row p-4 my-3">
+      <div class="col-4 col-sm-3">
+        <label
+          class="col-form-label"
+          for="emailFld">
+          Email Id :
+        </label>
+      </div>
+      <div class="col-8 col-sm-6">
+        <input
+          [(ngModel)]="email"
+          [disabled]="!editing"
+          class="form-control" id="emailFld">
+      </div>
+      <div class="col" *ngIf="editing && email.length == 0">
+        This Field Cannot Be Blank
+      </div>
+    </div>
+
     <ng-container *ngIf="(this.loggedInUser.role == 'FACULTY') || (ownAccount)">
       <div class="row p-4 my-3">
         <div class="col-4 col-sm-3">

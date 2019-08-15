@@ -76,6 +76,35 @@
 
     </div>
 
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="phoneNumberFld">
+      Phone No.  <sup class="text-danger">*</sup>  :
+    </label>
+    <div class="col-sm-6">
+      <input
+        [(ngModel)]="phoneNumber"
+        class="form-control"
+        id="phoneNumberFld"
+        placeholder="1234567890"
+        type="text"/>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="emailFld">
+      Email Id  <sup class="text-danger">*</sup>  :
+    </label>
+    <div class="col-sm-6">
+      <input
+        [(ngModel)]="email"
+        class="form-control"
+        id="emailFld"
+        placeholder="alice"
+        type="text"/>
+    </div>
+  </div>
+
+
     <div class="form-group row">
       <label
         class="col-form-label col-sm-2"

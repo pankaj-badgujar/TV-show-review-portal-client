@@ -9,13 +9,13 @@
     </div>
   </div>
   <br>
-  <h2 class="mt-5">
+  <h1 class="mt-5">
     {{showDetails.name}}
-  </h2>
+  </h1>
   <br>
 
   <div *ngIf="showDetails.genres != undefined && showDetails.genres.length >= 1">
-  <span *ngFor="let genre of showDetails.genres">
+  <span *ngFor="let genre of showDetails.genres" class = "font-size-large">
       <app-show-genres [genre]="genre"></app-show-genres>
     </span>
   </div>
@@ -27,10 +27,10 @@
       <img *ngIf="showDetails.image != undefined" src="{{showDetails.image.medium}}">
       <img class="h-75 w-50" *ngIf="showDetails.image == undefined" src='/assets/images/No_Image_Available.jpg'>
     </div>
-    <div class="col-md-8 col-sm-7 px-3">
+    <div class="col-md-8 col-sm-7 px-3 font-size-large">
       <br>
       <dl class="row">
-        <dt *ngIf="showDetails.language" class="col-6">Language</dt>
+        <dt *ngIf="showDetails.language" class="col-6 ">Language</dt>
         <dd *ngIf="showDetails.language" class="col-6">{{showDetails.language}}</dd>
         <dt *ngIf="showDetails.type" class="col-6">Type</dt>
         <dd *ngIf="showDetails.type" class="col-6">{{showDetails.type}}</dd>

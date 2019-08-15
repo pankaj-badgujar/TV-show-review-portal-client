@@ -17,6 +17,7 @@ import {AuthGuard} from "./guards/auth.guard";
 const routes: Routes = [
   {path: '', component: HomepageComponent},
   {path: 'profile/:userId', component: ProfileComponent},
+  {path: 'profile', component: ProfileComponent},
   {path: 'enroll', component: EnrollUnderFacultyComponent,canActivate: [AuthGuard]},
   {path: 'viewPupils', component: ViewPupilsComponent,canActivate: [AuthGuard]},
   {path: 'search/:query', component: ResultGridComponent},

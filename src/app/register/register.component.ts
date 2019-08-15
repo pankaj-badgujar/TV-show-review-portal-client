@@ -14,6 +14,8 @@ export class RegisterComponent implements OnInit {
   lastName: string;
   userName: string;
   password: string;
+  phoneNumber: number;
+  email: string;
   role: string;
   showPassword: boolean;
 
@@ -35,6 +37,8 @@ export class RegisterComponent implements OnInit {
       "lastName": this.lastName,
       "username": this.userName,
       "password": this.password,
+      "phoneNumber": this.phoneNumber,
+      "email": this.email,
       "role": Number(this.role)
     };
     this.registerClientService.register(newUser)
@@ -52,6 +56,9 @@ export class RegisterComponent implements OnInit {
   }
 
   registerStudent(user){
+
+    // Check FOR PHONE NUMBER AND REQUIRED FIELDS
+
     let studentJSON = {
       "user" : user
     };

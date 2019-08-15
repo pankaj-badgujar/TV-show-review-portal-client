@@ -23,13 +23,15 @@ export class SearchShowComponent implements OnInit {
   }
 
   searchShow(keyword) {
-    if (keyword !== undefined && keyword.trim() !== '') {
+    if (keyword === undefined ) {
+      keyword = ""
+    }
+
       this.router.navigate([
         '/',
         'search',
         keyword
       ]);
 
-    }
   }
 }
