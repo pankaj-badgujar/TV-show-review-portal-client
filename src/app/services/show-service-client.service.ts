@@ -7,7 +7,7 @@ export class ShowServiceClientService {
 
 
   // server = 'http://localhost:8080/';
-  server = 'http://wbdv-su19-java-server-group-13.herokuapp.com/'
+  server = 'https://wbdv-su19-java-server-group-13.herokuapp.com/'
 
 
   constructor() {
