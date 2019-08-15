@@ -49,9 +49,11 @@ export class ProfileComponent implements OnInit {
       // @ts-ignore
       // this.ownAccount = this.userId == this.loggedInUser.id;
       if(this.userId === null || this.userId === undefined){
+        // @ts-ignore
         this.userId = this.loggedInUser.id;
         this.ownAccount = true
       } else {
+        // @ts-ignore
         this.ownAccount = this.userId == this.loggedInUser.id;
       }
     }
