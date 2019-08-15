@@ -3,30 +3,29 @@
   <hr>
   <br>
 
-    <select
-      (ngModelChange)="filterMyAnalysis()"
-      [(ngModel)]="whoseSubmissions"
-      class="form-control form-control-lg bg-light">
-      <option
-        *ngIf="this.loggedInUser.role == 'FACULTY'"
-        [ngValue]=0>All submissions
-      </option>
-      <option
-        *ngIf="this.loggedInUser.role == 'STUDENT'"
-        [ngValue]=1>My submissions
-      </option>
-      <option
-        *ngIf="this.loggedInUser.role == 'FACULTY'"
-        [ngValue]=2>Submissions from my pupils
-      </option>
-    </select>
+  <select
+    (ngModelChange)="filterMyAnalysis()"
+    [(ngModel)]="whoseSubmissions"
+    class="form-control form-control-lg bg-light">
+    <option
+      [ngValue]=0>All submissions
+    </option>
+    <option
+      *ngIf="this.loggedInUser !== null && this.loggedInUser.role == 'STUDENT'"
+      [ngValue]=1>My submissions
+    </option>
+    <option
+      *ngIf="this.loggedInUser !== null && this.loggedInUser.role == 'FACULTY'"
+      [ngValue]=2>Submissions from my pupils
+    </option>
+  </select>
 
 
-  <div *ngIf="this.loggedInUser.role == 'FACULTY' && analysisList.length === 0">
+  <div *ngIf="this.loggedInUser !== null && this.loggedInUser.role == 'FACULTY' && analysisList.length === 0">
     <h5> No student has submitted analysis on this episode yet</h5>
   </div>
 
-  <div *ngIf="this.loggedInUser.role == 'STUDENT' && analysisList.length === 0">
+  <div *ngIf="this.loggedInUser !== null && this.loggedInUser.role == 'STUDENT' && analysisList.length === 0">
     <h5> You have not submitted analysis on this episode yet</h5>
   </div>
 
@@ -38,13 +37,27 @@
             {{analysis.studentsFullName}}
           </a>
         </span>
-        <span class="float-right">
+        <span
+          *ngIf="this.loggedInUser !== null && this.loggedInUser.role == 'STUDENT'
+&&analysis.userIdOfStudent == this.loggedInUser.id"
+          class="float-right">
 
           <button
-            (click)="editAnalysis()"
+            (click)="editAnalysis(analysis)"
+            *ngIf="analysisEdit"
+            class="btn btn-success mx-2">
+          <i
+            (click)="editAnalysis(analysis)"
+            class="fa fa-check"></i>
+          </button>
+
+
+          <button
+            (click)="editAnalysis(analysis)"
+            *ngIf="!analysisEdit"
             class="btn btn-warning mx-2">
               <i
-                (click)="editAnalysis()"
+                (click)="editAnalysis(analysis)"
                 class="fa fa-pencil-alt"></i>
           </button>
 
@@ -64,10 +77,11 @@
           class="card-text">
           {{analysis.content}}
         </p>
-        <textarea
-          *ngIf="analysisEdit">
 
-        </textarea>
+        <textarea
+          *ngIf="analysisEdit"
+          [(ngModel)]="editedAnalysis"
+          class="form-control" id="textArea" rows="4"></textarea>
 
 
       </div>
