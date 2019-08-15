@@ -1,98 +1,109 @@
 <div class="container mt-5">
   <h1>Register</h1>
-  <div *ngIf="this.registrationSuccessful" class="alert alert-success" role="alert">
-    Registration Successful.
-    You will be redirected to home page in 5 seconds
-    <a (click)="redirectManually()" class="alert-link pointerOnHover">
-      click here
-    </a> to redirect now.
-
+  <br>
+  <div *ngIf="this.registrationSuccessful == 1" class="alert alert-success" role="alert">
+    <h3>Registration Successful.</h3>
+    <h4>You will be redirected to home page in 5 seconds
+      <a (click)="redirectManually()" class="alert-link pointerOnHover">
+        click here
+      </a> to redirect now.
+    </h4>
   </div>
 
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label" for="firstNameFld">
-        First Name  <sup class="text-danger">*</sup>  :
-      </label>
-      <div class="col-sm-6">
-        <input
-          [(ngModel)]="firstName"
-          class="form-control"
-          id="firstNameFld"
-          placeholder="Alice"
-          type="text"/>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label" for="lastNameFld">
-        Last Name  <sup class="text-danger">*</sup>  :
-      </label>
-      <div class="col-sm-6">
-        <input
-          [(ngModel)]="lastName"
-          class="form-control"
-          id="lastNameFld"
-          placeholder="Wonderland"
-          type="text"/>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label" for="usernameFld">
-        Username  <sup class="text-danger">*</sup>  :
-      </label>
-      <div class="col-sm-6">
-        <input
-          [(ngModel)]="userName"
-          class="form-control"
-          id="usernameFld"
-          placeholder="alice"
-          type="text"/>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label
-        class="col-sm-2 col-form-label"
-        for="passwordFld">
-        Password <sup class="text-danger">*</sup>  :
-      </label>
-
-      <div class="col-sm-6">
-
-        <input
-          [(ngModel)]="password"
-          class="form-control"
-          id="passwordFld"
-          placeholder="123qwe#$%"
-          type="{{showPassword ? 'text':'password'}}"
-        />
-
-      </div>
-      <div class="pt-3">
-        <i *ngIf="showPassword" (click)="togglePasswordVisibility()" class="fas fa-eye"></i>
-        <i *ngIf="!showPassword" (click)="togglePasswordVisibility()" class="fa fa-eye-slash"></i>
-      </div>
-
-    </div>
+  <div *ngIf="this.registrationSuccessful == -1" class="alert alert-danger" role="alert">
+    <h3>Registration Failed</h3>
+    <h4>Please enter correct inputs or try a different username! </h4>
+  </div>
 
   <div class="form-group row">
-    <label class="col-sm-2 col-form-label" for="phoneNumberFld">
-      Phone No.  <sup class="text-danger">*</sup>  :
+    <label class="col-sm-2 col-form-label" for="firstNameFld">
+      First Name <sup class="text-danger">*</sup> :
     </label>
     <div class="col-sm-6">
       <input
-        [(ngModel)]="phoneNumber"
+        [(ngModel)]="firstName"
         class="form-control"
-        id="phoneNumberFld"
-        placeholder="1234567890"
+        id="firstNameFld"
+        placeholder="Alice"
         type="text"/>
     </div>
   </div>
 
   <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="lastNameFld">
+      Last Name <sup class="text-danger">*</sup> :
+    </label>
+    <div class="col-sm-6">
+      <input
+        [(ngModel)]="lastName"
+        class="form-control"
+        id="lastNameFld"
+        placeholder="Wonderland"
+        type="text"/>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="usernameFld">
+      Username <sup class="text-danger">*</sup> :
+    </label>
+    <div class="col-sm-6">
+      <input
+        [(ngModel)]="userName"
+        class="form-control"
+        id="usernameFld"
+        placeholder="alice"
+        type="text"/>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label
+      class="col-sm-2 col-form-label"
+      for="passwordFld">
+      Password <sup class="text-danger">*</sup> :
+    </label>
+
+    <div class="col-sm-6">
+
+      <input
+        [(ngModel)]="password"
+        class="form-control"
+        id="passwordFld"
+        placeholder="123qwe#$%"
+        type="{{showPassword ? 'text':'password'}}"
+      />
+      <span class="pt-2 float-right">
+        <i (click)="togglePasswordVisibility()" *ngIf="showPassword" class="fas fa-eye"></i>
+        <i (click)="togglePasswordVisibility()" *ngIf="!showPassword" class="fa fa-eye-slash"></i>
+        </span>
+
+
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="phoneNumberFld">
+      Phone No. <sup class="text-danger">*</sup> :
+    </label>
+    <div class="col-sm-6">
+      <input
+        data-toggle="tooltip" data-placement="right" title="10 digit number required"
+        maxlength="10"
+        [(ngModel)]="phoneNumber"
+        class="form-control"
+        id="phoneNumberFld"
+        placeholder="1234567890"
+        type="text"
+      />
+
+
+    </div>
+  </div>
+
+  <div class="form-group row">
     <label class="col-sm-2 col-form-label" for="emailFld">
-      Email Id  <sup class="text-danger">*</sup>  :
+      Email Id <sup class="text-danger">*</sup> :
     </label>
     <div class="col-sm-6">
       <input
@@ -105,35 +116,38 @@
   </div>
 
 
-    <div class="form-group row">
-      <label
-        class="col-form-label col-sm-2"
-        for="roleSelect">
-        Role  <sup class="text-danger">*</sup>  :
-      </label>
-      <div
-        class="col-sm-6">
-        <select
-          [(ngModel)]="role"
-          class="form-control"
-          id="roleSelect">
-          <option selected>Select a role</option>
-          <option value="0">Student</option>
-          <option value="1">Faculty</option>
-        </select>
-      </div>
+  <div class="form-group row">
+    <label
+      class="col-form-label col-sm-2"
+      for="roleSelect">
+      Role <sup class="text-danger">*</sup> :
+    </label>
+    <div
+      class="col-sm-6">
+      <select
+        [(ngModel)]="role"
+        class="form-control"
+        id="roleSelect">
+        <option [selected]="true" [value]="0">Student</option>
+        <option [value]="1">Faculty</option>
+      </select>
     </div>
+  </div>
 
 
-    <div class="form-group row">
-      <label class="col-sm-2"></label>
-      <div class="col-sm-6">
-        <button
-          class="btn btn-primary btn-block"
-          (click)="register()"
-           id="registerBtn">Register</button>
-        <br>
-        <span class="float-right"><a routerLink="/login">Go back to Login</a></span>
-      </div>
+  <div class="form-group row">
+    <label class="col-sm-2"></label>
+    <div class="col-sm-6">
+      <button
+        (click)="register()"
+        class="btn btn-primary btn-block"
+        id="registerBtn">Register
+      </button>
+      <br>
+      <span
+        *ngIf="!this.registrationSuccessful"
+        class="float-right"><a routerLink="/login">Go back to Login</a></span>
+
     </div>
+  </div>
 </div>

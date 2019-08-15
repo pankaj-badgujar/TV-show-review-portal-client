@@ -8,17 +8,19 @@ import {Router} from "@angular/router";
 })
 export class LogoutScreenComponent implements OnInit {
 
+  timer : any;
   constructor(private router: Router) { }
 
   ngOnInit() {
 
-    setTimeout(() => {
+    this.timer = setTimeout(() => {
       this.router.navigate(['/']);
     }, 5000)
   }
 
 
   redirectManually() {
+    clearTimeout(this.timer);
     this.router.navigate(['/']);
   }
 }

@@ -18,17 +18,20 @@ export class RegisterComponent implements OnInit {
   email: string;
   role: string;
   showPassword: boolean;
+  timer: any;
 
 
-  registrationSuccessful : boolean;
+  registrationSuccessful: number;
 
   constructor(private registerClientService: RegisterClientService,
               private router: Router) {
     this.showPassword = false;
+    this.role = "0";
+    this.registrationSuccessful = 0;
+
   }
 
   ngOnInit() {
-    this.registrationSuccessful = false;
   }
 
   register() {
@@ -44,36 +47,43 @@ export class RegisterComponent implements OnInit {
     this.registerClientService.register(newUser)
       .then((user) => {
 
-        this.role == "1" ? this.registerFaculty(user) : this.registerStudent(user);
+        if(user == null) {
+          this.registrationSuccessful = -1;
+        }else{
+
+          this.role == "1" ? this.registerFaculty(user) : this.registerStudent(user);
 
 
-        this.registrationSuccessful = true;
-        setTimeout(() => {
-          this.router.navigate(['/']);
-        }, 5000)
+          this.registrationSuccessful = 1;
+          this.timer = setTimeout(() => {
+            this.router.navigate(['/']);
+          }, 5000)
+        }
+
       })
 
   }
 
-  registerStudent(user){
+  registerStudent(user) {
 
     // Check FOR PHONE NUMBER AND REQUIRED FIELDS
 
     let studentJSON = {
-      "user" : user
+      "user": user
     };
     this.registerClientService.registerStudent(studentJSON).then();
 
   }
 
-  registerFaculty(user){
+  registerFaculty(user) {
     let facultyJSON = {
-      "user" : user
+      "user": user
     };
     this.registerClientService.registerFaculty(facultyJSON).then();
   }
 
   redirectManually() {
+    clearTimeout(this.timer);
     this.router.navigate(['/']);
   }
 
