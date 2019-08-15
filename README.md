@@ -1,9 +1,12 @@
 This project is made with following technologies: 
 
 Front end: Angular JS
+
 Middle tier: java server
+
 Database : mySQL
 
+API user: https://www.tvmaze.com/api
 *************************************************************************************************************************
 The project is hosted on heroku: 
 
