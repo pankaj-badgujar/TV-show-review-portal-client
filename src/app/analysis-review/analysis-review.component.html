@@ -1,4 +1,3 @@
-<p>analysis-review works!</p>
 <div *ngIf="this.loggedInUser!= null && this.loggedInUser.role == 'STUDENT'">
 
   <div *ngIf="this.review === null || this.review === undefined">
@@ -11,7 +10,7 @@
 
 <div *ngIf="this.loggedInUser!= null && this.loggedInUser.role == 'FACULTY'">
 
-  <div *ngIf="this.review === null || this.review === undefined">
+  <div *ngIf="this.review === null || this.review === undefined || this.isEditing === true">
 
     <label for="feedbackField" class="control-label">Feedback</label>
     <textarea
@@ -30,16 +29,36 @@
       class="btn btn-secondary float-right"
       data-target="#exampleModal" data-toggle="modal">Submit
     </button>
-
   </div>
 
   <div *ngIf="this.review != null || this.review != undefined">
 
-    <label for="feedbackField" class="control-label">Feedback</label>
+    <div>
+    <label for="feedbackField" class="control-label float-left">Feedback</label>
+      <div class="row">
+      <button
+        (click)="allowEditing()"
+        class="btn btn-info float-right">
+        Edit
+        <i
+          (click)="allowEditing()"
+          class="fa fa-pencil-alt"></i>
+      </button>
+        <button
+          (click)="deleteReview()"
+          class="btn btn-info float-right">
+          Edit
+          <i
+            (click)="allowEditing()"
+            class="fa fa-trash-alt"></i>
+        </button>
+      </div>
+    </div>
      <textarea
        [(ngModel)]="feedback"
        class="form-control" id="feedbackNonField" rows="4" disabled="true">
     </textarea>
+
     <br>
 <!--    <div class="row">-->
 <!--      <label class="custom-control-label">Grade</label>-->
@@ -47,7 +66,6 @@
 <!--    </div>-->
 
   </div>
-
 
   <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" role="dialog"
        tabindex="-1">

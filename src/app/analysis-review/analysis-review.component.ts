@@ -13,6 +13,7 @@ export class AnalysisReviewComponent implements OnInit {
   @Input() analysis: [];
 
   grade: number;
+  isEditing: boolean;
   feedback: string;
   episodeId: number;
   showId: number;
@@ -26,7 +27,8 @@ export class AnalysisReviewComponent implements OnInit {
               private reviewService: ReviewService) {
     this.grade = 0;
     this.feedback = '';
-    this.analysisId = 0;
+    this.analysisId = 1;
+    this.isEditing = false;
     this.gradeValues = Array(100).keys();
     if (this.analysis !== undefined) {
       // @ts-ignore
@@ -54,17 +56,25 @@ export class AnalysisReviewComponent implements OnInit {
 
   submitReview() {
 
-    const reviewJSON = {
-      'feedback' : this.feedback,
-      'grade' : this.grade
-    };
+    if (this.isEditing === true) {
+      this.updateReview();
+    } else {
+      const reviewJSON = {
+        'feedback': this.feedback,
+        'grade': this.grade
+      };
 
+      // @ts-ignore
+      this.reviewService.createReview(this.loggedInUser.id, this.analysisId, reviewJSON)
+        .then(review => this.review = review);
+    }
+  }
+  deleteReview() {
     // @ts-ignore
-    this.reviewService.createReview(this.loggedInUser.id, this.analysisId, reviewJSON)
-      .then(review => this.review = review);
+    this.reviewService.deleteReview(this.review.id).then(res => this.review = null);
+    this.review = null;
   }
   updateReview() {
-
     // @ts-ignore
     this.review.grade = this.grade;
     // @ts-ignore
@@ -73,5 +83,10 @@ export class AnalysisReviewComponent implements OnInit {
     // @ts-ignore
     this.reviewService.updateReview(this.review.id, this.review)
       .then(review => this.review = review);
+    this.isEditing = false;
+  }
+
+  allowEditing() {
+    this.isEditing = true;
   }
 }
