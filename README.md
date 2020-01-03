@@ -8,7 +8,7 @@ Database : mySQL
 
 API used: https://www.tvmaze.com/api
 *************************************************************************************************************************
-The project is hosted on heroku: 
+The project is hosted on heroku: http://tv-show-review-portal.herokuapp.com/
 
 Front end: https://github.ccs.neu.edu/pankajbadgujar/wbdv-project-sf19-angular-client-group13
 
